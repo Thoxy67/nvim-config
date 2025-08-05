@@ -1,19 +1,19 @@
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require("lspconfig")
-local util = require("lspconfig.util")
+local lspconfig = require "lspconfig"
+local util = require "lspconfig.util"
 
 -- V ( https://vlang.io/ )
-lspconfig.v_analyzer.setup({
+lspconfig.v_analyzer.setup {
   on_attach = on_attach,
-  cmd = { vim.fn.expand('~') .. '/.config/v-analyzer/bin/v-analyzer' },
-  filetypes = { 'v' },
-  root_dir = util.root_pattern('v.mod', ".git"),
+  cmd = { vim.fn.expand "~" .. "/.config/v-analyzer/bin/v-analyzer" },
+  filetypes = { "v" },
+  root_dir = util.root_pattern("v.mod", ".git"),
   mason = false,
   settings = {
     mason = false,
     -- v-analyzer specific settings
   },
-})
+}
 
 return {
   {

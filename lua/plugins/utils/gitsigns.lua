@@ -26,22 +26,26 @@ return {
         -- Hunk navigation
         map("n", "]h", function()
           if vim.wo.diff then
-            vim.cmd.normal({ "]c", bang = true })
+            vim.cmd.normal { "]c", bang = true }
           else
-            gs.nav_hunk("next")
+            gs.nav_hunk "next"
           end
         end, "Navigate to next hunk")
 
         map("n", "[h", function()
           if vim.wo.diff then
-            vim.cmd.normal({ "[c", bang = true })
+            vim.cmd.normal { "[c", bang = true }
           else
-            gs.nav_hunk("prev")
+            gs.nav_hunk "prev"
           end
         end, "Navigate to previous hunk")
 
-        map("n", "]H", function() gs.nav_hunk("last") end, "Navigate to last hunk in buffer")
-        map("n", "[H", function() gs.nav_hunk("first") end, "Navigate to first hunk in buffer")
+        map("n", "]H", function()
+          gs.nav_hunk "last"
+        end, "Navigate to last hunk in buffer")
+        map("n", "[H", function()
+          gs.nav_hunk "first"
+        end, "Navigate to first hunk in buffer")
 
         -- Hunk actions
         map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage current hunk")
@@ -52,16 +56,22 @@ return {
         map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview hunk changes inline")
 
         -- Blame functionality
-        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Show blame info for current line")
-        map("n", "<leader>ghB", function() gs.blame() end, "Show blame for entire buffer")
+        map("n", "<leader>ghb", function()
+          gs.blame_line { full = true }
+        end, "Show blame info for current line")
+        map("n", "<leader>ghB", function()
+          gs.blame()
+        end, "Show blame for entire buffer")
 
         -- Diff functionality
         map("n", "<leader>ghd", gs.diffthis, "Diff current buffer against index")
-        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff current buffer against last commit")
+        map("n", "<leader>ghD", function()
+          gs.diffthis "~"
+        end, "Diff current buffer against last commit")
 
         -- Text objects
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Select current hunk as text object")
       end,
     },
-  }
+  },
 }

@@ -1,13 +1,13 @@
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require("lspconfig")
-local util = require("lspconfig.util")
+local lspconfig = require "lspconfig"
+local util = require "lspconfig.util"
 
 -- Zig ( https://ziglang.org/ )
-lspconfig.zls.setup({
+lspconfig.zls.setup {
   on_attach = on_attach,
   cmd = { "/usr/bin/zls" },
   filetypes = { "zig", "zir", "zon" },
-  root_dir = util.root_pattern('build.zig', 'build.zon'),
+  root_dir = util.root_pattern("build.zig", "build.zon"),
   settings = {
     zls = {
       single_file_support = true,
@@ -15,11 +15,11 @@ lspconfig.zls.setup({
       enable_snippets = true,
       warn_style = false,
       enable_semantic_tokens = true,
-      operator_completions = true
+      operator_completions = true,
       -- zls specific settings
     },
-  }
-})
+  },
+}
 
 return {
   {

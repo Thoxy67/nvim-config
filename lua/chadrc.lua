@@ -29,10 +29,9 @@ M.base46 = {
 
 M.ui = {
   tabufline = {
-    lazyload = false
-  }
+    lazyload = false,
+  },
 }
-
 
 M.nvdash = {
   load_on_startup = true,
@@ -77,7 +76,6 @@ M.nvdash = {
 
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
     { txt = "ᓚᘏᗢ Config by Thoxy", hl = "LazyProgressDone", no_gap = true, rep = false },
-
   },
 }
 
@@ -92,7 +90,7 @@ M.mason = {
     "rust_analyzer",
     "v-analyzer",
     "zls",
-  }
+  },
 }
 
 return M

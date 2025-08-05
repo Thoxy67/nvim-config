@@ -7,5 +7,5 @@ return {
       "tpope/vim-obsession",
       "tpope/vim-unimpaired",
     },
-  }
+  },
 }
