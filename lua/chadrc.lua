@@ -16,13 +16,14 @@ M.base46 = {
 
   integrations = {
     "git",
-    --"notify",
+    "notify",
     "whichkey",
     "lsp",
     "mason",
     "defaults",
     "telescope",
     "statusline",
+    "neogit",
   },
 }
 
