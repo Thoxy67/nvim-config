@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  transparency = true, -- Hide when < 2 buffer opened
+  transparency = false, -- Add transparency support (set by terminal)
   theme = "onedark",
 
   -- hl_override = {
