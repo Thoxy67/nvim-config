@@ -7,8 +7,5 @@ return {
       require("lazy").load { plugins = { "markdown-preview.nvim" } }
       vim.fn["mkdp#util#install"]()
     end,
-    init = function()
-      vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
-    end,
   },
 }

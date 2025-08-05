@@ -1,9 +1,6 @@
 return {
-    {
-        "OXY2DEV/helpview.nvim",
-        lazy = false,
-        dependencies = {
-
-        },
-    },
+  {
+    "OXY2DEV/helpview.nvim",
+    lazy = false,
+  },
 }
