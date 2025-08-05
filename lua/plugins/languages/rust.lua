@@ -17,59 +17,6 @@ if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
   })
 end
 
-vim.g.rustaceanvim = {
-  -- Plugin configuration
-  tools = {
-  },
-  -- LSP configuration
-  server = {
-    on_attach = on_attach,
-    root_dir = util.root_pattern("Cargo.toml", 'build.rs', "main.rs", "lib.rs", ".git"),
-    default_settings = {
-      -- rust-analyzer language server configuration
-      ["rust-analyzer"] = {
-        cargo = {
-          allFeatures = true,
-          loadOutDirsFromCheck = true,
-          buildScripts = {
-            enable = true,
-          },
-        },
-        -- Add clippy lints for Rust if using rust-analyzer
-        checkOnSave = diagnostics == "rust-analyzer",
-        -- Enable diagnostics if using rust-analyzer
-        diagnostics = {
-          enable = diagnostics == "rust-analyzer",
-        },
-        procMacro = {
-          enable = true,
-          ignored = {
-            ["async-trait"] = { "async_trait" },
-            ["napi-derive"] = { "napi" },
-            ["async-recursion"] = { "async_recursion" },
-          },
-        },
-        files = {
-          excludeDirs = {
-            ".direnv",
-            ".git",
-            ".github",
-            ".gitlab",
-            "bin",
-            "node_modules",
-            "target",
-            "venv",
-            ".venv",
-          },
-        },
-      },
-    },
-  },
-  -- DAP configuration
-  dap = {
-  },
-}
-
 -- lspconfig.rust_analyzer.setup({
 --     on_attach = on_attach,
 --     -- rust_analyzer specific settings
@@ -113,9 +60,63 @@ return {
   },
   {
     'mrcjkb/rustaceanvim',
-    version = '^6',     -- Recommended
-    lazy = false,       -- This plugin is already lazy
+    version = '^6', -- Recommended
+    lazy = false,   -- This plugin is already lazy
     config = function(_, opts)
+      vim.g.rustaceanvim = {
+        -- Plugin configuration
+        tools = {
+        },
+        -- LSP configuration
+        server = {
+          on_attach = on_attach,
+          root_dir = util.root_pattern("Cargo.toml", 'build.rs', ".git"),
+          default_settings = {
+            -- rust-analyzer language server configuration
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                buildScripts = {
+                  enable = true,
+                },
+              },
+              -- Add clippy lints for Rust if using rust-analyzer
+              checkOnSave = diagnostics == "rust-analyzer",
+              -- Enable diagnostics if using rust-analyzer
+              diagnostics = {
+                enable = diagnostics == "rust-analyzer",
+              },
+              procMacro = {
+                enable = true,
+                ignored = {
+                  ["async-trait"] = { "async_trait" },
+                  ["napi-derive"] = { "napi" },
+                  ["async-recursion"] = { "async_recursion" },
+                },
+              },
+              files = {
+                excludeDirs = {
+                  ".direnv",
+                  ".git",
+                  ".github",
+                  ".gitlab",
+                  "bin",
+                  "node_modules",
+                  "target",
+                  "venv",
+                  ".venv",
+                },
+              },
+            },
+          },
+        },
+        -- DAP configuration
+        dap = {
+        },
+      }
+
+
       -- Check if mason.nvim is available and codelldb is installed
       local mason_ok, mason_registry = pcall(require, "mason-registry")
       if mason_ok then

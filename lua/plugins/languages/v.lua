@@ -8,7 +8,9 @@ lspconfig.v_analyzer.setup({
   cmd = { vim.fn.expand('~') .. '/.config/v-analyzer/bin/v-analyzer' },
   filetypes = { 'v' },
   root_dir = util.root_pattern('v.mod', ".git"),
+  mason = false,
   settings = {
+    mason = false,
     -- v-analyzer specific settings
   },
 })
@@ -17,5 +19,15 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "v" } },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        v_analyzer = {
+          mason = false,
+        },
+      },
+    },
   },
 }

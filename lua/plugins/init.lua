@@ -34,6 +34,8 @@ return {
   -- test new blink
   { import = "nvchad.blink.lazyspec" },
 
+  { import = "plugins/utils" },
+
   -- Languages (comment to disable)
   { import = 'plugins/languages/rust' },
   { import = 'plugins/languages/v' },

@@ -29,6 +29,7 @@ usercmd('NvUpdate', function()
     vim.cmd('TSUpdate')
     vim.cmd('Lazy update')
     vim.cmd('MasonUpdate')
+    vim.cmd('MasonInstallAll')
 
     vim.notify('✅ Update process completed!', vim.log.levels.INFO, {
         title = 'NvUpdate'

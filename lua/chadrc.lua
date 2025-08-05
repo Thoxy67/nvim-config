@@ -13,6 +13,17 @@ M.base46 = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
+
+  integrations = {
+    "git",
+    --"notify",
+    "whichkey",
+    "lsp",
+    "mason",
+    "defaults",
+    "telescope",
+    "statusline",
+  },
 }
 
 M.ui = {
@@ -67,6 +78,20 @@ M.nvdash = {
     { txt = "ᓚᘏᗢ Config by Thoxy", hl = "LazyProgressDone", no_gap = true, rep = false },
 
   },
+}
+
+M.mason = {
+  command = true,
+  pkgs = {
+    "codelldb",
+    "bacon",
+    "bacon-ls",
+  },
+  skip = {
+    "rust_analyzer",
+    "v-analyzer",
+    "zls",
+  }
 }
 
 return M
