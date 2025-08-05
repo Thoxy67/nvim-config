@@ -13,7 +13,7 @@ map("n", "ch", "<cmd>CccHighlighterToggle<CR>", { desc = "Ccc Toggle Color highl
 map("n", "cp", "<cmd>CccPick<CR>", { desc = "Ccc Open Color Picker" })
 
 -- Spectre
--- map("n", "<leader>fR", "<cmd>Spectre<cr>", { desc = "Spectre Find And Replace", silent = true })
+map("n", "<leader>fR", "<cmd>Spectre<cr>", { desc = "Spectre Find And Replace", silent = true })
 
 -- Proot
 map("n", "<leader>fp", "<cmd>Proot<cr>", { desc = "Proot Toggle Project explorer", silent = true })
@@ -30,5 +30,8 @@ map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit Open" })
 
 -- Outline
 map("n", "<leader>oo", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+-- Oil
+map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Oil Files Manage" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
