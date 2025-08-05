@@ -24,6 +24,10 @@ M.base46 = {
     "telescope",
     "statusline",
     "neogit",
+    "todo",
+    "nvimtree",
+    "blankline",
+    "markview",
   },
 }
 
