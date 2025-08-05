@@ -37,6 +37,13 @@ This is my personal Neovim configuration built on top of [NvChad](https://nvchad
 
 The configuration will automatically install plugins on first launch.
 
+### Uninstall
+   ```bash
+   rm -rf ~/.config/nvim
+   rm -rf ~/.local/state/nvim
+   rm -rf ~/.local/share/nvim
+   ```
+
 ## 🤝 Contributing
 
 Feel free to fork this configuration and make it your own! If you have suggestions or improvements, pull requests are welcome.
