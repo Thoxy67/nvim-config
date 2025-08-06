@@ -28,6 +28,7 @@ M.base46 = {
     "nvimtree",
     "blankline",
     "markview",
+    "vim-illuminate",
   },
 }
 

@@ -2,55 +2,19 @@ return {
   {
     "OXY2DEV/markview.nvim",
     lazy = false,
+    priority = 49,
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
+      "saghen/blink.cmp",
     },
-    opts = function(_, opts)
-      -- dofile(vim.g.base46_cache .. "markview")
-      local presets = require "markview.presets"
-
-      local new_opts = {
-        preview = {
-          modes = { "i", "n", "v", "vs", "V", "Vs", "no", "c" },
-          hybrid_modes = { "i" },
-          callbacks = {
-            on_enable = function(_, win)
-              -- https://github.com/OXY2DEV/markview.nvim/issues/75
-              -- vim.wo[win].wrap = false
-
-              -- https://segmentfault.com/q/1010000000532491
-              vim.wo[win].conceallevel = 2
-              vim.wo[win].concealcursor = "nivc"
-            end,
-          },
-        },
-        markdown = {
-          headings = presets.headings.arrowed,
-          tables = {
-            use_virt_lines = true,
-          },
-        },
-        highlight_groups = "dynamic",
-        checkboxes = presets.checkboxes.nerd,
-        markdown_inline = {
-          enable = true,
-          tags = {
-            enable = true,
-            default = {
-              conceal = true,
-              ---@type string?
-              hl = nil,
-            },
-          },
-          entities = {
-            enable = true,
-            hl = nil,
-          },
-        },
-      }
-
-      opts = vim.tbl_deep_extend("force", new_opts, opts or {})
-      return opts
+    opts = {
+      preview = {
+        hybrid_modes = { "n" },
+        --headings = { shift_width = 0 },
+        icon_provider = "devicons", -- "mini" or "devicons"
+      },
+    },
+    config = function()
+      dofile(vim.g.base46_cache .. "markview")
     end,
   },
 }

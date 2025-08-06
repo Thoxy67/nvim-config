@@ -68,6 +68,7 @@ vim.opt.listchars = {
   tab = "» ",
   nbsp = "␣",
   trail = "·",
+  -- space = "·",
 }
 
 -- Preview substitutions live, as you type!
@@ -83,3 +84,16 @@ vim.o.confirm = true
 
 -- enable 24bit color
 vim.opt.termguicolors = true
+
+vim.g.python3_host_prog = "/usr/bin/python3" -- path of python3 (add pynvim using pip or archlinux package python-pynvim)
+vim.g.node_host_prog = "/home/thoxy/.bun/bin/neovim-node-host" -- path of neovim-node-host (bun i -g neovim | npm install -g neovim)
+
+local enable_providers = {
+  "python3_provider",
+  "node_provider",
+}
+
+for _, plugin in pairs(enable_providers) do
+  vim.g["loaded_" .. plugin] = nil
+  vim.cmd("runtime " .. plugin)
+end

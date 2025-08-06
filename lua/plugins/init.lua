@@ -19,7 +19,7 @@ return {
       -- Luckily, the only things that those plugins need are the custom queries, which we make available
       -- during startup.
       require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
+      require "nvim-treesitter.query_predicates"
     end,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts_extend = { "ensure_installed" },
@@ -27,7 +27,7 @@ return {
 
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -37,7 +37,7 @@ return {
   { import = "plugins/utils" },
 
   -- Languages (comment to disable)
-  { import = 'plugins/languages/rust' },
-  { import = 'plugins/languages/v' },
-  { import = 'plugins/languages/zig' },
+  { import = "plugins/languages/rust" },
+  { import = "plugins/languages/v" },
+  { import = "plugins/languages/zig" },
 }

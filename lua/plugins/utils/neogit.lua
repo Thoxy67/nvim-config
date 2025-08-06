@@ -8,7 +8,7 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     config = function(_, opts)
-      -- dofile(vim.g.base46_cache .. "neogit")
+      dofile(vim.g.base46_cache .. "neogit")
       require("neogit").setup(opts)
     end,
   },
