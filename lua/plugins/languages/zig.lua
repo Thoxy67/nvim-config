@@ -31,7 +31,7 @@ return {
   },
   {
     "nvim-neotest/neotest",
-    optional = true,
+    optional = false,
     dependencies = {
       "lawrence-laz/neotest-zig",
     },

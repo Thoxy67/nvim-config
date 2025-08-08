@@ -36,8 +36,14 @@ return {
 
   { import = "plugins/utils" },
 
+  { import = "plugins/dap" },
+
   -- Languages (comment to disable)
   { import = "plugins/languages/rust" },
+  { import = "plugins/languages/gleam" },
   { import = "plugins/languages/v" },
   { import = "plugins/languages/zig" },
+  { import = "plugins/languages/go" },
+  { import = "plugins/languages/ocaml" },
+  -- { import = "plugins/languages/json" },
 }
