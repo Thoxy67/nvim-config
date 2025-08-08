@@ -1,20 +1,24 @@
 return {
   {
-    "OXY2DEV/markview.nvim",
+
+    "nvim-treesitter",
     lazy = false,
     priority = 49,
     dependencies = {
       "saghen/blink.cmp",
-    },
-    opts = {
-      preview = {
-        hybrid_modes = { "n" },
-        --headings = { shift_width = 0 },
-        icon_provider = "devicons", -- "mini" or "devicons"
+      {
+        "OXY2DEV/markview.nvim",
+        opts = {
+          preview = {
+            hybrid_modes = { "n" },
+            --headings = { shift_width = 0 },
+            icon_provider = "devicons", -- "mini" or "devicons"
+          },
+        },
+        config = function()
+          dofile(vim.g.base46_cache .. "markview")
+        end,
       },
     },
-    config = function()
-      dofile(vim.g.base46_cache .. "markview")
-    end,
   },
 }

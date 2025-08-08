@@ -1,5 +1,5 @@
 return {
-  defaults = { lazy = true, version = false },
+  defaults = { lazy = false, version = false },
   install = { colorscheme = { "nvchad" } },
 
   ui = {
@@ -13,8 +13,8 @@ return {
 
   checker = {
     enabled = true, -- check for plugin updates periodically
-    notify = true,  -- notify on update
-  },                -- automatically check for plugin updates
+    notify = true, -- notify on update
+  }, -- automatically check for plugin updates
 
   performance = {
     rtp = {

@@ -8,9 +8,9 @@ local usercmd = vim.api.nvim_create_user_command
 
 usercmd("Config", function()
   local config_path = vim.fn.stdpath "config"
-  local init_path = config_path .. "/init.lua"
 
   vim.cmd("cd " .. config_path)
+  vim.cmd "e $MYVIMRC"
 
   vim.notify("📁 Open Config directory: " .. config_path, vim.log.levels.INFO, {
     title = "Directory Changed",
