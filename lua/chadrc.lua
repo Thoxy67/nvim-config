@@ -39,6 +39,8 @@ M.base46 = {
     "codeactionmenu",
     "hop",
     "rainbowdelimiters",
+    "grug_far",
+    "git-conflict",
   },
 }
 

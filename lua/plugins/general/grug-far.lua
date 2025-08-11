@@ -5,6 +5,7 @@ return {
     event = "BufEnter",
     opts = {},
     config = function(_, opts)
+      dofile(vim.g.base46_cache .. "grug_far")
       local map = vim.keymap.set
 
       require("grug-far").setup(opts)

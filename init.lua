@@ -36,6 +36,7 @@ dofile(vim.g.base46_cache .. "statusline")
 
 dofile(vim.g.base46_cache .. "devicons")
 dofile(vim.g.base46_cache .. "mini-icons")
+dofile(vim.g.base46_cache .. "blankline")
 
 require "options"
 require "autocmds"
