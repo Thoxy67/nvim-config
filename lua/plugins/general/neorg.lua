@@ -1,15 +1,16 @@
+-- neorg.lua - Note-taking and organization
 return {
-
   {
     "nvim-neorg/neorg",
     ft = { "norg", "neorg" },
     cmd = "Neorg",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "benlubas/neorg-interim-ls",
+      "benlubas/neorg-interim-ls", -- LSP support for neorg
     },
     opts = {
       load = {
+        -- Core modules
         ["core.defaults"] = {},
         ["core.export"] = {},
         ["core.fs"] = {},
@@ -21,6 +22,8 @@ return {
         ["core.highlights"] = {},
         ["core.itero"] = {},
         ["core.journal"] = {},
+
+        -- Visual enhancements
         ["core.concealer"] = {
           config = {
             dim_code_blocks = {
@@ -36,6 +39,8 @@ return {
             },
           },
         },
+
+        -- Directory management
         ["core.dirman"] = {
           config = {
             default_workspace = "work",
@@ -44,6 +49,8 @@ return {
             },
           },
         },
+
+        -- Completion support
         ["core.completion"] = {
           config = {
             engine = {
@@ -51,6 +58,8 @@ return {
             },
           },
         },
+
+        -- External LSP integration
         ["external.interim-ls"] = {
           config = {
             completion_provider = {

@@ -1,3 +1,4 @@
+-- dropbar.lua - Breadcrumb navigation
 return {
   {
     "Bekaboo/dropbar.nvim",

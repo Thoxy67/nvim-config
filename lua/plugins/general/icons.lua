@@ -1,4 +1,5 @@
+-- icons.lua - Icon support
 return {
-  { "nvim-tree/nvim-web-devicons" },
-  { "echasnovski/mini.icons", version = false },
+  { "nvim-tree/nvim-web-devicons" }, -- File type icons
+  { "echasnovski/mini.icons", version = false }, -- Additional icon set
 }

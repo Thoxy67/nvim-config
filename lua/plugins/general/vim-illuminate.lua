@@ -1,8 +1,10 @@
+-- vim-illuminate.lua - Highlight matching words under cursor
 return {
   {
     "RRethy/vim-illuminate",
     event = "BufEnter",
     opts = {
+      -- Don't illuminate in these file types
       filetypes_denylist = { "NvimTree", "TelescopePrompt", "NeogitStatus", "lazy", "mason" },
     },
     config = function(_, opts)

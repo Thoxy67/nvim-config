@@ -6,15 +6,14 @@
 local M = {}
 local aux = require "custom.chadrc_aux"
 
-M.base46 = {
-  transparency = false, -- Add transparency support (set by terminal)
-  theme = "kanagawa",
-  theme_toggle = { "kanagawa", "catppuccin" },
+-- ===========================
+-- THEME AND APPEARANCE
+-- ===========================
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+M.base46 = {
+  transparency = false, -- Set to true for transparent background
+  theme = "kanagawa", -- Default theme
+  theme_toggle = { "kanagawa", "catppuccin" }, -- Themes for toggle
 
   integrations = {
     "git",
@@ -44,6 +43,10 @@ M.base46 = {
   },
 }
 
+-- ===========================
+-- UI CONFIGURATION
+-- ===========================
+
 M.ui = {
   cmp = {
     style = "default",
@@ -58,23 +61,36 @@ M.ui = {
       "mode",
       -- "f",
       "file",
+      "modified",
       "gitcustom",
       "%=",
       "lsp_msg",
       "%=",
       "diagnostics",
       "lspx",
-      "cwd",
+      "harpoon",
+      "custom_cwd",
       "cursor",
     },
     modules = {
       hack = "%#@comment#%",
       gitcustom = aux.git_custom,
       lspx = aux.lspx,
+      harpoon = aux.harpoon_statusline_indicator,
+      modified = function()
+        return vim.bo.modified and " %#DiagnosticWarn#󰽂 " or " "
+      end,
+      custom_cwd = aux.custom_cwd,
+      oil_dir_cwd = "%@OilDirCWD@",
+      stop = "%X",
       -- f = "%F",
     },
   },
 }
+
+-- ===========================
+-- DASHBOARD CONFIGURATION
+-- ===========================
 
 M.nvdash = {
   load_on_startup = true,
@@ -123,22 +139,34 @@ M.nvdash = {
   },
 }
 
+-- ===========================
+-- PACKAGE MANAGEMENT
+-- ===========================
+
 M.mason = {
-  command = true,
-  skip = {
+  command = true, -- Enable Mason command
+  skip = { -- Skip these packages (install manually)
     "rust_analyzer",
     "v-analyzer",
     "zls",
   },
 }
 
+-- ===========================
+-- LSP CONFIGURATION
+-- ===========================
+
 M.lsp = {
-  signature = true,
+  signature = true, -- Enable signature help
 }
+
+-- ===========================
+-- CHEATSHEET
+-- ===========================
 
 M.cheatsheet = {
   theme = "grid", -- simple/grid
-  excluded_groups = {}, -- can add group name or with mode
+  excluded_groups = {}, -- Groups to exclude
 }
 
 return M

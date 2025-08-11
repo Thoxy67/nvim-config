@@ -1,12 +1,17 @@
 local M = {}
 
+-- Get the buffer number for the current statusline window
+-- This ensures statusline components show information for the correct buffer
 M.stbufnr = function()
   return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
 end
 
+-- Custom Git status component with clickable branch and change indicators
+-- Shows: branch name, added lines, modified lines, deleted lines
+-- Integrates with gitsigns.nvim for real-time Git status
 M.git_custom = function()
-  local run = "%@RunNeogit@"
-  local stop = "%X"
+  local run = "%@RunNeogit@" -- Clickable area start (opens Neogit)
+  local stop = "%X" -- Clickable area end
 
   local bufnr = M.stbufnr()
   if not vim.b[bufnr].gitsigns_head or vim.b[bufnr].gitsigns_git_status then
@@ -64,7 +69,7 @@ M.harpoon_statusline_indicator = function()
   local active = "%#St_HarpoonActive#"
 
   local options = {
-    icon = active .. " ⇁ ",
+    icon = active .. " 󰛢 ",
     separator = "",
     indicators = {
       inactive .. "q",
@@ -115,6 +120,25 @@ M.harpoon_statusline_indicator = function()
   else
     return ""
   end
+end
+
+M.custom_cwd = function()
+  local config = require("nvconfig").ui.statusline
+  local sep_style = config.separator_style
+  local utils = require "nvchad.stl.utils"
+
+  local sep_icons = utils.separators
+  local separators = (type(sep_style) == "table" and sep_style) or sep_icons[sep_style]
+
+  local sep_l = separators["left"]
+
+  local icon = "%#St_cwd_icon#" .. "󰉋 "
+  local run = "%@OpenDir@"
+  local stop = "%X"
+
+  local name = vim.uv.cwd()
+  name = "%#St_cwd_text#" .. " " .. (name:match "([^/\\]+)[/\\]*$" or name) .. " "
+  return (vim.o.columns > 85 and run .. ("%#St_cwd_sep#" .. sep_l .. icon .. name) .. stop) or ""
 end
 
 return M

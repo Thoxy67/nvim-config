@@ -1,4 +1,38 @@
 return {
+  -- ===========================
+  -- UI
+  -- ===========================
+
+  { "nvzone/volt", lazy = true },
+
+  {
+    "nvzone/menu",
+    lazy = true,
+    init = function()
+      vim.keymap.set("n", "<C-t>", function()
+        require("menu").open "default"
+      end, {})
+      -- mouse users + nvimtree users!
+      vim.keymap.set({ "n", "v" }, "<RightMouse>", function()
+        require("menu.utils").delete_old_menus()
+        vim.cmd.exec '"normal! \\<RightMouse>"'
+        -- clicked buf
+        local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
+        local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
+        require("menu").open(options, { mouse = true })
+      end, {})
+    end,
+  },
+
+  {
+    "nvzone/minty",
+    cmd = { "Shades", "Huefy" },
+  },
+
+  -- ===========================
+  -- LSP AND LANGUAGE SUPPORT
+  -- ===========================
+
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -6,26 +40,30 @@ return {
     end,
   },
 
+  -- ===========================
+  -- SYNTAX HIGHLIGHTING
+  -- ===========================
+
   {
     "nvim-treesitter/nvim-treesitter",
     version = false,
     build = ":TSUpdate",
     event = { "VeryLazy" },
     lazy = vim.fn.argc(-1) == 0,
+
     init = function(plugin)
-      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
-      -- Luckily, the only things that those plugins need are the custom queries, which we make available
-      -- during startup.
       require("lazy.core.loader").add_to_rtp(plugin)
       require "nvim-treesitter.query_predicates"
     end,
+
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts_extend = { "ensure_installed" },
+
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
+
+      -- Languages to install
       ensure_installed = {
         "bash",
         "c",
@@ -53,6 +91,8 @@ return {
         "xml",
         "yaml",
       },
+
+      -- Selection enhancement
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -62,50 +102,83 @@ return {
           node_decremental = "<bs>",
         },
       },
+
+      -- Text object movements
       textobjects = {
         move = {
           enable = true,
-          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-          goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
-          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+          goto_next_start = {
+            ["]f"] = "@function.outer",
+            ["]c"] = "@class.outer",
+            ["]a"] = "@parameter.inner",
+          },
+          goto_next_end = {
+            ["]F"] = "@function.outer",
+            ["]C"] = "@class.outer",
+            ["]A"] = "@parameter.inner",
+          },
+          goto_previous_start = {
+            ["[f"] = "@function.outer",
+            ["[c"] = "@class.outer",
+            ["[a"] = "@parameter.inner",
+          },
+          goto_previous_end = {
+            ["[F"] = "@function.outer",
+            ["[C"] = "@class.outer",
+            ["[A"] = "@parameter.inner",
+          },
         },
       },
     },
   },
 
+  -- ===========================
+  -- PACKAGE MANAGEMENT
+  -- ===========================
+
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Open Mason" } },
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
+
     opts = {
-      -- INFO: add mason packages here or use `ensure_installed` variable
       ensure_installed = {
-        -- "stylua",
-        -- "shfmt",
+        -- Add your tools here
+        -- "stylua", "shfmt",
       },
     },
+
     config = function(...)
       require("configs.mason").setup(...)
     end,
   },
 
+  -- ===========================
+  -- CODE FORMATTING
+  -- ===========================
+
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
-  -- test new blink
+  -- ===========================
+  -- COMPLETION
+  -- ===========================
+
   { import = "nvchad.blink.lazyspec" },
 
-  { import = "plugins/general" },
+  -- ===========================
+  -- PLUGIN IMPORTS
+  -- ===========================
 
+  { import = "plugins/general" },
   { import = "plugins/dap" },
 
-  -- Languages (comment to disable)
+  -- Language-specific plugins (comment out what you don't need)
   { import = "plugins/languages/rust" },
   { import = "plugins/languages/gleam" },
   { import = "plugins/languages/v" },

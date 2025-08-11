@@ -1,3 +1,4 @@
+-- markdown-preview.lua - Live markdown preview in browser
 return {
   {
     "iamcco/markdown-preview.nvim",

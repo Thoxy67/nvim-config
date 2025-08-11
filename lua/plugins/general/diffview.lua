@@ -1,3 +1,4 @@
+-- diffview.lua - Advanced diff and merge tool
 return {
   {
     "sindrets/diffview.nvim",

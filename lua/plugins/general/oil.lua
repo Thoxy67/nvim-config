@@ -1,15 +1,16 @@
+-- oil.lua - File explorer as a buffer
 return {
   {
     "stevearc/oil.nvim",
     opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     config = function(_, opts)
       require("oil").setup(opts)
     end,
   },
   {
+    -- Git status integration for oil
     "SirZenith/oil-vcs-status",
     event = "VeryLazy",
     dependencies = { "stevearc/oil.nvim" },
@@ -19,31 +20,33 @@ return {
       local StatusType = status_const.StatusType
 
       local new_opts = {
+        -- Git status symbols
         status_symbol = {
-          [StatusType.Added] = "",
-          [StatusType.Copied] = "",
-          [StatusType.Deleted] = "",
-          [StatusType.Ignored] = "",
-          [StatusType.Modified] = "",
-          [StatusType.Renamed] = "",
-          [StatusType.TypeChanged] = "",
+          [StatusType.Added] = "",
+          [StatusType.Copied] = "",
+          [StatusType.Deleted] = "",
+          [StatusType.Ignored] = "",
+          [StatusType.Modified] = "",
+          [StatusType.Renamed] = "",
+          [StatusType.TypeChanged] = "",
           [StatusType.Unmodified] = " ",
-          [StatusType.Unmerged] = "",
-          [StatusType.Untracked] = "",
-          [StatusType.External] = "",
-
-          [StatusType.UpstreamAdded] = "",
-          [StatusType.UpstreamCopied] = "",
-          [StatusType.UpstreamDeleted] = "",
+          [StatusType.Unmerged] = "",
+          [StatusType.Untracked] = "",
+          [StatusType.External] = "",
+          -- Upstream status symbols
+          [StatusType.UpstreamAdded] = "",
+          [StatusType.UpstreamCopied] = "",
+          [StatusType.UpstreamDeleted] = "",
           [StatusType.UpstreamIgnored] = " ",
-          [StatusType.UpstreamModified] = "",
-          [StatusType.UpstreamRenamed] = "",
-          [StatusType.UpstreamTypeChanged] = "",
+          [StatusType.UpstreamModified] = "",
+          [StatusType.UpstreamRenamed] = "",
+          [StatusType.UpstreamTypeChanged] = "",
           [StatusType.UpstreamUnmodified] = " ",
-          [StatusType.UpstreamUnmerged] = "",
+          [StatusType.UpstreamUnmerged] = "",
           [StatusType.UpstreamUntracked] = " ",
-          [StatusType.UpstreamExternal] = "",
+          [StatusType.UpstreamExternal] = "",
         },
+        -- Highlight groups for different status types
         status_hl_group = {
           [StatusType.Added] = "DiffviewStatusAdded",
           [StatusType.Copied] = "DiffviewNormal",
@@ -56,7 +59,7 @@ return {
           [StatusType.Unmerged] = "diffOldFile",
           [StatusType.Untracked] = "DiffviewFolderSign",
           [StatusType.External] = "diffOldFile",
-
+          -- Upstream highlight groups
           [StatusType.UpstreamAdded] = "DiffAdd",
           [StatusType.UpstreamCopied] = "DiffAdd",
           [StatusType.UpstreamDeleted] = "DiffAdd",

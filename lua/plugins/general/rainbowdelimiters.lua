@@ -1,3 +1,4 @@
+-- rainbowdelimiters.lua - Rainbow colored brackets/delimiters
 return {
   {
     "HiPhish/rainbow-delimiters.nvim",
@@ -5,17 +6,16 @@ return {
     config = function()
       dofile(vim.g.base46_cache .. "rainbowdelimiters")
 
-      -- This module contains a number of default definitions
       local rainbow_delimiters = require "rainbow-delimiters"
 
       vim.g.rainbow_delimiters = {
         strategy = {
-          [""] = rainbow_delimiters.strategy["global"],
-          vim = rainbow_delimiters.strategy["local"],
+          [""] = rainbow_delimiters.strategy["global"], -- Global strategy for most files
+          vim = rainbow_delimiters.strategy["local"], -- Local strategy for vim files
         },
         query = {
-          [""] = "rainbow-delimiters",
-          lua = "rainbow-blocks",
+          [""] = "rainbow-delimiters", -- Default query
+          lua = "rainbow-blocks", -- Special query for Lua blocks
         },
         highlight = {
           "RainbowDelimiterYellow",

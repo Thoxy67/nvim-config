@@ -1,3 +1,4 @@
+-- better-escape - Better escape sequences (jk to escape)
 return {
   {
     "max397574/better-escape.nvim",

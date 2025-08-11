@@ -1,3 +1,4 @@
+-- cord.lua - Discord Rich Presence
 return {
   {
     "vyfor/cord.nvim",

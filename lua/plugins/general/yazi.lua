@@ -1,3 +1,4 @@
+-- yazi.lua - Terminal file manager integration
 return {
   {
     "mikavilpas/yazi.nvim",
@@ -6,7 +7,6 @@ return {
       { "nvim-lua/plenary.nvim", lazy = true },
     },
     keys = {
-      -- 👇 in this section, choose your own keymappings!
       {
         "<leader>-",
         mode = { "n", "v" },
@@ -14,7 +14,6 @@ return {
         desc = "Yazi Open at the current file",
       },
       {
-        -- Open in the current working directory
         "<leader>cw",
         "<cmd>Yazi cwd<cr>",
         desc = "Yazi Open in the working directory",
@@ -26,17 +25,13 @@ return {
       },
     },
     opts = {
-      -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = false,
+      open_for_directories = false, -- Don't replace netrw completely
       keymaps = {
         show_help = "<f1>",
       },
     },
-    -- 👇 if you use `open_for_directories=true`, this is recommended
     init = function()
-      -- mark netrw as loaded so it's not loaded at all.
-      --
-      -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+      -- Disable netrw to avoid conflicts
       vim.g.loaded_netrwPlugin = 1
     end,
   },

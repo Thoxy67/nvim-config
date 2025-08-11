@@ -1,103 +1,157 @@
+-- ============================================================================
+-- NEOVIM OPTIONS CONFIGURATION
+-- lua/options.lua
+-- ============================================================================
+-- This file contains custom Neovim options that extend NvChad's defaults.
+-- Options are organized by category for easy maintenance and understanding.
+-- ============================================================================
+
+-- Load NvChad's default options first
 require "nvchad.options"
 
--- Show which line your cursor is on
+-- ============================================================================
+-- VISUAL AND UI ENHANCEMENTS
+-- ============================================================================
+
+-- ==================== CURSOR AND LINE DISPLAY ====================
+-- Show which line your cursor is on with highlighting
 vim.o.cursorline = true
-vim.o.cursorlineopt = "both" -- number, line, both
+vim.o.cursorlineopt = "both" -- Highlight both line number and line content
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+-- Enable 24-bit color support for better themes
+vim.opt.termguicolors = true
 
--- Make line numbers default
+-- ==================== LINE NUMBERING ====================
+-- Make line numbers default (essential for navigation)
 vim.o.number = true
 
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
+-- Uncomment for relative line numbers (helpful for motions like 5j, 3k)
 -- vim.o.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
+-- ==================== FONT AND ICON SUPPORT ====================
+-- Set to true if you have a Nerd Font installed and selected in terminal
+-- Nerd Fonts provide icons for file types, Git status, etc.
+vim.g.have_nerd_font = false
+
+-- ============================================================================
+-- INPUT AND INTERACTION
+-- ============================================================================
+
+-- ==================== MOUSE SUPPORT ====================
+-- Enable mouse mode (useful for resizing splits, selecting text)
 vim.o.mouse = "a"
 
--- Don't show the mode, since it's already in the status line
+-- ==================== MODE DISPLAY ====================
+-- Don't show mode in command line (already shown in statusline)
 vim.o.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- ==================== CLIPBOARD INTEGRATION ====================
+-- Sync clipboard between OS and Neovim for seamless copy/paste
+-- Scheduled after UiEnter to avoid startup time impact
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 
--- Enable break indent
+-- ============================================================================
+-- EDITING BEHAVIOR
+-- ============================================================================
+
+-- ==================== INDENTATION ====================
+-- Enable break indent (wrapped lines maintain indentation)
 vim.o.breakindent = true
 
--- Save undo history
+-- ==================== UNDO HISTORY ====================
+-- Save undo history to files (persistent across sessions)
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+-- ==================== SEARCH BEHAVIOR ====================
+-- Case-insensitive searching UNLESS \C or capital letters in search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
-vim.o.signcolumn = "yes"
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
-
--- Prevent use of a swapfile for the buffer.
-vim.opt.swapfile = false
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = {
-  -- space = "·",
-  tab = "» ",
-  nbsp = "␣",
-  trail = "·",
-  -- space = "·",
-}
-
--- Preview substitutions live, as you type!
+-- Preview substitutions live as you type (show changes before confirming)
 vim.o.inccommand = "split"
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+-- ============================================================================
+-- EDITOR INTERFACE
+-- ============================================================================
 
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-vim.o.confirm = true
+-- ==================== SIGN COLUMN ====================
+-- Keep sign column visible by default (for Git signs, diagnostics, etc.)
+vim.o.signcolumn = "yes"
 
--- enable 24bit color
-vim.opt.termguicolors = true
+-- ==================== TIMING AND RESPONSIVENESS ====================
+-- Decrease update time for faster completion and Git signs
+vim.o.updatetime = 250
 
-vim.g.python3_host_prog = "/usr/bin/python3" -- path of python3 (add pynvim using pip or archlinux package python-pynvim)
-vim.g.node_host_prog = "/home/thoxy/.bun/bin/neovim-node-host" -- path of neovim-node-host (bun i -g neovim | npm install -g neovim)
+-- Decrease mapped sequence wait time (faster which-key popup)
+vim.o.timeoutlen = 300
 
-local enable_providers = {
-  "python3_provider",
-  "node_provider",
+-- ==================== WINDOW SPLITS ====================
+-- Configure how new splits should be opened (more intuitive)
+vim.o.splitright = true -- Vertical splits open to the right
+vim.o.splitbelow = true -- Horizontal splits open below
+
+-- ==================== SWAP FILES ====================
+-- Prevent use of swap files (modern systems have enough RAM)
+vim.opt.swapfile = false
+
+-- ============================================================================
+-- WHITESPACE AND FORMATTING
+-- ============================================================================
+
+-- ==================== WHITESPACE VISUALIZATION ====================
+-- Configure how whitespace characters are displayed
+-- Using vim.opt for better table interface
+vim.o.list = true
+vim.opt.listchars = {
+  -- space = "·",     -- Show spaces as dots (uncomment if needed)
+  tab = "» ", -- Show tabs as » followed by space
+  nbsp = "␣", -- Show non-breaking spaces
+  trail = "·", -- Show trailing spaces as dots
 }
 
-for _, plugin in pairs(enable_providers) do
-  vim.g["loaded_" .. plugin] = nil
-  vim.cmd("runtime " .. plugin)
-end
+-- ============================================================================
+-- SCROLLING AND NAVIGATION
+-- ============================================================================
 
--- vim.opt.wildmenu = false
--- vim.opt.wildmode = "list:longest,list:full"
--- vim.opt.wildoptions = "pum"
+-- ==================== SCROLL OFFSET ====================
+-- Minimal number of screen lines to keep above and below cursor
+-- Keeps context visible when scrolling
+vim.o.scrolloff = 10
+
+-- ============================================================================
+-- FILE HANDLING
+-- ============================================================================
+
+-- ==================== SAVE BEHAVIOR ====================
+-- Show confirmation dialog for operations that would fail due to unsaved changes
+-- Instead of just failing, ask if you want to save first
+vim.o.confirm = true
+
+-- ============================================================================
+-- EXTERNAL TOOL INTEGRATION
+-- ============================================================================
+
+-- ==================== PYTHON INTEGRATION ====================
+-- Path to Python 3 for plugins that require Python support
+-- Install python-pynvim: pip install pynvim (or use system package)
+vim.g.python3_host_prog = "/usr/bin/python3"
+
+-- ==================== NODE.JS INTEGRATION ====================
+-- Path to Node.js host for plugins that require Node.js support
+-- Install neovim package: npm install -g neovim (or bun i -g neovim)
+vim.g.node_host_prog = "/home/thoxy/.bun/bin/neovim-node-host"
+
+-- ==================== PROVIDER INITIALIZATION ====================
+-- Enable external language providers
+local enable_providers = {
+  "python3_provider", -- Python provider for plugins
+  "node_provider", -- Node.js provider for plugins
+}
+
+-- Load providers that were previously disabled
+for _, plugin in pairs(enable_providers) do
+  vim.g["loaded_" .. plugin] = nil -- Unmark as loaded
+  vim.cmd("runtime " .. plugin) -- Load the provider
+end

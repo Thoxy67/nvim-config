@@ -1,3 +1,4 @@
+-- ccc.lua - Color picker and highlighter
 return {
   {
     "uga-rosa/ccc.nvim",
@@ -5,8 +6,8 @@ return {
     config = function()
       require("ccc").setup {
         highlighter = {
-          auto_enable = true,
-          lsp = true,
+          auto_enable = true, -- Automatically highlight colors in files
+          lsp = true, -- Use LSP for color information
         },
       }
     end,

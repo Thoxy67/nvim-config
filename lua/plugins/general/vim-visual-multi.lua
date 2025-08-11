@@ -2,6 +2,7 @@ return {
   {
     "mg979/vim-visual-multi",
     cmd = {
+      -- Only load when explicitly called
       "VMap",
       "VNew",
       "VNewShell",

@@ -1,3 +1,4 @@
+-- grug-far.lua - Another find and replace tool
 return {
   {
     "MagicDuck/grug-far.nvim",
@@ -10,6 +11,7 @@ return {
 
       require("grug-far").setup(opts)
 
+      -- Function to check if grug-far is open
       local is_grugfar_open = function()
         for _, win in ipairs(vim.api.nvim_list_wins()) do
           local buf = vim.api.nvim_win_get_buf(win)
@@ -21,6 +23,7 @@ return {
         return false
       end
 
+      -- Toggle grug-far window
       local toggle_grugfar = function()
         local open = is_grugfar_open()
         if open then

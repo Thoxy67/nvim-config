@@ -1,3 +1,4 @@
+-- harpoon.lua - Quick file/buffer switching
 return {
   {
     "ThePrimeagen/harpoon",
@@ -11,6 +12,7 @@ return {
 
       harpoon:setup(opts)
 
+      -- Harpoon file management
       map("n", "<M-a>", function()
         harpoon:list():add()
       end, { desc = "Harpoon add buffer" })
@@ -23,7 +25,8 @@ return {
       map("n", "<M-e>", function()
         harpoon:list():next()
       end, { desc = "Harpoon next buffer" })
-      -- basic telescope configuration
+
+      -- Telescope integration for harpoon list
       local conf = require("telescope.config").values
       local function toggle_telescope(harpoon_files)
         local file_paths = {}

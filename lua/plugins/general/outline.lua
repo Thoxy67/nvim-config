@@ -1,3 +1,4 @@
+-- outline.lua - Code structure outline
 return {
   {
     "hedyhli/outline.nvim",

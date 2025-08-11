@@ -1,6 +1,6 @@
+-- markview.lua - Enhanced markdown rendering for neovim
 return {
   {
-
     "nvim-treesitter",
     lazy = false,
     priority = 49,
@@ -10,9 +10,8 @@ return {
         "OXY2DEV/markview.nvim",
         opts = {
           preview = {
-            hybrid_modes = { "n" },
-            --headings = { shift_width = 0 },
-            icon_provider = "devicons", -- "mini" or "devicons"
+            hybrid_modes = { "n" }, -- Show preview in normal mode
+            icon_provider = "devicons", -- Use devicons for file type icons
           },
         },
         config = function()

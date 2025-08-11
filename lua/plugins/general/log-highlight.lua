@@ -1,9 +1,10 @@
+-- log-highlight.lua - Syntax highlighting for log files
 return {
   {
     "fei6409/log-highlight.nvim",
     opts = {
       pattern = {
-        ".*%.log%.%d+",
+        ".*%.log%.%d+", -- Match log files with rotation numbers
       },
     },
     config = function(_, opts)

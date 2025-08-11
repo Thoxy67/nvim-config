@@ -1,16 +1,16 @@
+-- indent-blankline.lua - Visual indentation guides
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
     dependencies = {
-      "TheGLander/indent-rainbowline.nvim",
+      "TheGLander/indent-rainbowline.nvim", -- Rainbow colored indent lines
     },
     opts = function(_, opts)
-      -- Other blankline configuration here
       return require("indent-rainbowline").make_opts(opts)
     end,
     init = function()
       local map = vim.keymap.set
-
+      -- Jump to current context (useful for large functions/blocks)
       map("n", "<leader>cc", function()
         local config = { scope = {} }
         config.scope.exclude = { language = {}, node_type = {} }
