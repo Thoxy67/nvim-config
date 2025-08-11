@@ -37,6 +37,8 @@ M.base46 = {
     "cmp",
     "semantic_tokens",
     "codeactionmenu",
+    "hop",
+    "rainbowdelimiters",
   },
 }
 
@@ -99,7 +101,7 @@ M.nvdash = {
 
     { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Cheatsheet", keys = "ch", cmd = "NvCheatsheet" },
-    { txt = "  Modify Config", keys = "C", cmd = "Config" },
+    { txt = "  Modify Config", keys = "C", cmd = "NvConfig" },
     { txt = "󰚰  Update", keys = "U", cmd = "NvUpdate" },
 
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },

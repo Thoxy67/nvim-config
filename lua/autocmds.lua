@@ -6,7 +6,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- User Command
 local usercmd = vim.api.nvim_create_user_command
 
-usercmd("Config", function()
+usercmd("NvConfig", function()
   local config_path = vim.fn.stdpath "config"
 
   vim.cmd("cd " .. config_path)
@@ -16,7 +16,7 @@ usercmd("Config", function()
     title = "Directory Changed",
   })
 end, {
-  desc = "Change to NvChad config directory",
+  desc = "Open NvChad config directory",
 })
 
 usercmd("NvUpdate", function()
