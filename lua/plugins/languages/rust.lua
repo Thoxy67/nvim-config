@@ -144,22 +144,15 @@ return {
     end,
   },
   {
-    "mason-org/mason.nvim",
-    config = function()
-      require("mason").setup()
-      local registry = require "mason-registry"
-      if not registry.is_installed "codelldb" then
-        registry.get_package("codelldb"):install()
-      end
-      if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
-        if not registry.is_installed "bacon" then
-          registry.get_package("bacon"):install()
-        end
-        if not registry.is_installed "bacon-ls" then
-          registry.get_package("bacon-ls"):install()
-        end
-      end
-    end,
+    "mason.nvim",
+    opts = {
+      ensure_installed = {
+        "codelldb",
+        -- Add bacon tools conditionally if needed
+        vim.g.lazyvim_rust_diagnostics == "bacon-ls" and "bacon" or nil,
+        vim.g.lazyvim_rust_diagnostics == "bacon-ls" and "bacon-ls" or nil,
+      },
+    },
   },
   {
     "nvim-neotest/neotest",

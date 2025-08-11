@@ -16,7 +16,16 @@ return {
         subpath = true, --If you are using monorepo, set to true to ignore subrepos
         lsp = nil, -- ignore lsp clients by name e.g. { "pyright", "tsserver" }
       },
-      events = {},
+      events = {
+        entered = function(path)
+          vim.cmd "bufdo bd"
+
+          local clients = vim.lsp.get_clients()
+          for _, client in pairs(clients) do
+            vim.cmd("LspRestart " .. client.name)
+          end
+        end,
+      },
     },
   },
 }

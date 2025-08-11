@@ -4,6 +4,7 @@
 
 ---@type ChadrcConfig
 local M = {}
+local aux = require "custom.chadrc_aux"
 
 M.base46 = {
   transparency = false, -- Add transparency support (set by terminal)
@@ -21,6 +22,8 @@ M.base46 = {
     "lsp",
     "mason",
     "defaults",
+    "devicons",
+    "mini-icons",
     "telescope",
     "statusline",
     "neogit",
@@ -29,12 +32,42 @@ M.base46 = {
     "blankline",
     "markview",
     "vim-illuminate",
+    "dap",
+    "cmp",
+    "semantic_tokens",
+    "codeactionmenu",
   },
 }
 
 M.ui = {
+  cmp = {
+    style = "default",
+  },
   tabufline = {
     lazyload = false,
+  },
+  statusline = {
+    theme = "default",
+    separator_style = "default",
+    order = {
+      "mode",
+      -- "f",
+      "file",
+      "gitcustom",
+      "%=",
+      "lsp_msg",
+      "%=",
+      "diagnostics",
+      "lspx",
+      "cwd",
+      "cursor",
+    },
+    modules = {
+      hack = "%#@comment#%",
+      gitcustom = aux.git_custom,
+      lspx = aux.lspx,
+      -- f = "%F",
+    },
   },
 }
 
@@ -87,11 +120,6 @@ M.nvdash = {
 
 M.mason = {
   command = true,
-  pkgs = {
-    "codelldb",
-    "bacon",
-    "bacon-ls",
-  },
   skip = {
     "rust_analyzer",
     "v-analyzer",

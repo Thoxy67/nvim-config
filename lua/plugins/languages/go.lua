@@ -61,27 +61,17 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "go", "gomod", "gowork", "gosum" } },
   },
+
   {
-    "mason-org/mason.nvim",
-    config = function()
-      require("mason").setup()
-      local registry = require "mason-registry"
-      if not registry.is_installed "goimports" then
-        registry.get_package("goimports"):install()
-      end
-      if not registry.is_installed "gofumpt" then
-        registry.get_package("gofumpt"):install()
-      end
-      if not registry.is_installed "gomodifytags" then
-        registry.get_package("gomodifytags"):install()
-      end
-      if not registry.is_installed "impl" then
-        registry.get_package("impl"):install()
-      end
-      if not registry.is_installed "delve" then
-        registry.get_package("delve"):install()
-      end
-    end,
+    "mason.nvim",
+    opts = {
+      ensure_installed = {
+        "goimports",
+        "gofumpt",
+        "gomodifytags",
+        "impl",
+      },
+    },
   },
   {
     "nvimtools/none-ls.nvim",

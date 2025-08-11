@@ -26,9 +26,9 @@ usercmd("NvUpdate", function()
 
   -- Run commands in sequence
   vim.cmd "TSUpdate"
-  vim.cmd "Lazy update"
   vim.cmd "MasonUpdate"
-  vim.cmd "MasonInstallAll"
+  vim.cmd "Lazy sync"
+  vim.cmd "Lazy update"
 
   vim.notify("✅ Update process completed!", vim.log.levels.INFO, {
     title = "NvUpdate",
@@ -36,3 +36,28 @@ usercmd("NvUpdate", function()
 end, {
   desc = "Update TreeSitter parsers, Lazy plugins, Mason modules, and install missing parsers (parallel)",
 })
+
+usercmd("Explore", function(opts)
+  local path = opts.args ~= "" and opts.args or "."
+  local cmd
+
+  if vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
+    cmd = "explorer " .. path
+  else
+    cmd = "open " .. path
+  end
+
+  vim.fn.system(cmd)
+end, {
+  nargs = "?",
+  complete = "dir",
+  desc = "Open system file browser at specified directory or current directory",
+})
+
+usercmd("DapUIToggle", function()
+  require("dapui").toggle()
+end, { desc = "Open DapUI" })
+
+usercmd("FormatFile", function()
+  require("conform").format { lsp_fallback = true }
+end, { desc = "Format files via conform" })

@@ -21,7 +21,6 @@ return {
     "mfussenegger/nvim-dap",
     recommended = true,
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
-
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
@@ -33,6 +32,7 @@ return {
         },
         opts = {},
         config = function(_, opts)
+          dofile(vim.g.base46_cache .. "dap")
           local dap = require "dap"
           local dapui = require "dapui"
           dapui.setup(opts)
@@ -72,7 +72,10 @@ return {
       -- virtual text for the debugger
       {
         "theHamsta/nvim-dap-virtual-text",
-        opts = {},
+        event = "LspAttach",
+        config = function(_, opts)
+          require("nvim-dap-virtual-text").setup(opts)
+        end,
       },
     },
 
