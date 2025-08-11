@@ -8,7 +8,8 @@ local aux = require "custom.chadrc_aux"
 
 M.base46 = {
   transparency = false, -- Add transparency support (set by terminal)
-  theme = "onedark",
+  theme = "kanagawa",
+  theme_toggle = { "kanagawa", "catppuccin" },
 
   -- hl_override = {
   -- 	Comment = { italic = true },
@@ -98,8 +99,8 @@ M.nvdash = {
 
     { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Cheatsheet", keys = "ch", cmd = "NvCheatsheet" },
-    { txt = "  Modify Config", keys = "co", cmd = "Config" },
-    { txt = "󰚰  Update NvChad", keys = "cu", cmd = "NvUpdate" },
+    { txt = "  Modify Config", keys = "C", cmd = "Config" },
+    { txt = "󰚰  Update", keys = "U", cmd = "NvUpdate" },
 
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
 
@@ -125,6 +126,15 @@ M.mason = {
     "v-analyzer",
     "zls",
   },
+}
+
+M.lsp = {
+  signature = true,
+}
+
+M.cheatsheet = {
+  theme = "grid", -- simple/grid
+  excluded_groups = {}, -- can add group name or with mode
 }
 
 return M
