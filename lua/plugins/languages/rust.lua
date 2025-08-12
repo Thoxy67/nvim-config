@@ -58,6 +58,13 @@ return {
     end,
   },
 
+  {
+    "Aityz/cratesearch.nvim", -- provide `:CrateSearch [query]` command to search for crates
+    config = function()
+      require("cratesearch").setup()
+    end,
+  },
+
   -- Treesitter support for Rust syntax
   {
     "nvim-treesitter/nvim-treesitter",

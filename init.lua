@@ -39,9 +39,12 @@ dofile(vim.g.base46_cache .. "blankline")
 -- Load configurations
 require "options"
 require "autocmds"
+require "custom.vimcmd"
 
 -- Load mappings after UI is ready
 vim.schedule(function()
   require "mappings"
-end) -- The line beneath this is called `modeline`. See `:help modeline`
+end)
+
+-- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

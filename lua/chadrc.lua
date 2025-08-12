@@ -114,6 +114,7 @@ M.nvdash = {
     { txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },
     { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
     { txt = "  Find Projects", keys = "fp", cmd = "Proot" },
+    { txt = "  Find Session", keys = "fs", cmd = "SessionSearch" },
 
     { txt = "─", hl = "Normal", no_gap = false, rep = true },
 
@@ -149,6 +150,7 @@ M.mason = {
     "rust_analyzer",
     "v-analyzer",
     "zls",
+    "clangd",
   },
 }
 

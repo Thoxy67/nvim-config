@@ -138,11 +138,19 @@ return {
 
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
+    cmd = {
+      "Mason",
+      "MasonInstall",
+      "MasonUninstall",
+      "MasonUninstallAll",
+      "MasonLog",
+      "MasonUpdate",
+      "MasonUpdateAll", -- this cmd is provided by mason-extra-cmds
+    },
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Open Mason" } },
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
-
+    dependencies = { "Zeioth/mason-extra-cmds", opts = {} },
     opts = {
       ensure_installed = {
         -- Add your tools here
@@ -185,5 +193,10 @@ return {
   { import = "plugins/languages/zig" },
   { import = "plugins/languages/go" },
   { import = "plugins/languages/ocaml" },
+  { import = "plugins/languages/clang" },
+  { import = "plugins/languages/cmake" },
+  { import = "plugins/languages/docker" },
+  { import = "plugins/languages/markdown" },
+
   -- { import = "plugins/languages/json" },
 }

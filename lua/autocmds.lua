@@ -55,15 +55,17 @@ usercmd("NvUpdate", function()
   -- 1. Update TreeSitter parsers (syntax highlighting)
   vim.cmd "TSUpdate"
 
-  -- 2. Update Mason packages (LSP servers, formatters, etc.)
+  -- 2. Update Mason registry
   vim.cmd "MasonUpdate"
 
-  -- 3. Update all Lazy plugins to latest versions
-  vim.cmd "Lazy update"
+  -- 3. Update Mason packages (LSP servers, formatters, etc.)
+  vim.cmd "MasonUpdate"
 
   -- 4. Sync Lazy plugins (install missing, update existing)
+  require("lazy").sync { wait = true, show = true }
 
-  vim.cmd "Lazy sync"
+  -- 5. Update all Lazy plugins to latest versions
+  require("lazy").update { wait = true, show = false }
 
   -- Completion notification
   vim.notify("✅ Update process completed!", vim.log.levels.INFO, {
@@ -145,33 +147,3 @@ usercmd("RunHarpoon", function()
 
   toggle_telescope(require("harpoon"):list())
 end, { desc = "" })
-
-vim.cmd [[
-  function! RunNeogit(...)
-    lua require("neogit").open()
-  endfunction
-]]
-
-vim.cmd [[
-  function! LspHealthCheck(...)
-    LspInfo
-  endfunction
-]]
-
-vim.cmd [[
-  function! RunHarpoon(...)
-    RunHarpoon
-  endfunction
-]]
-
-vim.cmd [[
-  function! OpenDir(...)
-    Explore .
-  endfunction
-]]
-
-vim.cmd [[
-  function! OilDirCWD(...)
-    Oil ./
-  endfunction
-]]

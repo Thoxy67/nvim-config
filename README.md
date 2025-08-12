@@ -21,11 +21,13 @@ This is my personal Neovim configuration built on top of [NvChad](https://nvchad
 ### Setup
 
 1. **Backup your existing config** (if any):
+
    ```bash
    mv ~/.config/nvim ~/.config/nvim.backup
    ```
 
 2. **Clone this configuration**:
+
    ```bash
    git clone --depth 1 https://git.thoxy.xyz/thoxy/nvim-config ~/.config/nvim
    ```
@@ -38,11 +40,12 @@ This is my personal Neovim configuration built on top of [NvChad](https://nvchad
 The configuration will automatically install plugins on first launch.
 
 ### Uninstall
-   ```bash
-   rm -rf ~/.config/nvim
-   rm -rf ~/.local/state/nvim
-   rm -rf ~/.local/share/nvim
-   ```
+
+```bash
+rm -rf ~/.config/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+```
 
 ## 🤝 Contributing
 
