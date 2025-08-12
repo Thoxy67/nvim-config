@@ -12,8 +12,8 @@ local aux = require "custom.chadrc_aux"
 
 M.base46 = {
   transparency = false, -- Set to true for transparent background
-  theme = "kanagawa", -- Default theme
-  theme_toggle = { "kanagawa", "catppuccin" }, -- Themes for toggle
+  theme = "onedark", -- Default theme
+  theme_toggle = { "onedark", "catppuccin" }, -- Themes for toggle
 
   integrations = {
     "git",
