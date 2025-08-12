@@ -155,3 +155,8 @@ for _, plugin in pairs(enable_providers) do
   vim.g["loaded_" .. plugin] = nil -- Unmark as loaded
   vim.cmd("runtime " .. plugin) -- Load the provider
 end
+
+if vim.fn.getenv "TERM_PROGRAM" == "ghostty" then
+  vim.opt.title = true
+  vim.opt.titlestring = "%F"
+end
