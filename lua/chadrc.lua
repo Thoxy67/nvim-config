@@ -15,6 +15,18 @@ M.base46 = {
   theme = "onedark", -- Default theme
   theme_toggle = { "onedark", "catppuccin" }, -- Themes for toggle
 
+  hl_override = {
+    -- Search count highlights (using base46 color palette)
+    St_SearchSep = { fg = "blue", bg = "NONE" },
+    St_SearchIcon = { fg = "black", bg = "blue" },
+    St_SearchText = { fg = "white", bg = "blue" },
+
+    -- Macro recording highlights
+    St_MacroSep = { fg = "red", bg = "NONE" },
+    St_MacroIcon = { fg = "black", bg = "red" },
+    St_MacroText = { fg = "white", bg = "red" },
+  },
+
   integrations = {
     "git",
     "notify",
@@ -58,11 +70,14 @@ M.ui = {
     theme = "default",
     separator_style = "default",
     order = {
-      "mode",
+      "custom_mode",
+      --"mode",
       -- "f",
       "file",
       "modified",
       "gitcustom",
+      -- "git_ahead_behind",
+      "macro_recording",
       "%=",
       "lsp_msg",
       "%=",
@@ -74,6 +89,7 @@ M.ui = {
     },
     modules = {
       hack = "%#@comment#%",
+      macro_recording = aux.macro_recording,
       gitcustom = aux.git_custom,
       lspx = aux.lspx,
       harpoon = aux.harpoon_statusline_indicator,
@@ -83,6 +99,8 @@ M.ui = {
       custom_cwd = aux.custom_cwd,
       oil_dir_cwd = "%@OilDirCWD@",
       stop = "%X",
+      custom_mode = aux.custom_mode,
+      -- git_ahead_behind = aux.git_ahead_behind,
       -- f = "%F",
     },
   },

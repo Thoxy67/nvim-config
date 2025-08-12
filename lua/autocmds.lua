@@ -59,13 +59,10 @@ usercmd("NvUpdate", function()
   vim.cmd "MasonUpdate"
 
   -- 3. Update Mason packages (LSP servers, formatters, etc.)
-  vim.cmd "MasonUpdate"
+  vim.cmd "MasonUpdateAll"
 
   -- 4. Sync Lazy plugins (install missing, update existing)
   require("lazy").sync { wait = true, show = true }
-
-  -- 5. Update all Lazy plugins to latest versions
-  require("lazy").update { wait = true, show = false }
 
   -- Completion notification
   vim.notify("✅ Update process completed!", vim.log.levels.INFO, {

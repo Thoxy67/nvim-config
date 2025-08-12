@@ -23,8 +23,8 @@ return {
     icons = {
       ft = "", -- File type icon
       lazy = "󰂠 ", -- Lazy loading icon
-      loaded = "", -- Loaded plugin icon
-      not_loaded = "", -- Not loaded plugin icon
+      loaded = "", -- Loaded plugin icon
+      not_loaded = "", -- Not loaded plugin icon
     },
   },
 

@@ -141,4 +141,35 @@ M.custom_cwd = function()
   return (vim.o.columns > 85 and run .. ("%#St_cwd_sep#" .. sep_l .. icon .. name) .. stop) or ""
 end
 
+M.custom_mode = function()
+  local config = require("nvconfig").ui.statusline
+  local sep_style = config.separator_style
+  local utils = require "nvchad.stl.utils"
+
+  local sep_icons = utils.separators
+  local separators = (type(sep_style) == "table" and sep_style) or sep_icons[sep_style]
+
+  local sep_r = separators["right"]
+
+  if not utils.is_activewin() then
+    return ""
+  end
+
+  local modes = utils.modes
+
+  local m = vim.api.nvim_get_mode().mode
+
+  local current_mode = "%#St_" .. modes[m][2] .. "Mode#  " .. modes[m][1]
+  local mode_sep1 = "%#St_" .. modes[m][2] .. "ModeSep#" .. sep_r
+  return current_mode .. mode_sep1 .. "%#ST_EmptySpace#" .. sep_r
+end
+
+M.macro_recording = function()
+  local recording = vim.fn.reg_recording()
+  if recording ~= "" then
+    return "%#DiagnosticError#  Recording @" .. recording .. " "
+  end
+  return ""
+end
+
 return M

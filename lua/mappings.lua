@@ -80,7 +80,7 @@ map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle markdo
 -- ===========================
 
 -- Quick jump to context (indent-blankline)
-map("n", "<leader>cc", function()
+map("n", "<leader>cj", function()
   local config = { scope = {} }
   config.scope.exclude = { language = {}, node_type = {} }
   config.scope.include = { node_type = {} }
