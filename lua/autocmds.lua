@@ -147,3 +147,9 @@ usercmd("RunHarpoon", function()
 
   toggle_telescope(require("harpoon"):list())
 end, { desc = "" })
+
+usercmd("FindRepo", function()
+  require("telescope").extensions.repo.list()
+end, {
+  desc = "Format current file using conform.nvim with LSP fallback",
+})

@@ -104,7 +104,6 @@ M.nvdash = {
     "███      ▀ ███        ",
     "▀██ █████▄▀█▀▄██████▄ ",
     "  ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀",
-    "                      ",
     "  Powered By  eovim ",
     "                      ",
   },
@@ -115,6 +114,7 @@ M.nvdash = {
     { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
     { txt = "  Find Projects", keys = "fp", cmd = "Proot" },
     { txt = "  Find Session", keys = "fs", cmd = "SessionSearch" },
+    { txt = "  Find Repo", keys = "fr", cmd = "FindRepo" },
     { txt = "󰏇  Oil", keys = "o", cmd = "Oil" },
 
     { txt = "─", hl = "Normal", no_gap = false, rep = true },
