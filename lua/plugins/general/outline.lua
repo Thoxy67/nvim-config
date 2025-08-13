@@ -3,8 +3,9 @@ return {
   {
     "hedyhli/outline.nvim",
     cmd = "Outline",
-    config = function()
-      require("outline").setup {}
+    opts = {},
+    config = function(_, opts)
+      require("outline").setup(opts)
     end,
   },
 }

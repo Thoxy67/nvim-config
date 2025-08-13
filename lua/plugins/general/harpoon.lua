@@ -13,16 +13,16 @@ return {
       harpoon:setup(opts)
 
       -- Harpoon file management
-      map("n", "<M-a>", function()
+      map("n", "<M-e>", function()
         harpoon:list():add()
       end, { desc = "Harpoon add buffer" })
       map("n", "<M-r>", function()
         harpoon:list():remove()
       end, { desc = "Harpoon remove buffer" })
-      map("n", "<M-z>", function()
+      map("n", "<M-q>", function()
         harpoon:list():prev()
       end, { desc = "Harpoon previous buffer" })
-      map("n", "<M-e>", function()
+      map("n", "<M-w>", function()
         harpoon:list():next()
       end, { desc = "Harpoon next buffer" })
 

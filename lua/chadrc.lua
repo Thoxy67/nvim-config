@@ -25,6 +25,16 @@ M.base46 = {
     St_MacroSep = { fg = "red", bg = "NONE" },
     St_MacroIcon = { fg = "black", bg = "red" },
     St_MacroText = { fg = "white", bg = "red" },
+
+    -- RegexBuilderMatch = { fg = "white", bg = "red" },
+    -- RegexBuilderGroup1 = { fg = "#ffffff", bg = "#27ae60", bold = true },
+    -- RegexBuilderGroup2 = { fg = "#ffffff", bg = "#2980b9", bold = true },
+    -- RegexBuilderGroup3 = { fg = "#ffffff", bg = "#481463", bold = true },
+    -- RegexBuilderGroup4 = { fg = "#ffffff", bg = "#d68910", bold = true },
+    -- RegexBuilderError = { fg = "white", bg = "dark_red" },
+  },
+  hl_add = {
+    -- RegexBuilderGroup5 = { fg = "#ffffff", bg = "#AD2074" },
   },
 
   integrations = {

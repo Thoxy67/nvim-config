@@ -2,14 +2,16 @@
 return {
   {
     "uga-rosa/ccc.nvim",
+    event = "BufEnter",
     cmd = { "CccPick", "CccConvert", "CccHighlighterToggle" },
-    config = function()
-      require("ccc").setup {
-        highlighter = {
-          auto_enable = true, -- Automatically highlight colors in files
-          lsp = true, -- Use LSP for color information
-        },
-      }
+    opts = {
+      highlighter = {
+        auto_enable = true, -- Automatically highlight colors in files
+        lsp = true, -- Use LSP for color information
+      },
+    },
+    config = function(_, opts)
+      require("ccc").setup(opts)
     end,
   },
 }

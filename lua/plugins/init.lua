@@ -196,5 +196,55 @@ return {
   { import = "plugins/languages/docker" },
   { import = "plugins/languages/markdown" },
 
+  -- {
+  --   dir = "~/Dev/Lua/regex1337", -- Direct path to your plugin
+  --   name = "regex-builder.nvim",
+  --   cmd = {
+  --     "RegexBuilderOpen",
+  --     "RegexBuilderClose",
+  --     "RegexBuilderToggle",
+  --   },
+  --   keys = {
+  --     {
+  --       "<leader>rx",
+  --       "<cmd>RegexBuilderToggle<cr>",
+  --       desc = "Toggle Regex Builder",
+  --     },
+  --   },
+  --   opts = {
+  --     -- Path to your regex-tester CLI (adjust as needed)
+  --     cli_path = "/home/thoxy/Dev/Rust/regex1337/target/debug/regex1337", -- or full path like "/path/to/regex-tester"
+  --
+  --     -- Window configuration
+  --     window_config = {
+  --       width = 0.92,
+  --       height = 0.85,
+  --       pattern_height = 0.10,
+  --       results_width = 0.32,
+  --       gap = 3,
+  --     },
+  --
+  --     auto_update = true,
+  --     debounce_delay = 250,
+  --
+  --     highlights = {
+  --       match = "RegexBuilderMatch",
+  --       groups = {
+  --         "RegexBuilderGroup1",
+  --         "RegexBuilderGroup2",
+  --         "RegexBuilderGroup3",
+  --         "RegexBuilderGroup4",
+  --         "RegexBuilderGroup5", -- Now this will work!
+  --         -- You can add as many as you want
+  --       },
+  --       error = "RegexBuilderError",
+  --     },
+  --   },
+  --
+  --   config = function(_, opts)
+  --     require("regex-builder").setup(opts)
+  --   end,
+  -- },
+
   -- { import = "plugins/languages/json" },
 }

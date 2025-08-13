@@ -5,7 +5,7 @@
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local lspconfig = require "lspconfig"
-local util = require "lspconfig.util"
+local util = lspconfig.util
 
 -- Diagnostic provider selection: 'rust-analyzer' or 'bacon-ls'
 -- bacon-ls provides faster diagnostics but requires bacon to be installed

@@ -9,7 +9,7 @@ vim.filetype.add {
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local lspconfig = require "lspconfig"
-local util = require "lspconfig.util"
+local util = lspconfig.util
 
 -- Configure V Language Analyzer
 lspconfig.marksman.setup {

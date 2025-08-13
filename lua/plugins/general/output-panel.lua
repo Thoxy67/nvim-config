@@ -3,10 +3,11 @@ return {
     "mhanberg/output-panel.nvim",
     version = "*",
     event = "VeryLazy",
-    config = function()
-      require("output_panel").setup {
-        max_buffer_size = 5000, -- default
-      }
+    opts = {
+      max_buffer_size = 5000, -- default
+    },
+    config = function(_, opts)
+      require("output_panel").setup(opts)
     end,
     cmd = { "OutputPanel" },
     -- keys = {

@@ -2,6 +2,7 @@
 return {
   {
     "fei6409/log-highlight.nvim",
+    event = "BufEnter",
     opts = {
       pattern = {
         ".*%.log%.%d+", -- Match log files with rotation numbers
