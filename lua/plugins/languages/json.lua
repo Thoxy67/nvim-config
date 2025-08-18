@@ -19,6 +19,7 @@ lspconfig.jsonls.setup {
   root_dir = util.root_pattern "*.json",
   settings = {
     json = {
+      -- schemas = require("schemastore").json.schemas(),
       format = {
         enable = true, -- Enable JSON formatting
       },
@@ -36,10 +37,12 @@ return {
     opts = { ensure_installed = { "json5" } },
   },
 
-  -- JSON Schema store for validation and completion
   {
-    "b0o/SchemaStore.nvim",
-    lazy = true,
-    version = false, -- Use latest version
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "b0o/SchemaStore.nvim",
+      },
+    },
   },
 }

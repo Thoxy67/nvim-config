@@ -16,6 +16,15 @@ require "nvchad.autocmds"
 -- Auto Commands helper
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd("FileType", {
+  callback = function()
+    -- TODO: nvim 0.12 will make error = false the default so we can remove it
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      vim.treesitter.start()
+    end
+  end,
+})
+
 -- User Command helper
 local usercmd = vim.api.nvim_create_user_command
 

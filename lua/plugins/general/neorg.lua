@@ -2,10 +2,13 @@
 return {
   {
     "nvim-neorg/neorg",
+    enabled = false,
     ft = { "norg", "neorg" },
     cmd = "Neorg",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      -- opts = { ensure_installed = { "norg", "norg_meta", "norg_table" } },
       "benlubas/neorg-interim-ls", -- LSP support for neorg
     },
     opts = {
@@ -22,6 +25,7 @@ return {
         ["core.highlights"] = {},
         ["core.itero"] = {},
         ["core.journal"] = {},
+        -- ["core.integrations.treesitter"] = {},
 
         -- Visual enhancements
         ["core.concealer"] = {

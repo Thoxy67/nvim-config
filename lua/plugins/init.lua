@@ -1,31 +1,4 @@
 return {
-  -- ===========================
-  -- UI
-  -- ===========================
-
-  {
-    "nvzone/menu",
-    lazy = true,
-    init = function()
-      vim.keymap.set("n", "<C-t>", function()
-        require("menu").open "default"
-      end, {})
-      -- mouse users + nvimtree users!
-      vim.keymap.set({ "n", "v" }, "<RightMouse>", function()
-        require("menu.utils").delete_old_menus()
-        vim.cmd.exec '"normal! \\<RightMouse>"'
-        -- clicked buf
-        local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
-        local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
-        require("menu").open(options, { mouse = true })
-      end, {})
-    end,
-  },
-
-  {
-    "nvzone/minty",
-    cmd = { "Shades", "Huefy" },
-  },
 
   -- ===========================
   -- LSP AND LANGUAGE SUPPORT
@@ -44,23 +17,12 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSInstallFromGrammar", "TSUninstall", "TSLog" },
+    branch = "main",
     build = ":TSUpdate",
-    event = { "VeryLazy" },
-    lazy = vim.fn.argc(-1) == 0,
-
-    init = function(plugin)
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require "nvim-treesitter.query_predicates"
-    end,
-
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts_extend = { "ensure_installed" },
-
     opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
-
       -- Languages to install
       ensure_installed = {
         "bash",
@@ -88,6 +50,13 @@ return {
         "vimdoc",
         "xml",
         "yaml",
+        "css",
+        "latex",
+        "norg",
+        "scss",
+        "svelte",
+        "typst",
+        "vue",
       },
 
       -- Selection enhancement
@@ -128,6 +97,25 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      -- ensure_installed is no longer part of nvim-treesitter, so we must extract it manually.
+      local ensure_installed = opts.ensure_installed
+      --opts.ensure_installed = nil
+
+      local nvim_treesitter = require "nvim-treesitter"
+      nvim_treesitter.setup(opts)
+      nvim_treesitter.install(ensure_installed):await(function(err)
+        if err then
+          vim.notify("Failed to install TreeSitter parsers: " .. err, vim.log.levels.WARN)
+          return
+        end
+        -- start treesitter for all possible buffers
+        -- not all buffers will be possible, so we will pcall this for best effort.
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          pcall(vim.treesitter.start, buf)
+        end
+      end)
+    end,
   },
 
   -- ===========================
@@ -195,56 +183,11 @@ return {
   { import = "plugins/languages/cmake" },
   { import = "plugins/languages/docker" },
   { import = "plugins/languages/markdown" },
+  { import = "plugins/languages/c3" },
+  { import = "plugins/languages/odin" },
+  { import = "plugins/languages/python" },
+  { import = "plugins/languages/json" },
+  { import = "plugins/languages/yaml" },
 
-  -- {
-  --   dir = "~/Dev/Lua/regex1337", -- Direct path to your plugin
-  --   name = "regex-builder.nvim",
-  --   cmd = {
-  --     "RegexBuilderOpen",
-  --     "RegexBuilderClose",
-  --     "RegexBuilderToggle",
-  --   },
-  --   keys = {
-  --     {
-  --       "<leader>rx",
-  --       "<cmd>RegexBuilderToggle<cr>",
-  --       desc = "Toggle Regex Builder",
-  --     },
-  --   },
-  --   opts = {
-  --     -- Path to your regex-tester CLI (adjust as needed)
-  --     cli_path = "/home/thoxy/Dev/Rust/regex1337/target/debug/regex1337", -- or full path like "/path/to/regex-tester"
-  --
-  --     -- Window configuration
-  --     window_config = {
-  --       width = 0.92,
-  --       height = 0.85,
-  --       pattern_height = 0.10,
-  --       results_width = 0.32,
-  --       gap = 3,
-  --     },
-  --
-  --     auto_update = true,
-  --     debounce_delay = 250,
-  --
-  --     highlights = {
-  --       match = "RegexBuilderMatch",
-  --       groups = {
-  --         "RegexBuilderGroup1",
-  --         "RegexBuilderGroup2",
-  --         "RegexBuilderGroup3",
-  --         "RegexBuilderGroup4",
-  --         "RegexBuilderGroup5", -- Now this will work!
-  --         -- You can add as many as you want
-  --       },
-  --       error = "RegexBuilderError",
-  --     },
-  --   },
-  --
-  --   config = function(_, opts)
-  --     require("regex-builder").setup(opts)
-  --   end,
-  -- },
-
-  -- { import = "plugins/languages/json" },
+  { import = "plugins/dev" }, -- Homemade debug plugins
 }

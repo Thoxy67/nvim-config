@@ -21,7 +21,12 @@ map("n", "<leader>a", "ggv$G$", { desc = "Select all text" })
 -- ===========================
 
 -- File management
-map("n", "<leader>fo", "<cmd>Oil<CR>", { desc = "Open Oil file manager" })
+map(
+  "n",
+  "<leader>fo",
+  [[<cmd>lua require("oil").toggle_float()<CR>]],
+  { noremap = true, silent = true, desc = "Toggle Oil float" }
+)
 map("n", "<leader>-", "<cmd>Yazi<cr>", { desc = "Open Yazi file manager" })
 
 -- Project management
@@ -96,3 +101,16 @@ map("n", "<leader>cj", function()
     end
   end
 end, { desc = "Jump to current context" })
+
+map("n", "<C-t>", function()
+  require("menu").open "default"
+end, {})
+-- mouse users + nvimtree users!
+map({ "n", "v" }, "<RightMouse>", function()
+  require("menu.utils").delete_old_menus()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+  -- clicked buf
+  local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
+  local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
+  require("menu").open(options, { mouse = true })
+end, {})

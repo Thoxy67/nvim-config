@@ -160,3 +160,6 @@ if vim.fn.getenv "TERM_PROGRAM" == "ghostty" then
   vim.opt.title = true
   vim.opt.titlestring = "%F"
 end
+
+-- treesitter indentation
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

@@ -2,11 +2,29 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
     dependencies = {
       "TheGLander/indent-rainbowline.nvim", -- Rainbow colored indent lines
     },
     opts = function(_, opts)
+      -- First apply the base configuration
+      local base_opts = {
+        indent = { char = "│", highlight = "IblChar" },
+        scope = { char = "│", highlight = "IblScopeChar" },
+      }
+
+      -- Merge with any existing opts
+      opts = vim.tbl_deep_extend("force", base_opts, opts or {})
+
+      -- Apply rainbow line configuration
       return require("indent-rainbowline").make_opts(opts)
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "blankline")
+      local hooks = require "ibl.hooks"
+      hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+      require("ibl").setup(opts)
+      dofile(vim.g.base46_cache .. "blankline")
     end,
     init = function()
       local map = vim.keymap.set
@@ -16,7 +34,6 @@ return {
         config.scope.exclude = { language = {}, node_type = {} }
         config.scope.include = { node_type = {} }
         local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
-
         if node then
           local start_row, _, end_row, _ = node:range()
           if start_row ~= end_row then

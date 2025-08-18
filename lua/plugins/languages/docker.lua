@@ -7,35 +7,39 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local lspconfig = require "lspconfig"
 local util = lspconfig.util
 
-lspconfig.dockerls.setup {
+-- Shared configuration
+local docker_root_patterns = {
+  "Dockerfile",
+  "docker-compose.yml",
+  "compose.yml",
+  "docker-compose.yaml",
+  "compose.yaml",
+}
+
+local common_config = {
   on_attach = on_attach,
   filetypes = { "dockerfile" },
-  root_dir = util.root_pattern(
-    "Dockerfile",
-    "docker-compose.yml",
-    "compose.yml",
-    "docker-compose.yaml",
-    "compose.yaml"
-  ),
-  settings = {
-    dockerls = {},
+  root_dir = util.root_pattern(docker_root_patterns),
+}
+
+-- Setup Docker LSP servers
+local servers = {
+  dockerls = {
+    settings = {
+      dockerls = {},
+    },
+  },
+  docker_compose_language_service = {
+    settings = {
+      docker_compose_language_service = {},
+    },
   },
 }
 
-lspconfig.docker_compose_language_service.setup {
-  on_attach = on_attach,
-  filetypes = { "dockerfile" },
-  root_dir = util.root_pattern(
-    "Dockerfile",
-    "docker-compose.yml",
-    "compose.yml",
-    "docker-compose.yaml",
-    "compose.yaml"
-  ),
-  settings = {
-    docker_compose_language_service = {},
-  },
-}
+for server, config in pairs(servers) do
+  local final_config = vim.tbl_deep_extend("force", common_config, config)
+  lspconfig[server].setup(final_config)
+end
 
 return {
   {
