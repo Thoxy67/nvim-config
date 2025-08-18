@@ -12,8 +12,8 @@ local aux = require "custom.chadrc_aux"
 
 M.base46 = {
   transparency = false, -- Set to true for transparent background
-  theme = "onedark", -- Default theme
-  theme_toggle = { "onedark", "catppuccin" }, -- Themes for toggle
+  theme = "tokyodark", -- Default theme
+  theme_toggle = { "tokyodark", "catppuccin" }, -- Themes for toggle
 
   hl_override = {
     -- Search count highlights (using base46 color palette)
