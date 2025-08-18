@@ -188,6 +188,7 @@ return {
   { import = "plugins/languages/python" },
   { import = "plugins/languages/json" },
   { import = "plugins/languages/yaml" },
+  { import = "plugins/languages/shell" },
 
   { import = "plugins/dev" }, -- Homemade debug plugins
 }
