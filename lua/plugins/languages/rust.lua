@@ -41,9 +41,6 @@ return {
           crates = {
             enabled = true, -- Enable crate name completion
           },
-          cmp = {
-            enabled = false, -- Disable nvim-cmp integration (using blink.cmp)
-          },
         },
         lsp = {
           enabled = true, -- Enable LSP features
@@ -55,6 +52,9 @@ return {
 
       opts = vim.tbl_deep_extend("force", opts or {}, options)
       return opts
+    end,
+    config = function(_, opts)
+      require("crates").setup(opts)
     end,
   },
 
