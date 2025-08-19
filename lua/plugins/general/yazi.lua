@@ -18,11 +18,6 @@ return {
         "<cmd>Yazi cwd<cr>",
         desc = "Yazi Open in the working directory",
       },
-      {
-        "<c-up>",
-        "<cmd>Yazi toggle<cr>",
-        desc = "Yazi Resume the last session",
-      },
     },
     opts = {
       open_for_directories = false, -- Don't replace netrw completely

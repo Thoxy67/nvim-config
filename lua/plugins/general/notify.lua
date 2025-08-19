@@ -5,7 +5,7 @@ return {
     lazy = false,
     opts = {
       timeout = 5000, -- Notification timeout in milliseconds
-      background_colour = "#000000",
+      --background_colour = "#000000",
     },
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "notify")

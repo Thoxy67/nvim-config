@@ -11,10 +11,17 @@ return {
       },
     },
     opts = {
-      sources = {
-        per_filetype = {
-          markdown = {},
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = false,
+          },
+          ghost_text = {
+            enabled = true,
+          },
         },
+      },
+      sources = {
         default = {
           "git",
           "lsp",
