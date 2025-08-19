@@ -4,7 +4,8 @@ return {
     "rcarriga/nvim-notify",
     lazy = false,
     opts = {
-      timeout = 5000, -- Notification timeout in milliseconds
+      stages = "fade_in_slide_out",
+      timeout = 1500, -- Notification timeout in milliseconds
       --background_colour = "#000000",
     },
     config = function(_, opts)
