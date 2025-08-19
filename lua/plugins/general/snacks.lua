@@ -11,7 +11,13 @@ return {
       dashboard = { enabled = false },
       explorer = { enabled = true },
       indent = { enabled = true },
-      input = { enabled = true },
+      input = {
+        enabled = true,
+        win = {
+          relative = "cursor",
+          backdrop = true,
+        },
+      },
       picker = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
