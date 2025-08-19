@@ -150,6 +150,9 @@ local enable_providers = {
   "node_provider", -- Node.js provider for plugins
 }
 
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Load providers that were previously disabled
 for _, plugin in pairs(enable_providers) do
   vim.g["loaded_" .. plugin] = nil -- Unmark as loaded
