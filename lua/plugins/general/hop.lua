@@ -2,7 +2,7 @@
 return {
   {
     "smoka7/hop.nvim",
-    cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
+    version = false,
     init = function()
       local map = vim.keymap.set
       -- Quick jump to any word

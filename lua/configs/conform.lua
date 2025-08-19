@@ -18,12 +18,18 @@ local options = {
     -- Web technologies formatting with prettier
     css = { "prettier" },
     html = { "prettier" },
-
-    -- Additional formatters can be added here or in language-specific configs:
-    -- javascript = { "prettier" },
-    -- typescript = { "prettier" },
-    -- json = { "prettier" },
-    -- markdown = { "prettier" },
+    graphql = { "prettier" },
+    handlebars = { "prettier" },
+    javascriptreact = { "prettier" },
+    jsonc = { "prettier" },
+    less = { "prettier" },
+    markdown = { "prettier" },
+    scss = { "prettier" },
+    yaml = { "prettier" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    json = { "prettier" },
+    svelte = { "prettier" },
   },
 
   -- ==================== FORMAT ON SAVE CONFIGURATION ====================

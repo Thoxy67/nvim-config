@@ -30,7 +30,8 @@ map(
 map("n", "<leader>-", "<cmd>Yazi<cr>", { desc = "Open Yazi file manager" })
 
 -- Project management
-map("n", "<leader>fp", "<cmd>Proot<cr>", { desc = "Open project explorer" })
+map("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open project explorer (Project.nvim)" })
+map("n", "<leader>fP", "<cmd>Proot<cr>", { desc = "Open project explorer (Proot)" })
 
 -- ===========================
 -- GIT OPERATIONS

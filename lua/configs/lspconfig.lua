@@ -16,6 +16,7 @@ local servers = {
   "html", -- HTML language server
   "cssls", -- CSS language server
   "taplo", -- TOML language server
+  "asm_lsp", -- assembly language server
 }
 
 -- Enable the defined language servers with default configuration

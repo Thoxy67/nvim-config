@@ -8,3 +8,6 @@
 /telescope_history
 
 /lua/plugins/dev
+
+# Transfer.nvim configuration directory
+.nvim/
