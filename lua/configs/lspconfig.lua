@@ -14,7 +14,9 @@ require("nvchad.configs.lspconfig").defaults()
 -- More complex language configurations are in lua/plugins/languages/
 local servers = {
   "html", -- HTML language server
+  "css_variables",
   "cssls", -- CSS language server
+  "somesass_ls",
   "taplo", -- TOML language server
   "asm_lsp", -- assembly language server
 }

@@ -58,6 +58,14 @@ return {
       },
     },
   },
+  {
+    "mason.nvim",
+    opts = {
+      ensure_installed = {
+        "yamlfmt", -- Import management
+      },
+    },
+  },
   -- {
   --   "mason.nvim",
   --   opts = { ensure_installed = { "yaml-language-server" } },

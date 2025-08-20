@@ -24,6 +24,10 @@ local common_config = {
 -- Setup all Python LSP servers
 local servers = {
   ruff = {
+    on_attach = function(client, _)
+      -- prefer pyright's hover provider
+      client.server_capabilities.hoverProvider = false
+    end,
     settings = {
       ruff = {
         cmd_env = { RUFF_TRACE = "messages" },

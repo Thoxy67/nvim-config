@@ -19,11 +19,11 @@ M.git_custom = function()
   end
 
   local git_status = vim.b[bufnr].gitsigns_status_dict
-  local clear_hl = "%#StText#"
-  local add_hl = "%#St_Lsp#"
-  local changed_hl = "%#StText#"
-  local rm_hl = "%#St_LspError#"
-  local branch_hl = "%#St_GitBranch#"
+  local clear_hl = "%#St_gitIcons#"
+  local add_hl = "%#St_LspInfo#"
+  local changed_hl = "%#St_lspWarning#"
+  local rm_hl = "%#St_lspError#"
+  local branch_hl = "%#St_gitIcons#"
 
   local added = (git_status.added and git_status.added ~= 0) and (add_hl .. "  " .. clear_hl .. git_status.added)
     or ""
@@ -33,9 +33,9 @@ M.git_custom = function()
   local removed = (git_status.removed and git_status.removed ~= 0)
       and (rm_hl .. "  " .. clear_hl .. git_status.removed)
     or ""
-  local branch_name = branch_hl .. " " .. clear_hl .. git_status.head
+  local branch_name = branch_hl .. " " .. git_status.head .. clear_hl
 
-  return run .. " " .. branch_name .. " " .. added .. changed .. removed .. stop
+  return run .. " " .. branch_name .. " " .. added .. changed .. removed .. stop .. " ╱"
 end
 
 M.lspx = function()
@@ -170,6 +170,39 @@ M.macro_recording = function()
     return "%#DiagnosticError#  Recording @" .. recording .. " "
   end
   return ""
+end
+
+M.custom_diagnostics = function()
+  if not rawget(vim, "lsp") then
+    return ""
+  end
+
+  local err = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.ERROR })
+  local warn = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.WARN })
+  local hints = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.HINT })
+  local info = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.INFO })
+
+  local run = "%@Trouble@"
+  local stop = "%X"
+
+  err = (err and err > 0) and (run .. "%#St_lspError#" .. " " .. err .. " " .. stop) or ""
+  warn = (warn and warn > 0) and (run .. "%#St_lspWarning#" .. " " .. warn .. " " .. stop) or ""
+  hints = (hints and hints > 0) and (run .. "%#St_lspHints#" .. "󰛨 " .. hints .. " " .. stop) or ""
+  info = (info and info > 0) and (run .. "%#St_lspInfo#" .. "󰋼 " .. info .. " " .. stop) or ""
+
+  return " " .. err .. warn .. hints .. info
+end
+
+M.custom_cursor = function()
+  local config = require("nvconfig").ui.statusline
+  local sep_style = config.separator_style
+  local utils = require "nvchad.stl.utils"
+
+  local sep_icons = utils.separators
+  local separators = (type(sep_style) == "table" and sep_style) or sep_icons[sep_style]
+
+  local sep_l = separators["left"]
+  return "%#St_pos_sep#" .. sep_l .. "%#St_pos_icon# %#St_pos_text# %l:%v "
 end
 
 return M

@@ -38,6 +38,7 @@ return {
       ensure_installed = {
         "bash-language-server",
         "fish-lsp",
+        "shfmt",
       },
     },
   },

@@ -9,6 +9,8 @@ return {
         "mikavilpas/blink-ripgrep.nvim",
         version = "*", -- use the latest stable version
       },
+      "allaman/emoji.nvim",
+      "saghen/blink.compat",
     },
     opts = {
       cmdline = {
@@ -31,6 +33,7 @@ return {
           "cmdline",
           "omni",
           "ripgrep",
+          "emoji",
         },
         providers = {
           ripgrep = {
@@ -39,7 +42,20 @@ return {
             -- see the full configuration below for all available options
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
-            opts = {},
+            opts = {
+              prefix_min_len = 5,
+              toggles = {
+                -- The keymap to toggle the plugin on and off from blink
+                -- completion results. Example: "<leader>tg" ("toggle grep")
+                on_off = "<leader>rg",
+
+                -- The keymap to toggle debug mode on/off. Example: "<leader>td" ("toggle debug")
+                debug = nil,
+              },
+              gitgrep = {
+                -- no options are currently available
+              },
+            },
           },
           git = {
             module = "blink-cmp-git",
@@ -47,6 +63,18 @@ return {
             opts = {
               -- options for the blink-cmp-git
             },
+          },
+          emoji = {
+            name = "emoji",
+            module = "blink.compat.source",
+            -- overwrite kind of suggestion
+            transform_items = function(ctx, items)
+              local kind = require("blink.cmp.types").CompletionItemKind.Text
+              for i = 1, #items do
+                items[i].kind = kind
+              end
+              return items
+            end,
           },
         },
       },

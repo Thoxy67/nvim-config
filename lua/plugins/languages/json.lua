@@ -45,4 +45,12 @@ return {
       },
     },
   },
+  {
+    "mason.nvim",
+    opts = {
+      ensure_installed = {
+        "biome", -- Import management
+      },
+    },
+  },
 }

@@ -27,3 +27,9 @@ vim.cmd [[
     Oil ./
   endfunction
 ]]
+
+vim.cmd [[
+  function! Trouble(...)
+    Trouble
+  endfunction
+]]

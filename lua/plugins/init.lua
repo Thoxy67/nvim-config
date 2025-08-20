@@ -193,5 +193,5 @@ return {
   { import = "plugins/languages/vue" },
   { import = "plugins/languages/svelte" },
 
-  -- { import = "plugins/dev" }, -- Homemade debug plugins
+  { import = "plugins/dev" }, -- Homemade debug plugins
 }
