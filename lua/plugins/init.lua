@@ -192,6 +192,7 @@ return {
   { import = "plugins/languages/typescript" },
   { import = "plugins/languages/vue" },
   { import = "plugins/languages/svelte" },
+  { import = "plugins/languages/qmk" },
 
   { import = "plugins/dev" }, -- Homemade debug plugins
 }

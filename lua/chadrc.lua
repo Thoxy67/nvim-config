@@ -27,7 +27,6 @@ M.base46 = {
     "mason",
     "defaults",
     "devicons",
-    "mini-icons",
     "telescope",
     "statusline",
     "neogit",

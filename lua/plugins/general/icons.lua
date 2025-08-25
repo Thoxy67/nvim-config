@@ -1,7 +1,7 @@
 -- icons.lua - Icon support
 return {
   { "nvim-tree/nvim-web-devicons" }, -- File type icons
-  { "echasnovski/mini.icons", version = false }, -- Additional icon set
+  { "echasnovski/mini.icons" }, -- Additional icon set
   { "chrisbra/unicode.vim", cmd = { "UnicodeSearch" } },
   {
     "2kabhishek/nerdy.nvim",
@@ -34,7 +34,7 @@ return {
     config = function(_, opts)
       require("emoji").setup(opts)
       -- optional for telescope integration
-      local ts = require("telescope").load_extension "emoji"
+      require("telescope").load_extension "emoji"
     end,
   },
 }

@@ -33,7 +33,6 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 dofile(vim.g.base46_cache .. "devicons")
-dofile(vim.g.base46_cache .. "mini-icons")
 dofile(vim.g.base46_cache .. "blankline")
 
 -- Load configurations

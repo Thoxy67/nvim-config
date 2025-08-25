@@ -1,7 +1,9 @@
 return {
   {
     "DrKJeff16/project.nvim",
-    opts = {},
+    opts = {
+      manual_mode = true,
+    },
     config = function(_, opts)
       require("project").setup(opts)
       require("telescope").setup {
