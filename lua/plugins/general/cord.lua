@@ -12,9 +12,6 @@ return {
       editor = {
         client = "nvchad",
         tooltip = "The Superior Text Editor",
-        icon = function()
-          require("cord.api.icon").get "nvchad"
-        end,
       },
       display = {
         theme = "default",
