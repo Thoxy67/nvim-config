@@ -60,8 +60,10 @@ return {
 
   {
     "Aityz/cratesearch.nvim", -- provide `:CrateSearch [query]` command to search for crates
-    config = function()
-      require("cratesearch").setup()
+    cmd = "CrateSearch",
+    opts = {},
+    config = function(_, opts)
+      require("cratesearch").setup(opts)
     end,
   },
 

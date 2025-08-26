@@ -52,7 +52,6 @@ map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", { desc = "Close diff view" })
 -- ===========================
 
 -- Global find and replace
-map("n", "<leader>fR", "<cmd>Spectre<cr>", { desc = "Open Spectre find/replace" })
 map("n", "<leader>gr", function()
   -- Toggle GrugFar (if available)
   local ok, _ = pcall(require, "grug-far")

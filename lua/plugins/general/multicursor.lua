@@ -3,6 +3,7 @@ return {
   {
     "jake-stewart/multicursor.nvim",
     enabled = true,
+    event = "BufEnter",
     config = function(_, opts)
       local mc = require "multicursor-nvim"
       mc.setup(opts)

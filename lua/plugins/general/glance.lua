@@ -1,7 +1,7 @@
 return {
   {
     "dnlhc/glance.nvim",
-    event = "VeryLazy",
+    cmd = "Glance",
     opts = {
       height = 25,
       border = {

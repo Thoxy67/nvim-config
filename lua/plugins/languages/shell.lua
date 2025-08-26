@@ -46,4 +46,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "fish", "bash", "nu" } },
   },
+  {
+    "isak102/ghostty.nvim",
+    event = "BufWrite",
+    config = function()
+      require("ghostty").setup()
+    end,
+  },
 }

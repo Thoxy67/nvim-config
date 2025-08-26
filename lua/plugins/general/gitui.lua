@@ -1,14 +1,27 @@
 -- gitui.lua - Terminal UI for Git (external tool integration)
 return {
   {
-    "aspeddro/gitui.nvim",
-    opts = {},
-    config = function(_, opts)
-      require("gitui").setup(opts)
-      -- Keymap to open GitUI
-      vim.keymap.set("n", "<leader>g$", function()
-        require("gitui").open()
-      end, { desc = "GitUI Open" })
-    end,
+    "folke/snacks.nvim",
+    keys = {
+      {
+        "<leader>g$",
+        function()
+          require("snacks").terminal { "gitui" }
+        end,
+        desc = "GitUi (cwd)",
+      },
+    },
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+    },
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      { "<leader>g!", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
   },
 }

@@ -166,3 +166,5 @@ end
 
 -- treesitter indentation
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+vim.o.mousemoveevent = true

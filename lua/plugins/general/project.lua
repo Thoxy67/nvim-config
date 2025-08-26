@@ -12,7 +12,7 @@ return {
             layout_strategy = "horizontal",
             layout_config = {
               anchor = "N",
-              height = 0.25,
+              height = 0.4,
               width = 0.6,
               prompt_position = "bottom",
             },

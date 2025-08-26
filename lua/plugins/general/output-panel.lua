@@ -10,13 +10,8 @@ return {
       require("output_panel").setup(opts)
     end,
     cmd = { "OutputPanel" },
-    -- keys = {
-    --   {
-    --     "<leader>o",
-    --     vim.cmd.OutputPanel,
-    --     mode = "n",
-    --     desc = "Toggle the output panel",
-    --   },
-    -- },
+    keys = {
+      { "<leader>op", vim.cmd.OutputPanel, mode = "n", desc = "Toggle the output panel" },
+    },
   },
 }
