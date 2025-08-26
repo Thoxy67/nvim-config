@@ -45,6 +45,14 @@ M.hl_add = {
   OilVcsStatusUpstreamUnmerged = { fg = "#ffffff", bg = "#a93226" },
   OilVcsStatusUpstreamUntracked = { fg = "#ffffff", bg = "#6c7b7f" },
   OilVcsStatusUpstreamExternal = { fg = "#ffffff", bg = "#2e4057" },
+
+  St_overseer_icon = { fg = "#ffffff", bg = "#000000" },
+  St_overseer_sep = { fg = "#000000", bg = "NONE" },
+  St_overseer_status = { fg = "#ffffff", bg = "#000000" },
+  St_overseer_failure = { fg = "#c0392b", bg = "#000000" }, -- Red with black background
+  St_overseer_canceled = { fg = "#f39c12", bg = "#000000" }, -- Orange with black background
+  St_overseer_success = { fg = "#229954", bg = "#000000" }, -- Green with black background
+  St_overseer_running = { fg = "#2980b9", bg = "#000000" }, -- Blue with black background
 }
 
 return M

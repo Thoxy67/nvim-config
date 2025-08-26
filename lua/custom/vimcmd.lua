@@ -33,3 +33,9 @@ vim.cmd [[
     Trouble
   endfunction
 ]]
+
+vim.cmd [[
+  function! OverseerToggle(...)
+    OverseerToggle
+  endfunction
+]]

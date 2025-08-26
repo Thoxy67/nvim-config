@@ -1,7 +1,19 @@
 -- icons.lua - Icon support
 return {
-  { "nvim-tree/nvim-web-devicons" }, -- File type icons
-  { "echasnovski/mini.icons" }, -- Additional icon set
+  {
+    "nvim-tree/nvim-web-devicons",
+    dependencies = {
+      "DaikyXendo/nvim-material-icon",
+    },
+  },
+  {
+    "echasnovski/mini.icons",
+    opts = {},
+    config = function(_, opts)
+      require("mini.icons").setup(opts)
+    end,
+  },
+  {},
   { "chrisbra/unicode.vim", cmd = { "UnicodeSearch" } },
   {
     "2kabhishek/nerdy.nvim",

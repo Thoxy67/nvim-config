@@ -205,4 +205,75 @@ M.custom_cursor = function()
   return "%#St_pos_sep#" .. sep_l .. "%#St_pos_icon# %#St_pos_text# %l:%v "
 end
 
+M.overseer_open = function()
+  local config = require("nvconfig").ui.statusline
+  local sep_style = config.separator_style
+  local utils = require "nvchad.stl.utils"
+  local sep_icons = utils.separators
+  local separators = (type(sep_style) == "table" and sep_style) or sep_icons[sep_style]
+  local sep_l = separators["left"]
+
+  -- Get Overseer status
+  local ok, overseer = pcall(require, "overseer")
+  local status_text = ""
+
+  if ok then
+    local tasks = overseer.list_tasks()
+    local status_counts = {
+      [overseer.STATUS.FAILURE] = 0,
+      [overseer.STATUS.CANCELED] = 0,
+      [overseer.STATUS.SUCCESS] = 0,
+      [overseer.STATUS.RUNNING] = 0,
+    }
+
+    -- Count tasks by status
+    for _, task in ipairs(tasks) do
+      if task and type(task) == "table" then
+        local status = task.status
+        if status and status_counts[status] then
+          status_counts[status] = status_counts[status] + 1
+        end
+      end
+    end
+
+    -- Build status display
+    local status_parts = {}
+    local status_config = {
+      [overseer.STATUS.FAILURE] = { icon = " :", highlight = "%#St_overseer_failure#" },
+      [overseer.STATUS.CANCELED] = { icon = "󰜺 :", highlight = "%#St_overseer_canceled#" },
+      [overseer.STATUS.SUCCESS] = { icon = " :", highlight = "%#St_overseer_success#" },
+      [overseer.STATUS.RUNNING] = { icon = " :", highlight = "%#St_overseer_running#" },
+    }
+
+    -- Add non-zero counts to display with colors
+    for status, count in pairs(status_counts) do
+      if count > 0 then
+        local c = status_config[status]
+        table.insert(status_parts, c.highlight .. c.icon .. count .. "%#St_overseer_status#")
+      end
+    end
+
+    if #status_parts > 0 then
+      status_text = " " .. table.concat(status_parts, " ") .. " "
+    else
+      -- Show 0 if no tasks exist
+      status_text = " 0 "
+    end
+  end
+  local icon = "%#St_overseer_icon#" .. "󰑮 "
+  local run = "%@OverseerToggle@"
+  local stop = "%X"
+
+  -- Include status in the display
+  local status_display = status_text ~= "" and "%#St_overseer_status#" .. status_text or ""
+
+  return (
+    vim.o.columns > 85
+    and run
+      .. ("%#St_overseer_sep#" .. sep_l .. icon .. status_display .. "%#St_overseer_sep#" .. "")
+      .. stop
+      .. " "
+  ) or ""
+end
+
 return M
