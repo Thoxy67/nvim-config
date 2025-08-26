@@ -194,5 +194,5 @@ return {
   { import = "plugins/languages/svelte" },
   { import = "plugins/languages/qmk" },
 
-  { import = "plugins/dev" }, -- Homemade debug plugins
+  -- { import = "plugins/dev" }, -- Homemade debug plugins
 }

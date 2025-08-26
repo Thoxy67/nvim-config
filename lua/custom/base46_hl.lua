@@ -11,16 +11,16 @@ M.hl_override = {
   St_MacroIcon = { fg = "black", bg = "red" },
   St_MacroText = { fg = "white", bg = "red" },
 
-  -- RegexBuilderMatch = { fg = "white", bg = "red" },
-  -- RegexBuilderGroup1 = { fg = "#ffffff", bg = "#27ae60", bold = true },
-  -- RegexBuilderGroup2 = { fg = "#ffffff", bg = "#2980b9", bold = true },
-  -- RegexBuilderGroup3 = { fg = "#ffffff", bg = "#481463", bold = true },
-  -- RegexBuilderGroup4 = { fg = "#ffffff", bg = "#d68910", bold = true },
-  -- RegexBuilderError = { fg = "white", bg = "dark_red" },
+  -- RegximMatch = { fg = "white", bg = "red" },
+  -- RegximGroup1 = { fg = "#ffffff", bg = "#27ae60", bold = true },
+  -- RegximGroup2 = { fg = "#ffffff", bg = "#2980b9", bold = true },
+  -- RegximGroup3 = { fg = "#ffffff", bg = "#481463", bold = true },
+  -- RegximGroup4 = { fg = "#ffffff", bg = "#d68910", bold = true },
+  -- RegximError = { fg = "white", bg = "dark_red" },
 }
 
 M.hl_add = {
-  RegexBuilderGroup5 = { fg = "#ffffff", bg = "#AD2074" },
+  RegximGroup5 = { fg = "#ffffff", bg = "#AD2074" },
 
   OilVcsStatusAdded = { fg = "#ffffff", bg = "#27ae60" },
   OilVcsStatusCopied = { fg = "#ffffff", bg = "#3498db" },
