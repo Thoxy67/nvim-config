@@ -39,9 +39,6 @@ return {
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
-            -- see the full configuration below for all available options
-            ---@module "blink-ripgrep"
-            ---@type blink-ripgrep.Options
             opts = {
               prefix_min_len = 5,
               toggles = {
@@ -68,7 +65,7 @@ return {
             name = "emoji",
             module = "blink.compat.source",
             -- overwrite kind of suggestion
-            transform_items = function(ctx, items)
+            transform_items = function(_, items)
               local kind = require("blink.cmp.types").CompletionItemKind.Text
               for i = 1, #items do
                 items[i].kind = kind

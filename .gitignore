@@ -12,3 +12,4 @@
 # Transfer.nvim configuration directory
 .nvim/
 /.description
+.jj

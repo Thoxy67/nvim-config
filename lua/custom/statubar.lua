@@ -185,12 +185,12 @@ M.custom_diagnostics = function()
   local run = "%@Trouble@"
   local stop = "%X"
 
-  err = (err and err > 0) and (run .. "%#St_lspError#" .. " " .. err .. " " .. stop) or ""
-  warn = (warn and warn > 0) and (run .. "%#St_lspWarning#" .. " " .. warn .. " " .. stop) or ""
-  hints = (hints and hints > 0) and (run .. "%#St_lspHints#" .. "󰛨 " .. hints .. " " .. stop) or ""
-  info = (info and info > 0) and (run .. "%#St_lspInfo#" .. "󰋼 " .. info .. " " .. stop) or ""
+  local rerr = (err and err > 0) and (run .. "%#St_lspError#" .. " " .. err .. " " .. stop) or ""
+  local rwarn = (warn and warn > 0) and (run .. "%#St_lspWarning#" .. " " .. warn .. " " .. stop) or ""
+  local rhints = (hints and hints > 0) and (run .. "%#St_lspHints#" .. "󰛨 " .. hints .. " " .. stop) or ""
+  local rinfo = (info and info > 0) and (run .. "%#St_lspInfo#" .. "󰋼 " .. info .. " " .. stop) or ""
 
-  return " " .. err .. warn .. hints .. info
+  return " " .. rerr .. rwarn .. rhints .. rinfo
 end
 
 M.custom_cursor = function()
