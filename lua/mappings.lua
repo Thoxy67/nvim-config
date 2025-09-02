@@ -67,9 +67,6 @@ end, { desc = "Toggle GrugFar find/replace" })
 -- ===========================
 
 -- Color picker and management
-map("n", "<leader>cF", "<cmd>CccConvert<CR>", { desc = "Convert color format" })
-map("n", "<leader>cH", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle color highlighter" })
-map("n", "<leader>cP", "<cmd>CccPick<CR>", { desc = "Open color picker (CCC)" })
 map("n", "<leader>cp", "<cmd>Huefy<CR>", { desc = "Open color picker (Minty)" })
 map("n", "<leader>cs", "<cmd>Shades<CR>", { desc = "Open color shades (Minty)" })
 

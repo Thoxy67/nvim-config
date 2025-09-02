@@ -2,7 +2,7 @@
 return {
   {
     "RRethy/vim-illuminate",
-    event = "BufEnter",
+    event = "BufRead",
     opts = {
       -- Don't illuminate in these file types
       filetypes_denylist = {

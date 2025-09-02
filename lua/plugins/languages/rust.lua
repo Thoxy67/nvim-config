@@ -79,7 +79,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^6", -- Use stable version
-    lazy = false, -- Load immediately for Rust files
+    ft = { "rust" },
     config = function(_, opts)
       vim.g.rustaceanvim = {
         -- Plugin configuration

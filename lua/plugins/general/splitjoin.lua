@@ -1,7 +1,7 @@
 return {
   {
     "AndrewRadev/splitjoin.vim",
-    event = "BufEnter",
+    event = "BufReadPost",
     opts = {}, -- needed even when using default config
     keys = { "gS", "gJ" },
     config = function()

@@ -2,8 +2,9 @@
 return {
   {
     "rktjmp/paperplanes.nvim",
+    cmd = { "Paperplanes" },
     opts = {
-      register = "+", -- Use system clipboard
+      register = "+",      -- Use system clipboard
       provider = "0x0.st", -- Paste service provider
       provider_options = {},
       notifier = vim.notify or print,

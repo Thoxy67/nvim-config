@@ -3,6 +3,11 @@ return {
   {
     "uga-rosa/ccc.nvim",
     event = "BufReadPost",
+    keys = {
+      { "<leader>cF", "<cmd>CccConvert<CR>",           mode = "n", desc = "Convert color format" },
+      { "<leader>cH", "<cmd>CccHighlighterToggle<CR>", mode = "n", desc = "Toggle color highlighter" },
+      { "<leader>cP", "<cmd>CccPick<CR>",              mode = "n", desc = "Open color picker (CCC)" },
+    },
     cmd = { "CccPick", "CccConvert", "CccHighlighterToggle" },
     opts = {
       highlighter = {

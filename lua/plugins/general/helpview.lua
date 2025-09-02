@@ -6,12 +6,11 @@ return {
   },
   {
     "OXY2DEV/helpview.nvim",
-    ft = "help",
+    ft = { "help", "doc", "vimdoc" },
     opts = {
       preview = {
         icon_provider = "internal",
       },
     },
-    lazy = false,
   },
 }

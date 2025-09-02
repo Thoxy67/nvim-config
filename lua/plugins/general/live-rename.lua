@@ -1,14 +1,27 @@
 return {
   {
     "saecki/live-rename.nvim",
+    keys = {
+      {
+        "<leader>R",
+        function()
+          require("live-rename").rename { text = "", insert = true }
+        end,
+        mode = "v",
+        desc = "LSP rename",
+      },
+      {
+        "<leader>R",
+        function()
+          require("live-rename").rename { text = "", insert = true }
+        end,
+        mode = "n",
+        desc = "LSP rename",
+      },
+    },
     opts = {},
     config = function(_, opts)
-      local live_rename = require "live-rename"
-      vim.keymap.set("n", "<leader>R", live_rename.map { text = "", insert = true }, { desc = "LSP rename" })
-      vim.keymap.set("n", "<leader>R", function()
-        live_rename.rename { text = "", insert = true }
-      end, { desc = "LSP rename" })
-      live_rename.setup(opts)
+      require("live-rename").setup(opts)
     end,
   },
 }

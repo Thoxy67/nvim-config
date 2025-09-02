@@ -2,7 +2,14 @@
 return {
   {
     "NeogitOrg/neogit",
-    event = "VeryLazy",
+    cmd = { "Neogit", "NeogitCommit", "NeogitLogCurrent", "NeogitResetState" },
+    keys = {
+      {
+        "<leader>gg",
+        "<cmd>Neogit<cr>",
+        desc = "Open Neogit",
+      },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required dependency
       "sindrets/diffview.nvim", -- Enhanced diff viewing

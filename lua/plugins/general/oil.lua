@@ -2,8 +2,18 @@
 return {
   {
     "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "VeryLazy",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "SirZenith/oil-vcs-status",
+    },
+    cmd = { "Oil" },
+    keys = {
+      {
+        "<leader>fo",
+        "<cmd>Oil<cr>",
+        desc = "Open Oil file manager",
+      },
+    },
     opts = {
       win_options = {
         signcolumn = "number",
@@ -11,15 +21,6 @@ return {
     },
     config = function(_, opts)
       require("oil").setup(opts)
-    end,
-  },
-  {
-    -- Git status integration for oil
-    "SirZenith/oil-vcs-status",
-    event = "VeryLazy",
-    dependencies = { "stevearc/oil.nvim" },
-    config = true,
-    opts = function(_, opts)
       local status_const = require "oil-vcs-status.constant.status"
       local StatusType = status_const.StatusType
 

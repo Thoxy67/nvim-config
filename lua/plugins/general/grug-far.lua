@@ -3,7 +3,7 @@ return {
   {
     "MagicDuck/grug-far.nvim",
     cmd = "GrugFar",
-    event = "BufEnter",
+    event = "BufReadPost",
     opts = {},
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "grug_far")
@@ -27,7 +27,7 @@ return {
       local toggle_grugfar = function()
         local open = is_grugfar_open()
         if open then
-          require "grug-far/actions/close"()
+          require "grug-far/actions/close" ()
         else
           vim.cmd "GrugFar"
         end

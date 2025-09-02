@@ -1,7 +1,7 @@
 return {
   {
     "chrisgrieser/nvim-origami",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {}, -- needed even when using default config
 
     -- recommended: disable vim's auto-folding

@@ -1,3 +1,6 @@
 return {
-  { "sitiom/nvim-numbertoggle" },
+  {
+    "sitiom/nvim-numbertoggle",
+    event = "BufReadPre"
+  },
 }
