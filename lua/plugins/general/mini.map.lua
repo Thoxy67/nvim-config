@@ -1,7 +1,6 @@
 return {
   {
     "echasnovski/mini.map",
-    version = false,
     keys = {
       {
         "<leader>um",

@@ -78,7 +78,7 @@ return {
   -- Advanced Rust tooling with rustaceanvim
   {
     "mrcjkb/rustaceanvim",
-    version = "^6", -- Use stable version
+    -- version = "^6", -- Use stable version
     ft = { "rust" },
     config = function(_, opts)
       vim.g.rustaceanvim = {

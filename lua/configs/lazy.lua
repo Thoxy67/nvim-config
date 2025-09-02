@@ -10,7 +10,7 @@ return {
   -- ==================== DEFAULT PLUGIN BEHAVIOR ====================
   defaults = {
     lazy = false, -- Don't lazy load by default (override per plugin)
-    version = false, -- Don't pin to specific versions (use latest)
+    -- version = false, -- Don't pin to specific versions (use latest)
   },
 
   -- ==================== INSTALLATION SETTINGS ====================

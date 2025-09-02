@@ -7,7 +7,6 @@ return {
       },
       {
         "mikavilpas/blink-ripgrep.nvim",
-        version = "*", -- use the latest stable version
       },
       "allaman/emoji.nvim",
       "saghen/blink.compat",

@@ -2,7 +2,6 @@
 return {
   {
     "smoka7/hop.nvim",
-    version = false,
     enabled = false,
     init = function()
       local map = vim.keymap.set
