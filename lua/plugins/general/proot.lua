@@ -7,6 +7,12 @@ return {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
     },
+    keys = {
+      "<leader>fP",
+      "<cmd>Proot<CR>",
+      mode = { "n" },
+      desc = "Open project explorer (Proot)",
+    },
     opts = {
       detector = {
         enable_file_detect = true, -- Detect project by files

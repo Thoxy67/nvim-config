@@ -58,6 +58,8 @@ return {
         end,
         desc = "GitGraph - Draw",
       },
+      { "<leader>dv", "<cmd>DiffviewOpen<CR>", mode = { "n" }, desc = "Open diff view" },
+      { "<leader>dc", "<cmd>DiffviewClose<CR>", mode = { "n" }, desc = "Open diff close" },
     },
   },
 }

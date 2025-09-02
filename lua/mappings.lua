@@ -3,10 +3,6 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
--- ===========================
--- GENERAL MAPPINGS
--- ===========================
-
 -- Quick command mode
 map("n", ";", ":", { desc = "Enter command mode" })
 
@@ -16,73 +12,14 @@ map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 -- Select all text
 map("n", "<leader>a", "ggv$G$", { desc = "Select all text" })
 
--- ===========================
--- FILE OPERATIONS
--- ===========================
-
--- File management
-map(
-  "n",
-  "<leader>fo",
-  [[<cmd>lua require("oil").toggle_float()<CR>]],
-  { noremap = true, silent = true, desc = "Toggle Oil float" }
-)
-map("n", "<leader>-", "<cmd>Yazi<cr>", { desc = "Open Yazi file manager" })
-
 -- Project management
 map("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open project explorer (Project.nvim)" })
-map("n", "<leader>fP", "<cmd>Proot<cr>", { desc = "Open project explorer (Proot)" })
-
 map("n", "<leader>tT", "<cmd>Telescope<cr>", { desc = "Telescope (builtin)" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Select Branch" })
-
--- ===========================
--- GIT OPERATIONS
--- ===========================
-
--- Git interfaces
-map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Neogit" })
-
--- Diff view
-map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", { desc = "Open diff view" })
-map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", { desc = "Close diff view" })
-
--- ===========================
--- SEARCH AND REPLACE
--- ===========================
-
--- Global find and replace
-map("n", "<leader>gr", function()
-  -- Toggle GrugFar (if available)
-  local ok, _ = pcall(require, "grug-far")
-  if ok then
-    vim.cmd "GrugFar"
-  else
-    vim.notify("GrugFar not available", vim.log.levels.WARN)
-  end
-end, { desc = "Toggle GrugFar find/replace" })
-
--- ===========================
--- CODE UTILITIES
--- ===========================
 
 -- Color picker and management
 map("n", "<leader>cp", "<cmd>Huefy<CR>", { desc = "Open color picker (Minty)" })
 map("n", "<leader>cs", "<cmd>Shades<CR>", { desc = "Open color shades (Minty)" })
-
--- Code outline
-map("n", "<leader>oo", "<cmd>Outline<CR>", { desc = "Toggle code outline" })
-
--- ===========================
--- MARKDOWN
--- ===========================
-
--- Markdown preview
-map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle markdown preview" })
-
--- ===========================
--- MOVEMENT AND NAVIGATION
--- ===========================
 
 -- Quick jump to context (indent-blankline)
 map("n", "<leader>cj", function()
@@ -102,10 +39,12 @@ map("n", "<leader>cj", function()
   end
 end, { desc = "Jump to current context" })
 
+-- right click menu using Keyboard
 map("n", "<C-t>", function()
   require("menu").open "default"
 end, {})
--- mouse users + nvimtree users!
+
+-- right click menu for mouse users + nvimtree users!
 map({ "n", "v" }, "<RightMouse>", function()
   require("menu.utils").delete_old_menus()
   vim.cmd.exec '"normal! \\<RightMouse>"'

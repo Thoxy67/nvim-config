@@ -101,6 +101,14 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     ft = { "markdown" },
+    keys = {
+      {
+        "<leader>mp",
+        "<cmd>MarkdownPreviewToggle<CR>",
+        mode = { "n" },
+        desc = "Toggle markdown preview",
+      },
+    },
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = function()
       require("lazy").load { plugins = { "markdown-preview.nvim" } }

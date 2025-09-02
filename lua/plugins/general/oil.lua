@@ -10,7 +10,9 @@ return {
     keys = {
       {
         "<leader>fo",
-        "<cmd>Oil<cr>",
+        function()
+          require("oil").toggle_float()
+        end,
         desc = "Open Oil file manager",
       },
     },
