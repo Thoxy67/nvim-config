@@ -2,12 +2,12 @@
 return {
   {
     "uga-rosa/ccc.nvim",
-    event = "BufEnter",
+    event = "BufReadPost",
     cmd = { "CccPick", "CccConvert", "CccHighlighterToggle" },
     opts = {
       highlighter = {
         auto_enable = true, -- Automatically highlight colors in files
-        lsp = true, -- Use LSP for color information
+        lsp = true,         -- Use LSP for color information
       },
     },
     config = function(_, opts)
