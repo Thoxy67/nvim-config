@@ -1,7 +1,7 @@
 return {
   {
     "codethread/qmk.nvim",
-    ft = { "c", "keymap", "dst" },
+    ft = { "c", "keymap", "dts" },
     opts = {
       name = "dumb",
       layout = { "x x" },
