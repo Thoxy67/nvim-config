@@ -130,7 +130,7 @@ M.nvdash = {
     { txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },
     { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
     { txt = "  Find Projects", keys = "fp", cmd = "Telescope projects" },
-    { txt = "  Find Session", keys = "fs", cmd = "SessionSearch" },
+    { txt = "  Find Session", keys = "fs", cmd = "AutoSession search" },
     --[[     { txt = "  Find Repo", keys = "fr", cmd = "FindRepo" }, ]]
     { txt = "󰏇  Oil", keys = "o", cmd = "Oil" },
 

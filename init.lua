@@ -1,6 +1,6 @@
 -- Leader key must be set before plugins load
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 
 -- Base46 cache for themes
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
