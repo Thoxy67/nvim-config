@@ -95,7 +95,7 @@ usercmd("Explore", function(opts)
   if vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
     cmd = "explorer " .. path -- Windows Explorer
   else
-    cmd = "open " .. path -- macOS Finder / Linux default
+    cmd = "xdg-open " .. path -- macOS Finder / Linux default
   end
 
   -- Execute the system command
@@ -153,9 +153,3 @@ usercmd("RunHarpoon", function()
 
   toggle_telescope(require("harpoon"):list())
 end, { desc = "" })
-
-usercmd("FindRepo", function()
-  require("telescope").extensions.repo.list()
-end, {
-  desc = "Format current file using conform.nvim with LSP fallback",
-})

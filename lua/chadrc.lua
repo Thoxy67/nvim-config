@@ -154,7 +154,7 @@ M.nvdash = {
     },
 
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
-    { txt = "ᓚᘏᗢ Config by Thoxy", hl = "LazyProgressDone", no_gap = true, rep = false },
+    { txt = "       ᓚᘏᗢ Config by Thoxy", hl = "LazyProgressDone", no_gap = true, rep = false },
   },
 }
 
