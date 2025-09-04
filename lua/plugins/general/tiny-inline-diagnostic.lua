@@ -16,6 +16,7 @@ return {
     },
     priority = 1000,
     config = function(_, opts)
+      dofile(vim.g.base46_cache .. "tiny-inline-diagnostic")
       require("tiny-inline-diagnostic").setup(opts)
       vim.diagnostic.config { virtual_text = false } -- Disable default virtual text
     end,

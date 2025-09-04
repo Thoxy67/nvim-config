@@ -34,6 +34,8 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 dofile(vim.g.base46_cache .. "devicons")
 dofile(vim.g.base46_cache .. "blankline")
+dofile(vim.g.base46_cache .. "dap")
+dofile(vim.g.base46_cache .. "git")
 
 -- Load configurations
 require "options"

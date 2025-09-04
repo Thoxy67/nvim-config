@@ -8,6 +8,8 @@ return {
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from Windows" },
     },
     config = function(_, opts)
+      dofile(vim.g.base46_cache .. "leap")
+
       local leap = require "leap"
       for k, v in pairs(opts) do
         leap.opts[k] = v

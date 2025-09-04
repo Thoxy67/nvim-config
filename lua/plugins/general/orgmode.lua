@@ -8,6 +8,7 @@ return {
     },
     config = function()
       -- Setup orgmode
+      dofile(vim.g.base46_cache .. "orgmode")
       require("orgmode").setup {
         org_agenda_files = "~/Dev/orgfiles/**/*",
         org_default_notes_file = "~/Dev/orgfiles/default.org",

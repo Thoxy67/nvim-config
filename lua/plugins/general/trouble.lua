@@ -3,6 +3,9 @@ return {
   {
     "folke/trouble.nvim",
     opts = {},
+    init = function()
+      dofile(vim.g.base46_cache .. "trouble")
+    end,
     cmd = "Trouble",
     -- stylua: ignore
     keys = {

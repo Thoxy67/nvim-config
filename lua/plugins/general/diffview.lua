@@ -3,6 +3,9 @@ return {
   {
     "isakbm/gitgraph.nvim",
     dependencies = { "sindrets/diffview.nvim" },
+    init = function()
+      dofile(vim.g.base46_cache .. "diffview")
+    end,
     opts = {
       git_cmd = "git",
       format = {

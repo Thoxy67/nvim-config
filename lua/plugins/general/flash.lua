@@ -3,6 +3,9 @@ return {
     "folke/flash.nvim",
     enabled = true,
     event = "BufRead",
+    init = function()
+      dofile(vim.g.base46_cache .. "flash")
+    end,
     ---@type Flash.Config
     opts = {},
     -- stylua: ignore
