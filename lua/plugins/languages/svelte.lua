@@ -6,17 +6,11 @@ lspconfig.svelte.setup {
   on_attach = on_attach,
   --enabled = false,
   filetypes = {
-    "vue",
+    "svelte",
   },
-  root_dir = util.root_pattern("vue.config.js", "vue.config.ts"),
+  root_dir = util.root_pattern("svelte.config.js", "svelte.config.mjs", "svelte.config.cjs"),
   settings = {
-    svelte = {
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = vim.fn.has "nvim-0.10" == 0 and { dynamicRegistration = true },
-        },
-      },
-    },
+    svelte = {},
   },
 }
 

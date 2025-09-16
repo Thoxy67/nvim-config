@@ -13,6 +13,14 @@ require "nvchad.options"
 -- VISUAL AND UI ENHANCEMENTS
 -- ============================================================================
 
+-- Snacks animations
+-- Set to `false` to globally disable all snacks animations
+vim.g.snacks_animate = true
+
+-- Show the current document symbols location from Trouble in lualine
+-- You can disable this for a buffer by setting `vim.b.trouble_lualine = false`
+vim.g.trouble_lualine = true
+
 -- ==================== CURSOR AND LINE DISPLAY ====================
 -- Show which line your cursor is on with highlighting
 vim.o.cursorline = true

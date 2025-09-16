@@ -10,20 +10,12 @@ local util = lspconfig.util
 -- Configure JSON Language Server with schema support
 lspconfig.yamlls.setup {
   on_attach = on_attach,
-  on_new_config = function(new_config)
+  before_init = function(_, new_config)
     new_config.settings.yaml.schemas =
       vim.tbl_deep_extend("force", new_config.settings.yaml.schemas or {}, require("schemastore").yaml.schemas())
   end,
   filetypes = { "yaml" },
   root_dir = util.root_pattern { "*.yml", "*.yaml" },
-  capabilities = {
-    textDocument = {
-      foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      },
-    },
-  },
   settings = {
     redhat = { telemetry = { enabled = false } },
     yaml = {

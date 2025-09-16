@@ -23,7 +23,14 @@ lspconfig.ocamllsp.setup {
     "cmti",
     "opam",
   },
-  root_dir = util.root_pattern("merlin.opam", "dune-project"),
+
+  root_dir = function(bufnr, on_dir)
+    local util = require "lspconfig.util"
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    on_dir(
+      util.root_pattern("*.opam", "esy.json", "package.json", ".git", "dune-project", "dune-workspace", "*.ml")(fname)
+    )
+  end,
   settings = {
     ocamllsp = {
       filetypes = {
