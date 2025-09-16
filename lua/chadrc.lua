@@ -217,11 +217,15 @@ M.nvdash = {
   -- },
 
   buttons = {
-    { txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
+    { txt = " New File", keys = "n", cmd = ":ene | startinsert" },
 
-    { txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },
-    { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
-    { txt = "  Find Projects", keys = "fp", cmd = "Telescope projects" },
+    { txt = "─", hl = "Normal", no_gap = false, rep = true },
+
+    { txt = "  Find File", keys = "ff", cmd = ":lua require('snacks').dashboard.pick('find_files')" },
+
+    { txt = "  Recent Files", keys = "fo", cmd = ":lua require('snacks').dashboard.pick('oldfiles')" },
+    { txt = "󰈭  Find Word", keys = "fw", cmd = ":lua require('snacks').dashboard.pick('live_grep')" },
+    { txt = "  Find Projects", keys = "fp", cmd = ":lua require('snacks').dashboard.pick('projects')" },
     { txt = "  Find Session", keys = "fs", cmd = "AutoSession search" },
     --[[     { txt = "  Find Repo", keys = "fr", cmd = "FindRepo" }, ]]
     { txt = "󰏇  Oil", keys = "o", cmd = "Oil" },
@@ -230,7 +234,11 @@ M.nvdash = {
 
     { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Cheatsheet", keys = "ch", cmd = "NvCheatsheet" },
-    { txt = "  Modify Config", keys = "C", cmd = "NvConfig" },
+    {
+      txt = "  Modify Config",
+      keys = "c",
+      cmd = ":lua require('snacks').dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+    },
     { txt = "󰚰  Update", keys = "U", cmd = "NvUpdate" },
 
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },

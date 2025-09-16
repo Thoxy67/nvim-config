@@ -20,6 +20,18 @@ return {
       win_options = {
         signcolumn = "number",
       },
+      columns = {
+        "icon",
+        -- "permissions",
+        -- "size",
+        -- "mtime",
+      },
+      preview_win = {
+        -- Whether the preview window is automatically updated when the cursor is moved
+        update_on_cursor_moved = true,
+        -- How to open the preview window "load"|"scratch"|"fast_scratch"
+        preview_method = "fast_scratch",
+      },
     },
     config = function(_, opts)
       require("oil").setup(opts)
