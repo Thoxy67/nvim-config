@@ -18,6 +18,8 @@ return {
     },
     opts = {
       win_options = {
+        wrap = true,
+        winblend = 0,
         signcolumn = "number",
       },
       columns = {
@@ -31,6 +33,9 @@ return {
         update_on_cursor_moved = true,
         -- How to open the preview window "load"|"scratch"|"fast_scratch"
         preview_method = "fast_scratch",
+      },
+      view_options = {
+        show_hidden = true,
       },
     },
     config = function(_, opts)
