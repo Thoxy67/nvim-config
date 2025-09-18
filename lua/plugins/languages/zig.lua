@@ -4,15 +4,13 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Configure Zig Language Server (ZLS)
-lspconfig.zls.setup {
+vim.lsp.config.zls = {
   on_attach = on_attach,
   cmd = { "/usr/bin/zls" },            -- Path to ZLS binary
   filetypes = { "zig", "zir", "zon" }, -- Zig file types
-  root_dir = util.root_pattern("build.zig", "build.zon"),
+  root_markers = { "build.zig", "build.zon" },
   settings = {
     zls = {
       single_file_support = true,        -- Support single files

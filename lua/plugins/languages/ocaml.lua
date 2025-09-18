@@ -4,11 +4,9 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Configure OCaml Language Server
-lspconfig.ocamllsp.setup {
+vim.lsp.config.ocamllsp = {
   on_attach = on_attach,
   filetypes = {
     "ml",
@@ -23,14 +21,7 @@ lspconfig.ocamllsp.setup {
     "cmti",
     "opam",
   },
-
-  root_dir = function(bufnr, on_dir)
-    local util = require "lspconfig.util"
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(
-      util.root_pattern("*.opam", "esy.json", "package.json", ".git", "dune-project", "dune-workspace", "*.ml")(fname)
-    )
-  end,
+  root_markers = { "*.opam", "esy.json", "package.json", ".git", "dune-project", "dune-workspace", "*.ml" },
   settings = {
     ocamllsp = {
       filetypes = {
@@ -41,17 +32,6 @@ lspconfig.ocamllsp.setup {
         "reason", -- Reason syntax
         "dune", -- Dune build files
       },
-      root_dir = function(fname)
-        return require("lspconfig.util").root_pattern(
-          "*.opam", -- Package files
-          "esy.json", -- Esy package manager
-          "package.json", -- npm compatibility
-          ".git", -- Git repository
-          "dune-project", -- Dune project file
-          "dune-workspace", -- Dune workspace
-          "*.ml" -- OCaml source files
-        )(fname)
-      end,
     },
   },
 }

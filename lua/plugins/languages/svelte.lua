@@ -1,26 +1,24 @@
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
-lspconfig.svelte.setup {
+vim.lsp.config.svelte = {
   on_attach = on_attach,
   --enabled = false,
   filetypes = {
     "svelte",
   },
-  root_dir = util.root_pattern("svelte.config.js", "svelte.config.mjs", "svelte.config.cjs"),
+  root_markers = { "svelte.config.js", "svelte.config.mjs", "svelte.config.cjs" },
   settings = {
     svelte = {},
   },
 }
 
-lspconfig.vtsls.setup {
+vim.lsp.config.vtsls = {
   on_attach = on_attach,
   --enabled = false,
   filetypes = {
     "svelte",
   },
-  root_dir = util.root_pattern("svelte.config.js", "svelte.config.mjs", "svelte.config.cjs"),
+  root_markers = { "svelte.config.js", "svelte.config.mjs", "svelte.config.cjs" },
   settings = {
     vtsls = {},
   },

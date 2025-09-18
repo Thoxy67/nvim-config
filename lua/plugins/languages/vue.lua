@@ -1,16 +1,14 @@
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
-lspconfig.volar.setup {
+vim.lsp.config.vue_ls = {
   on_attach = on_attach,
   --enabled = false,
   filetypes = {
     "vue",
   },
-  root_dir = util.root_pattern("vue.config.js", "vue.config.ts"),
+  root_markers = { "vue.config.js", "vue.config.ts" },
   settings = {
-    volar = {
+    vue_ls = {
       init_options = {
         vue = {
           hybridMode = true,
@@ -20,13 +18,13 @@ lspconfig.volar.setup {
   },
 }
 
-lspconfig.vtsls.setup {
+vim.lsp.config.vtsls = {
   on_attach = on_attach,
   --enabled = false,
   filetypes = {
     "vue",
   },
-  root_dir = util.root_pattern("vue.config.js", "vue.config.ts"),
+  root_markers = { "vue.config.js", "vue.config.ts" },
   settings = {
     vtsls = {},
   },

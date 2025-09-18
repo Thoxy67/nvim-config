@@ -4,10 +4,8 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
--- local util = lspconfig.util
 
-lspconfig.clangd.setup {
+vim.lsp.config.clangd = {
   on_attach = on_attach,
   cmd = {
     "clangd",

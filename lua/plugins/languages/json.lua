@@ -4,18 +4,16 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Configure JSON Language Server with schema support
-lspconfig.jsonls.setup {
+vim.lsp.config.jsonls = {
   on_attach = on_attach,
   before_init = function(_, new_config)
     new_config.settings.json.schemas = new_config.settings.json.schemas or {}
     vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
   end,
   filetypes = { "json", "jsonc", "json5" },
-  root_dir = util.root_pattern "*.json",
+  root_markers = { "*.json" },
   settings = {
     json = {
       -- schemas = require("schemastore").json.schemas(),

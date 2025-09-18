@@ -2,58 +2,83 @@
 -- PYTHON LANGUAGE SUPPORT
 -- lua/plugins/languages/python.lua
 -- ============================================================================
+-- Comprehensive Python development environment featuring:
+-- - Multiple LSP servers (Pyright/BasedPyright + Ruff) for optimal coverage
+-- - Advanced debugging with DAP and neotest integration
+-- - Virtual environment management with venv-selector
+-- - Code formatting, linting, and type checking capabilities
+-- ============================================================================
 
--- LSP Server to use for Python.
--- Set to "basedpyright" to use basedpyright instead of pyright.
-vim.g.lazyvim_python_lsp = "pyright"
--- Set to "ruff_lsp" to use the old LSP implementation version.
-vim.g.lazyvim_python_ruff = "ruff"
+-- ==================== LSP SERVER SELECTION ====================
+-- Configure which Python LSP servers to use
+vim.g.lazyvim_python_lsp = "pyright"    -- Main LSP: "pyright" or "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"      -- Linter/Formatter: "ruff" or "ruff_lsp"
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
--- Shared configuration
-local root_dir = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json" }
+-- ==================== SHARED CONFIGURATION ====================
+-- Common settings for all Python LSP servers
+local root_markers = {
+  "pyproject.toml",      -- Modern Python projects
+  "setup.py",            -- Traditional setuptools
+  "setup.cfg",           -- Setup configuration
+  "requirements.txt",    -- Pip requirements
+  "Pipfile",             -- Pipenv projects
+  "pyrightconfig.json"   -- Pyright configuration
+}
+
 local common_config = {
   on_attach = on_attach,
   filetypes = { "python" },
-  root_dir = util.root_pattern(root_dir),
+  root_markers = root_markers,
 }
 
--- Setup all Python LSP servers
+-- ==================== LSP SERVER CONFIGURATIONS ====================
+-- Configure each Python LSP server with specific capabilities
 local servers = {
+  -- Ruff: Fast Python linter and formatter
   ruff = {
     on_attach = function(client, _)
-      -- prefer pyright's hover provider
+      -- Disable hover to prefer Pyright's more detailed hover information
       client.server_capabilities.hoverProvider = false
     end,
     settings = {
       ruff = {
-        cmd_env = { RUFF_TRACE = "messages" },
+        cmd_env = { RUFF_TRACE = "messages" },  -- Enable tracing for debugging
         init_options = {
           settings = {
-            logLevel = "error",
+            logLevel = "error",  -- Reduce noise in logs
           },
         },
       },
     },
   },
+
+  -- Pyright: Microsoft's Python language server
   pyright = {
     settings = {
-      pyright = {},
+      pyright = {
+        -- Pyright-specific settings can be added here
+        -- autoImportCompletion = true,
+        -- useLibraryCodeForTypes = true,
+      },
     },
   },
+
+  -- BasedPyright: Community fork of Pyright with additional features
   basedpyright = {
     settings = {
-      basedpyright = {},
+      basedpyright = {
+        -- BasedPyright-specific settings can be added here
+        -- analysis = { typeCheckingMode = "basic" },
+      },
     },
   },
 }
 
 for server, config in pairs(servers) do
   local final_config = vim.tbl_deep_extend("force", common_config, config)
-  lspconfig[server].setup(final_config)
+  vim.lsp.config[server] = final_config
 end
 
 return {

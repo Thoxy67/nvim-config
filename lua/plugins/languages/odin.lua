@@ -4,14 +4,12 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Configure Odin Language Server (ols)
-lspconfig.ols.setup {
+vim.lsp.config.ols = {
   on_attach = on_attach,
   filetypes = { "odin" },
-  root_dir = util.root_pattern("ols.json", ".git", "*.odin"),
+  root_markers = { "ols.json", ".git", "*.odin" },
   settings = {
     ols = {},
   },

@@ -1,11 +1,22 @@
--- Leader key must be set before plugins load
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- ============================================================================
+-- NVCHAD INITIALIZATION
+-- init.lua
+-- ============================================================================
+-- Main configuration entry point for NvChad. Sets up plugin manager,
+-- theme system, and loads all necessary configurations.
+-- ============================================================================
 
--- Base46 cache for themes
+-- ==================== LEADER KEYS ====================
+-- Must be set before any plugins are loaded to ensure proper keymapping
+vim.g.mapleader = " "          -- Primary leader key (space)
+vim.g.maplocalleader = " "     -- Local leader key (space)
+
+-- ==================== THEME SYSTEM ====================
+-- Base46 cache directory for fast theme loading
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 
--- Bootstrap lazy.nvim plugin manager
+-- ==================== PLUGIN MANAGER BOOTSTRAP ====================
+-- Automatically install lazy.nvim if not present
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
@@ -13,36 +24,42 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load plugin configurations
+-- ==================== PLUGIN SETUP ====================
+-- Load lazy.nvim configuration with performance optimizations
 local lazy_config = require "configs.lazy"
 
--- Setup plugins
+-- Initialize plugin system with NvChad base and user plugins
 require("lazy").setup({
-  -- NvChad base
+  -- NvChad core functionality (always loaded for UI consistency)
   {
     "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
+    lazy = false,           -- Load immediately for UI setup
+    branch = "v2.5",        -- Stable release branch
     import = "nvchad.plugins",
   },
-  -- User plugins
+  -- User-defined plugins from lua/plugins/
   { import = "plugins" },
 }, lazy_config)
 
--- Load themes
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-dofile(vim.g.base46_cache .. "devicons")
-dofile(vim.g.base46_cache .. "blankline")
-dofile(vim.g.base46_cache .. "dap")
-dofile(vim.g.base46_cache .. "git")
+-- ==================== THEME LOADING ====================
+-- Load cached theme files for optimal startup performance
+-- These are pre-compiled theme files that load faster than dynamic generation
+dofile(vim.g.base46_cache .. "defaults")    -- Base color scheme
+dofile(vim.g.base46_cache .. "statusline")  -- Status line colors
+dofile(vim.g.base46_cache .. "devicons")    -- File type icons
+dofile(vim.g.base46_cache .. "blankline")   -- Indentation guides
+dofile(vim.g.base46_cache .. "dap")         -- Debug adapter colors
+dofile(vim.g.base46_cache .. "git")         -- Git integration colors
 
--- Load configurations
-require "options"
-require "autocmds"
-require "custom.vimcmd"
+-- ==================== CONFIGURATION LOADING ====================
+-- Load core Neovim configurations
+require "options"           -- Vim options and settings
+require "autocmds"          -- Auto commands and events
+require "custom.vimcmd"     -- Custom Vim commands
 
--- Load mappings after UI is ready
+-- ==================== KEYMAPPING SETUP ====================
+-- Schedule keymap loading after UI initialization to prevent conflicts
+-- This ensures all plugins are loaded before setting up keybindings
 vim.schedule(function()
   require "mappings"
 end)

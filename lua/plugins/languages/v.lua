@@ -4,15 +4,13 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Configure V Language Analyzer
-lspconfig.v_analyzer.setup {
+vim.lsp.config.v_analyzer = {
   on_attach = on_attach,
   cmd = { vim.fn.expand "~" .. "/.config/v-analyzer/bin/v-analyzer" },
   filetypes = { "v" },
-  root_dir = util.root_pattern("v.mod", ".git"),
+  root_markers = { "v.mod", ".git" },
   mason = false, -- Not available through Mason
   settings = {
     mason = false,

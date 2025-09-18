@@ -4,8 +4,6 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Diagnostic provider selection: 'rust-analyzer' or 'bacon-ls'
 -- bacon-ls provides faster diagnostics but requires bacon to be installed
@@ -15,7 +13,7 @@ local diagnostics = vim.g.lazyvim_rust_diagnostics == "rust-analyzer"
 
 -- Configure bacon-ls for fast diagnostics (if selected)
 if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
-  lspconfig.bacon_ls.setup {
+  vim.lsp.config.bacon_ls = {
     on_attach = on_attach,
     settings = {
       -- bacon-ls settings can be configured here
@@ -88,7 +86,7 @@ return {
         -- LSP server configuration
         server = {
           on_attach = on_attach,
-          root_dir = util.root_pattern("Cargo.toml", "build.rs", ".git"),
+          root_markers = { "Cargo.toml", "build.rs", ".git" },
           default_settings = {
             ["rust-analyzer"] = {
               -- Cargo configuration

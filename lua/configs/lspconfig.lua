@@ -12,7 +12,7 @@ require("nvchad.configs.lspconfig").defaults()
 -- ==================== BASIC LSP SERVERS ====================
 -- Define language servers to enable automatically
 -- More complex language configurations are in lua/plugins/languages/
-local servers = {
+local basic_servers = {
   "html", -- HTML language server
   "css_variables",
   "cssls", -- CSS language server
@@ -21,6 +21,59 @@ local servers = {
   "asm_lsp", -- assembly language server
 }
 
--- Enable the defined language servers with default configuration
-vim.lsp.enable(servers)
--- read :h vim.lsp.config for changing options of lsp servers
+-- Language servers configured in plugins/languages/ that need to be enabled
+local configured_servers = {
+  "ts_ls", "vtsls", -- TypeScript/JavaScript
+  "pyright", "basedpyright", "ruff", -- Python
+  "clangd", -- C/C++
+  "gopls", -- Go
+  "zls", -- Zig
+  "yamlls", -- YAML
+  "jsonls", -- JSON
+  "vue_ls", -- Vue
+  "svelte", -- Svelte
+  "dockerls", "docker_compose_language_service", -- Docker
+  "neocmake", -- CMake
+  "bashls", "fish_lsp", -- Shell
+  "ols", -- Odin
+  "marksman", -- Markdown
+  "ocamllsp", -- OCaml
+  "c3_lsp", -- C3
+  "gleam", -- Gleam
+  "vlang_ls", -- V
+  "eslint", -- ESLint
+}
+
+-- ==================== SERVER ACTIVATION ====================
+-- Enable basic language servers with default configuration
+-- These servers work well with minimal configuration
+vim.lsp.enable(basic_servers)
+
+-- Enable configured language servers
+-- Advanced configurations are defined in individual language files
+-- located in lua/plugins/languages/
+vim.lsp.enable(configured_servers)
+
+-- ==================== PERFORMANCE OPTIMIZATION ====================
+-- Optimize LSP performance by reducing unnecessary diagnostics
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●", -- Simple prefix for virtual text
+    source = "if_many", -- Show source only when multiple sources exist
+  },
+  signs = {
+    priority = 20, -- Set diagnostic sign priority
+  },
+  float = {
+    source = "always", -- Always show source in floating diagnostics
+    border = "rounded", -- Rounded border for floating windows
+  },
+  severity_sort = true, -- Sort diagnostics by severity
+  update_in_insert = false, -- Don't update diagnostics in insert mode for performance
+})
+
+-- ==================== ADDITIONAL CONFIGURATION ====================
+-- For advanced LSP customization, see:
+-- :help vim.lsp.config for server-specific settings
+-- :help lspconfig for general LSP configuration
+-- Individual language files in lua/plugins/languages/ for complex setups

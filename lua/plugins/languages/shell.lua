@@ -4,10 +4,8 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
-lspconfig.bashls.setup {
+vim.lsp.config.bashls = {
   on_attach = on_attach,
   filetypes = { "zsh", "sh" },
   settings = {
@@ -15,7 +13,7 @@ lspconfig.bashls.setup {
   },
 }
 
-lspconfig.fish_lsp.setup {
+vim.lsp.config.fish_lsp = {
   on_attach = on_attach,
   filetypes = { "fish" },
   settings = {
@@ -23,7 +21,7 @@ lspconfig.fish_lsp.setup {
   },
 }
 
-lspconfig.nushell.setup {
+vim.lsp.config.nushell = {
   on_attach = on_attach,
   filetypes = { "nu" },
   settings = {

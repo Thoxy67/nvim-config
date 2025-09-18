@@ -3,12 +3,8 @@
 -- lua/plugins/languages/go.lua
 -- ============================================================================
 
--- local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
-
 -- Configure gopls (Go Language Server)
-lspconfig.gopls.setup {
+vim.lsp.config.gopls = {
   on_attach = function(client, _)
     -- Enable semantic tokens if not already provided
     if not client.server_capabilities.semanticTokensProvider then
@@ -24,7 +20,7 @@ lspconfig.gopls.setup {
     end
   end,
   filetypes = { "go", "gomod", "gowork", "gotmlp" },
-  root_dir = util.root_pattern("go.work", "go.mod"),
+  root_markers = { "go.work", "go.mod" },
   settings = {
     gopls = {
       gofumpt = true, -- Use gofumpt for formatting

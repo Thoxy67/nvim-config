@@ -1,68 +1,88 @@
 -- ============================================================================
--- Typescipt / Javascipt LANGUAGE SUPPORT
+-- TYPESCRIPT/JAVASCRIPT LANGUAGE SUPPORT
 -- lua/plugins/languages/typescript.lua
+-- ============================================================================
+-- Comprehensive TypeScript/JavaScript development environment with:
+-- - Dual LSP servers (ts_ls and vtsls) for enhanced functionality
+-- - Advanced inlay hints and completion features
+-- - Debug adapter protocol (DAP) support
+-- - File type icons and Mason tool integration
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
-lspconfig.ts_ls.setup {
+-- ==================== TYPESCRIPT LANGUAGE SERVER (ts_ls) ====================
+-- Basic TypeScript language server configuration
+-- Provides core TypeScript/JavaScript language features
+vim.lsp.config.ts_ls = {
   on_attach = on_attach,
-  --enabled = false,
+  -- enabled = false,  -- Uncomment to disable in favor of vtsls only
   filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
+    "javascript",       -- Standard JavaScript files
+    "javascriptreact",  -- React JSX files
+    "javascript.jsx",   -- JSX files
+    "typescript",       -- TypeScript files
+    "typescriptreact",  -- React TSX files
+    "typescript.tsx",   -- TSX files
   },
-  root_dir = util.root_pattern("tsconfig.json", "package.json", "jsconfig.json"),
+  root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   settings = {
-    ts_ls = {},
+    ts_ls = {
+      -- Basic settings (extended configuration in vtsls)
+    },
   },
 }
 
-lspconfig.vtsls.setup {
+-- ==================== VTSLS (ENHANCED TYPESCRIPT SERVER) ====================
+-- Advanced TypeScript language server with extended features
+-- Provides enhanced IntelliSense, refactoring, and completion capabilities
+vim.lsp.config.vtsls = {
   on_attach = on_attach,
-  --enabled = false,
+  -- enabled = false,  -- Uncomment to disable in favor of ts_ls only
   filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
+    "javascript",       -- Standard JavaScript files
+    "javascriptreact",  -- React JSX files
+    "javascript.jsx",   -- JSX files
+    "typescript",       -- TypeScript files
+    "typescriptreact",  -- React TSX files
+    "typescript.tsx",   -- TSX files
   },
-  root_dir = util.root_pattern("tsconfig.json", "package.json", "jsconfig.json"),
+  root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   settings = {
-    complete_function_calls = true,
+    complete_function_calls = true,  -- Auto-complete function parameters
+
     vtsls = {
-      enableMoveToFileCodeAction = true,
-      autoUseWorkspaceTsdk = true,
+      enableMoveToFileCodeAction = true,    -- Enable file refactoring actions
+      autoUseWorkspaceTsdk = true,          -- Auto-detect workspace TypeScript version
       experimental = {
-        maxInlayHintLength = 30,
+        maxInlayHintLength = 30,            -- Limit hint length for readability
         completion = {
-          enableServerSideFuzzyMatch = true,
+          enableServerSideFuzzyMatch = true, -- Improved completion matching
         },
       },
     },
+
     typescript = {
-      updateImportsOnFileMove = { enabled = "always" },
+      -- ==================== IMPORT MANAGEMENT ====================
+      updateImportsOnFileMove = { enabled = "always" }, -- Auto-update imports on file moves
+
+      -- ==================== COMPLETION SETTINGS ====================
       suggest = {
-        completeFunctionCalls = true,
+        completeFunctionCalls = true,  -- Show complete function signatures
       },
+
+      -- ==================== INLAY HINTS CONFIGURATION ====================
       inlayHints = {
-        enumMemberValues = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
-        parameterNames = { enabled = "literals" },
-        parameterTypes = { enabled = true },
-        propertyDeclarationTypes = { enabled = true },
-        variableTypes = { enabled = false },
+        enumMemberValues = { enabled = true },        -- Show enum values
+        functionLikeReturnTypes = { enabled = true },  -- Show return types
+        parameterNames = { enabled = "literals" },     -- Show parameter names for literals
+        parameterTypes = { enabled = true },           -- Show parameter types
+        propertyDeclarationTypes = { enabled = true }, -- Show property types
+        variableTypes = { enabled = false },           -- Hide variable types (can be verbose)
       },
     },
-    keys = {},
+
+    keys = {}, -- Custom keybindings (empty for default behavior)
   },
 }
 

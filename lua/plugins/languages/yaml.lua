@@ -4,18 +4,16 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
--- Configure JSON Language Server with schema support
-lspconfig.yamlls.setup {
+-- Configure YAML Language Server with schema support
+vim.lsp.config.yamlls = {
   on_attach = on_attach,
   before_init = function(_, new_config)
     new_config.settings.yaml.schemas =
       vim.tbl_deep_extend("force", new_config.settings.yaml.schemas or {}, require("schemastore").yaml.schemas())
   end,
   filetypes = { "yaml" },
-  root_dir = util.root_pattern { "*.yml", "*.yaml" },
+  root_markers = { "*.yml", "*.yaml" },
   settings = {
     redhat = { telemetry = { enabled = false } },
     yaml = {

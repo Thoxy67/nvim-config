@@ -4,13 +4,11 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
-lspconfig.zls.setup {
+vim.lsp.config.neocmake = {
   on_attach = on_attach,
   filetypes = { "cmake" },
-  root_dir = util.root_pattern("CMakePresets.json", "CTestConfig.cmake", "cmake"),
+  root_markers = { "CMakePresets.json", "CTestConfig.cmake", "cmake" },
   settings = {
     cmake = {},
   },

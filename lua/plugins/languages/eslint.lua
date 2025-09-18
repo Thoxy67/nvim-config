@@ -4,10 +4,8 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
-lspconfig.eslint.setup {
+vim.lsp.config.eslint = {
   on_attach = on_attach,
   enabled = false,
   settings = {

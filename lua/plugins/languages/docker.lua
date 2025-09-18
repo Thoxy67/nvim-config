@@ -4,8 +4,6 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
 -- Shared configuration
 local docker_root_patterns = {
@@ -19,7 +17,7 @@ local docker_root_patterns = {
 local common_config = {
   on_attach = on_attach,
   filetypes = { "dockerfile" },
-  root_dir = util.root_pattern(docker_root_patterns),
+  root_markers = docker_root_patterns,
 }
 
 -- Setup Docker LSP servers
@@ -38,7 +36,7 @@ local servers = {
 
 for server, config in pairs(servers) do
   local final_config = vim.tbl_deep_extend("force", common_config, config)
-  lspconfig[server].setup(final_config)
+  vim.lsp.config[server] = final_config
 end
 
 return {

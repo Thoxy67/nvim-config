@@ -4,14 +4,12 @@
 -- ============================================================================
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local lspconfig = require "lspconfig"
-local util = lspconfig.util
 
--- Configure V Language Analyzer
-lspconfig.gleam.setup {
+-- Configure Gleam Language Server
+vim.lsp.config.gleam = {
   on_attach = on_attach,
   filetypes = { "gleam" },
-  root_dir = util.root_pattern "gleam.toml",
+  root_markers = { "gleam.toml" },
   settings = {},
 }
 
