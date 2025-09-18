@@ -2,6 +2,10 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    cond = function()
+      return vim.fn.isdirectory(".git") == 1
+    end,
     opts = {
       -- Visual indicators for git changes in the sign column
       signs = {

@@ -12,8 +12,8 @@ local base46_hl = require "custom.base46_hl"
 -- ===========================
 
 M.base46 = {
-  transparency = false, -- Set to true for transparent background
-  theme = "tokyodark", -- Default theme
+  transparency = false,                         -- Set to true for transparent background
+  theme = "tokyodark",                          -- Default theme
   theme_toggle = { "tokyodark", "catppuccin" }, -- Themes for toggle
 
   hl_override = base46_hl.hl_override,
@@ -39,7 +39,6 @@ M.base46 = {
     "cmp",
     "semantic_tokens",
     "codeactionmenu",
-    "hop",
     "rainbowdelimiters",
     "grug_far",
     "git-conflict",
@@ -264,7 +263,7 @@ M.nvdash = {
 
 M.mason = {
   command = true, -- Enable Mason command
-  skip = { -- Skip these packages (install manually)
+  skip = {        -- Skip these packages (install manually)
     "rust_analyzer",
     "v-analyzer",
     "zls",
@@ -285,7 +284,7 @@ M.lsp = {
 -- ===========================
 
 M.cheatsheet = {
-  theme = "grid", -- simple/grid
+  theme = "grid",       -- simple/grid
   excluded_groups = {}, -- Groups to exclude
 }
 

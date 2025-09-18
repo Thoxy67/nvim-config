@@ -9,7 +9,7 @@
 return {
   -- ==================== DEFAULT PLUGIN BEHAVIOR ====================
   defaults = {
-    lazy = false, -- Don't lazy load by default (override per plugin)
+    lazy = true, -- Enable lazy loading by default for better performance
     -- version = false, -- Don't pin to specific versions (use latest)
   },
 

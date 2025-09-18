@@ -1,6 +1,11 @@
 return {
   {
     "DrKJeff16/project.nvim",
+    cmd = "Telescope projects",
+    keys = {
+      { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find Projects" },
+    },
+    dependencies = { "telescope.nvim" },
     opts = {
       manual_mode = true,
     },

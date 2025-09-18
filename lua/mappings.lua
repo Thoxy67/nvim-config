@@ -13,7 +13,6 @@ map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 map("n", "<leader>a", "ggv$G$", { desc = "Select all text" })
 
 -- Project management
-map("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open project explorer (Project.nvim)" })
 map("n", "<leader>tT", "<cmd>Telescope<cr>", { desc = "Telescope (builtin)" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Select Branch" })
 
