@@ -1,7 +1,7 @@
 return {
   {
     "sphamba/smear-cursor.nvim",
-    cond = vim.g.neovide == nil,
+    lazy = false,
     opts = {
       hide_target_hack = true,
       cursor_color = "none",
