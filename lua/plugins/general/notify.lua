@@ -2,7 +2,7 @@
 return {
   {
     "rcarriga/nvim-notify",
-    lazy = false,
+    event = "VeryLazy", -- Notifications don't need immediate loading
     opts = {
       stages = "fade_in_slide_out",
       timeout = 1500, -- Notification timeout in milliseconds

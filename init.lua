@@ -8,8 +8,8 @@
 
 -- ==================== LEADER KEYS ====================
 -- Must be set before any plugins are loaded to ensure proper keymapping
-vim.g.mapleader = " "          -- Primary leader key (space)
-vim.g.maplocalleader = " "     -- Local leader key (space)
+vim.g.mapleader = " " -- Primary leader key (space)
+vim.g.maplocalleader = " " -- Local leader key (space)
 
 -- ==================== THEME SYSTEM ====================
 -- Base46 cache directory for fast theme loading
@@ -33,8 +33,8 @@ require("lazy").setup({
   -- NvChad core functionality (always loaded for UI consistency)
   {
     "NvChad/NvChad",
-    lazy = false,           -- Load immediately for UI setup
-    branch = "v2.5",        -- Stable release branch
+    lazy = false, -- Load immediately for UI setup
+    branch = "v2.5", -- Stable release branch
     import = "nvchad.plugins",
   },
   -- User-defined plugins from lua/plugins/
@@ -44,18 +44,18 @@ require("lazy").setup({
 -- ==================== THEME LOADING ====================
 -- Load cached theme files for optimal startup performance
 -- These are pre-compiled theme files that load faster than dynamic generation
-dofile(vim.g.base46_cache .. "defaults")    -- Base color scheme
-dofile(vim.g.base46_cache .. "statusline")  -- Status line colors
-dofile(vim.g.base46_cache .. "devicons")    -- File type icons
-dofile(vim.g.base46_cache .. "blankline")   -- Indentation guides
-dofile(vim.g.base46_cache .. "dap")         -- Debug adapter colors
-dofile(vim.g.base46_cache .. "git")         -- Git integration colors
+dofile(vim.g.base46_cache .. "defaults") -- Base color scheme
+dofile(vim.g.base46_cache .. "statusline") -- Status line colors
+dofile(vim.g.base46_cache .. "devicons") -- File type icons
+dofile(vim.g.base46_cache .. "blankline") -- Indentation guides
+dofile(vim.g.base46_cache .. "dap") -- Debug adapter colors
+dofile(vim.g.base46_cache .. "git") -- Git integration colors
 
 -- ==================== CONFIGURATION LOADING ====================
 -- Load core Neovim configurations
-require "options"           -- Vim options and settings
-require "autocmds"          -- Auto commands and events
-require "custom.vimcmd"     -- Custom Vim commands
+require "options" -- Vim options and settings
+require "autocmds" -- Auto commands and events
+require "custom.vimcmd" -- Custom Vim commands
 
 -- ==================== KEYMAPPING SETUP ====================
 -- Schedule keymap loading after UI initialization to prevent conflicts

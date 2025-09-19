@@ -1,7 +1,6 @@
 return {
   {
     "folke/snacks.nvim",
-    lazy = false, -- Load immediately for UI components
     priority = 1000,
     ---@type snacks.Config
     opts = {

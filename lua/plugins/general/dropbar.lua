@@ -2,7 +2,7 @@
 return {
   {
     "Bekaboo/dropbar.nvim",
-    lazy = false,
+    event = { "BufReadPost", "BufNewFile" }, -- Load when opening files
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
     },

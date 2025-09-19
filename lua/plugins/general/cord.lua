@@ -4,7 +4,7 @@ return {
   {
     "vyfor/cord.nvim",
     build = ":Cord update",
-    lazy = false,
+    event = "VeryLazy", -- Discord RPC doesn't need immediate loading
     enabled = true,
     opts = {
       enabled = true,

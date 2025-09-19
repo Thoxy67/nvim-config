@@ -2,7 +2,7 @@ return {
   {
     "folke/flash.nvim",
     enabled = true,
-    event = "BufRead",
+    -- Remove event, load only when keys are pressed
     init = function()
       dofile(vim.g.base46_cache .. "flash")
     end,

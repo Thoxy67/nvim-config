@@ -9,12 +9,26 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 -- bacon-ls provides faster diagnostics but requires bacon to be installed
 vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 
-local diagnostics = vim.g.lazyvim_rust_diagnostics == "rust-analyzer"
+local use_rust_analyzer_diagnostics = vim.g.lazyvim_rust_diagnostics == "rust-analyzer"
 
 -- Configure bacon-ls for fast diagnostics (if selected)
 if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
   vim.lsp.config.bacon_ls = {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      -- Disable all capabilities except diagnostics to avoid conflicts
+      client.server_capabilities.hoverProvider = false
+      client.server_capabilities.completionProvider = false
+      client.server_capabilities.signatureHelpProvider = false
+      client.server_capabilities.definitionProvider = false
+      client.server_capabilities.referencesProvider = false
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+      client.server_capabilities.renameProvider = false
+      client.server_capabilities.codeActionProvider = false
+
+      -- Call the original on_attach
+      on_attach(client, bufnr)
+    end,
     settings = {
       -- bacon-ls settings can be configured here
     },
@@ -99,9 +113,14 @@ return {
               },
 
               -- Diagnostics configuration
-              checkOnSave = diagnostics == "rust-analyzer",
+              checkOnSave = use_rust_analyzer_diagnostics,
               diagnostics = {
-                enable = diagnostics == "rust-analyzer",
+                enable = use_rust_analyzer_diagnostics,
+              },
+
+              -- Disable signature help to avoid conflicts with bacon_ls
+              signatureHelp = {
+                enable = use_rust_analyzer_diagnostics,
               },
 
               -- Procedural macro support

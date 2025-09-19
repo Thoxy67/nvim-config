@@ -1,7 +1,7 @@
 return {
   {
     "rmagatti/auto-session",
-    lazy = false, -- Load immediately for session management
+    event = "VimEnter", -- Load after Neovim startup for session management
     opts = {
       enabled = true, -- Enables/disables auto creating, saving and restoring
       root_dir = vim.fn.stdpath "data" .. "/sessions/", -- Root dir where sessions will be stored

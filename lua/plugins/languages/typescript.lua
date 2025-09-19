@@ -11,12 +11,16 @@
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 
+-- TypeScript LSP selection: 'ts_ls' or 'vtsls'
+-- vtsls provides more advanced features like better inlay hints and completion
+vim.g.typescript_lsp = vim.g.typescript_lsp or "vtsls"
+
 -- ==================== TYPESCRIPT LANGUAGE SERVER (ts_ls) ====================
 -- Basic TypeScript language server configuration
 -- Provides core TypeScript/JavaScript language features
 vim.lsp.config.ts_ls = {
   on_attach = on_attach,
-  -- enabled = false,  -- Uncomment to disable in favor of vtsls only
+  enabled = vim.g.typescript_lsp == "ts_ls", -- Enable only if selected
   filetypes = {
     "javascript",       -- Standard JavaScript files
     "javascriptreact",  -- React JSX files
@@ -38,7 +42,7 @@ vim.lsp.config.ts_ls = {
 -- Provides enhanced IntelliSense, refactoring, and completion capabilities
 vim.lsp.config.vtsls = {
   on_attach = on_attach,
-  -- enabled = false,  -- Uncomment to disable in favor of ts_ls only
+  enabled = vim.g.typescript_lsp == "vtsls", -- Enable only if selected
   filetypes = {
     "javascript",       -- Standard JavaScript files
     "javascriptreact",  -- React JSX files

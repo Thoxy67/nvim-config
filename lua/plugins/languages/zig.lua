@@ -8,17 +8,17 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 -- Configure Zig Language Server (ZLS)
 vim.lsp.config.zls = {
   on_attach = on_attach,
-  cmd = { "/usr/bin/zls" },            -- Path to ZLS binary
+  cmd = { "/usr/bin/zls" }, -- Path to ZLS binary
   filetypes = { "zig", "zir", "zon" }, -- Zig file types
   root_markers = { "build.zig", "build.zon" },
   settings = {
     zls = {
-      single_file_support = true,        -- Support single files
+      single_file_support = true, -- Support single files
       zig_lib_path = "/usr/lib/zig/lib", -- Path to Zig standard library
-      enable_snippets = true,            -- Enable code snippets
-      warn_style = false,                -- Disable style warnings
-      enable_semantic_tokens = true,     -- Enable semantic highlighting
-      operator_completions = true,       -- Complete operators
+      enable_snippets = true, -- Enable code snippets
+      warn_style = false, -- Disable style warnings
+      enable_semantic_tokens = true, -- Enable semantic highlighting
+      operator_completions = true, -- Complete operators
     },
   },
 }

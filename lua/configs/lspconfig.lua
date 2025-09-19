@@ -42,6 +42,7 @@ local configured_servers = {
   "gleam", -- Gleam
   "vlang_ls", -- V
   "eslint", -- ESLint
+  "bacon_ls", -- Rust diagnostics
 }
 
 -- ==================== SERVER ACTIVATION ====================

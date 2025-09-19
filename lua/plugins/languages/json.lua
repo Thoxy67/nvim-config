@@ -3,35 +3,20 @@
 -- lua/plugins/languages/json.lua
 -- ============================================================================
 
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-
--- Configure JSON Language Server with schema support
-vim.lsp.config.jsonls = {
-  on_attach = on_attach,
-  before_init = function(_, new_config)
-    new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-    vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-  end,
-  filetypes = { "json", "jsonc", "json5" },
-  root_markers = { "*.json" },
-  settings = {
-    json = {
-      -- schemas = require("schemastore").json.schemas(),
-      format = {
-        enable = true, -- Enable JSON formatting
-      },
-      validate = {
-        enable = true, -- Enable JSON validation
-      },
-    },
-  },
-}
-
 return {
   -- Treesitter support for JSON variants
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "json5" } },
+  },
+
+  {
+    "mason.nvim",
+    opts = {
+      ensure_installed = {
+        "biome", -- Import management
+      },
+    },
   },
 
   {
@@ -41,12 +26,24 @@ return {
         "b0o/SchemaStore.nvim",
       },
     },
-  },
-  {
-    "mason.nvim",
     opts = {
-      ensure_installed = {
-        "biome", -- Import management
+      -- make sure mason installs the server
+      servers = {
+        jsonls = {
+          -- lazy-load schemastore when needed
+          before_init = function(_, new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
+        },
       },
     },
   },

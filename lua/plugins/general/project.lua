@@ -3,7 +3,7 @@ return {
     "DrKJeff16/project.nvim",
     cmd = "Telescope projects",
     keys = {
-      { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find Projects" },
+      { "<leader>fp", "<cmd>:lua require('snacks').dashboard.pick('projects')<cr>", desc = "Find Projects" },
     },
     dependencies = { "telescope.nvim" },
     opts = {
