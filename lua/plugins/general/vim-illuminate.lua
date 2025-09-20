@@ -2,8 +2,9 @@
 return {
   {
     "RRethy/vim-illuminate",
-    event = "BufRead",
+    event = "BufReadPost",
     opts = {
+      delay = 200,
       -- Don't illuminate in these file types
       filetypes_denylist = {
         "NvimTree",

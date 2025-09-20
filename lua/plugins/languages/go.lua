@@ -5,20 +5,6 @@
 
 -- Configure gopls (Go Language Server)
 vim.lsp.config.gopls = {
-  on_attach = function(client, _)
-    -- Enable semantic tokens if not already provided
-    if not client.server_capabilities.semanticTokensProvider then
-      local semantic = client.config.capabilities.textDocument.semanticTokens
-      client.server_capabilities.semanticTokensProvider = {
-        full = true,
-        legend = {
-          tokenTypes = semantic.tokenTypes,
-          tokenModifiers = semantic.tokenModifiers,
-        },
-        range = true,
-      }
-    end
-  end,
   filetypes = { "go", "gomod", "gowork", "gotmlp" },
   root_markers = { "go.work", "go.mod" },
   settings = {

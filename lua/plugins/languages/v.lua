@@ -7,7 +7,7 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 
 -- Configure V Language Analyzer
 vim.lsp.config.v_analyzer = {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   cmd = { vim.fn.expand "~" .. "/.config/v-analyzer/bin/v-analyzer" },
   filetypes = { "v" },
   root_markers = { "v.mod", ".git" },

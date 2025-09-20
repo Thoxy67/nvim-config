@@ -23,8 +23,11 @@ local basic_servers = {
 
 -- Language servers configured in plugins/languages/ that need to be enabled
 local configured_servers = {
-  "ts_ls", "vtsls", -- TypeScript/JavaScript
-  "pyright", "basedpyright", "ruff", -- Python
+  "ts_ls",
+  "vtsls", -- TypeScript/JavaScript
+  "pyright",
+  "basedpyright",
+  "ruff", -- Python
   "clangd", -- C/C++
   "gopls", -- Go
   "zls", -- Zig
@@ -32,15 +35,17 @@ local configured_servers = {
   "jsonls", -- JSON
   "vue_ls", -- Vue
   "svelte", -- Svelte
-  "dockerls", "docker_compose_language_service", -- Docker
+  "dockerls",
+  "docker_compose_language_service", -- Docker
   "neocmake", -- CMake
-  "bashls", "fish_lsp", -- Shell
+  "bashls",
+  "fish_lsp", -- Shell
   "ols", -- Odin
   "marksman", -- Markdown
   "ocamllsp", -- OCaml
   "c3_lsp", -- C3
   "gleam", -- Gleam
-  "vlang_ls", -- V
+  "v_analyzer", -- V
   "eslint", -- ESLint
   "bacon_ls", -- Rust diagnostics
 }
@@ -57,7 +62,7 @@ vim.lsp.enable(configured_servers)
 
 -- ==================== PERFORMANCE OPTIMIZATION ====================
 -- Optimize LSP performance by reducing unnecessary diagnostics
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = {
     prefix = "●", -- Simple prefix for virtual text
     source = "if_many", -- Show source only when multiple sources exist
@@ -71,7 +76,7 @@ vim.diagnostic.config({
   },
   severity_sort = true, -- Sort diagnostics by severity
   update_in_insert = false, -- Don't update diagnostics in insert mode for performance
-})
+}
 
 -- ==================== ADDITIONAL CONFIGURATION ====================
 -- For advanced LSP customization, see:
