@@ -9,7 +9,7 @@ return {
     cmd = { "Oil" },
     keys = {
       {
-        "<leader>fo",
+        "<leader>f0",
         function()
           require("oil").toggle_float()
         end,

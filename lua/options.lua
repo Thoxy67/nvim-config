@@ -39,7 +39,7 @@ vim.o.number = true
 -- ==================== FONT AND ICON SUPPORT ====================
 -- Set to true if you have a Nerd Font installed and selected in terminal
 -- Nerd Fonts provide icons for file types, Git status, etc.
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- ============================================================================
 -- INPUT AND INTERACTION

@@ -3,12 +3,13 @@ return {
   {
     "nvim-neorg/neorg",
     enabled = false,
+    -- commit = "a0858f0f83dd45e26671b9153babf974bb52e205",
+    commit = "6208f556719d08dc61db02fde6a877768ecb592a",
     ft = { "norg", "neorg" },
     cmd = "Neorg",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      -- opts = { ensure_installed = { "norg", "norg_meta", "norg_table" } },
       "benlubas/neorg-interim-ls", -- LSP support for neorg
     },
     opts = {
@@ -25,7 +26,7 @@ return {
         ["core.highlights"] = {},
         ["core.itero"] = {},
         ["core.journal"] = {},
-        -- ["core.integrations.treesitter"] = {},
+        ["core.integrations.treesitter"] = {},
 
         -- Visual enhancements
         ["core.concealer"] = {
@@ -51,6 +52,7 @@ return {
             workspaces = {
               work = "~/.neorg/work",
             },
+            index = "index.norg",
           },
         },
 
