@@ -1,6 +1,7 @@
 return {
   {
     "sitiom/nvim-numbertoggle",
-    event = "BufReadPre"
+    event = "BufReadPre",
+    enabled = false,
   },
 }
