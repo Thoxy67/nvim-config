@@ -96,7 +96,12 @@ return {
   -- PLUGIN IMPORTS
   -- ===========================
 
-  { import = "plugins/general" },
+  { import = "plugins/general/editing" },
+  { import = "plugins/general/git" },
+  { import = "plugins/general/lsp" },
+  { import = "plugins/general/navigation" },
+  { import = "plugins/general/productivity" },
+  { import = "plugins/general/ui" },
   { import = "plugins/dap" },
 
   -- Language-specific plugins (comment out what you don't need)

@@ -3,6 +3,8 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+local toggle = require "custom.language_toggle"
+
 -- Quick command mode
 map("n", ";", ":", { desc = "Enter command mode" })
 
@@ -52,3 +54,6 @@ map({ "n", "v" }, "<RightMouse>", function()
   local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
   require("menu").open(options, { mouse = true })
 end, {})
+
+-- Toggle language plugins
+map("n", "<leader>tl", toggle.toggle_languages, { desc = "Toggle language plugins" })
