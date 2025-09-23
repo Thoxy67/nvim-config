@@ -3,8 +3,6 @@ local lang_manager = require "configs.language_manager"
 
 -- Create the language toggle UI with multi-selection support
 function M.show_language_manager()
-  local enabled_languages = lang_manager.load_enabled_languages()
-
   -- Prepare items for selection
   local items = {}
   local display_items = {}
