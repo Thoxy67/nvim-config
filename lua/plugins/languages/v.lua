@@ -18,6 +18,8 @@ vim.lsp.config.v_analyzer = {
   },
 }
 
+vim.lsp.enable { "v_analyzer" }
+
 return {
   -- Treesitter support for V
   {

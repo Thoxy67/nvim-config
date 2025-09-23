@@ -13,37 +13,10 @@ require("nvchad.configs.lspconfig").defaults()
 -- Define language servers to enable automatically
 -- More complex language configurations are in lua/plugins/languages/
 local servers = {
-  "html",    -- HTML language server
+  "html", -- HTML language server
   "css_variables",
-  "cssls",   -- CSS language server
+  "cssls", -- CSS language server
   "somesass_ls",
-  "taplo",   -- TOML language server
-  "asm_lsp", -- assembly language server
-  "ts_ls",
-  "vtsls",   -- TypeScript/JavaScript
-  "pyright",
-  "basedpyright",
-  "ruff",                            -- Python
-  "clangd",                          -- C/C++
-  "gopls",                           -- Go
-  "zls",                             -- Zig
-  "yamlls",                          -- YAML
-  "jsonls",                          -- JSON
-  "vue_ls",                          -- Vue
-  "svelte",                          -- Svelte
-  "dockerls",
-  "docker_compose_language_service", -- Docker
-  "neocmake",                        -- CMake
-  "bashls",
-  "fish_lsp",                        -- Shell
-  "ols",                             -- Odin
-  "marksman",                        -- Markdown
-  "ocamllsp",                        -- OCaml
-  "c3_lsp",                          -- C3
-  "gleam",                           -- Gleam
-  "v_analyzer",                      -- V
-  "eslint",                          -- ESLint
-  "bacon_ls",                        -- Rust diagnostics
 }
 
 -- ==================== SERVER ACTIVATION ====================
@@ -62,10 +35,10 @@ vim.diagnostic.config {
     priority = 20, -- Set diagnostic sign priority
   },
   float = {
-    source = "always",      -- Always show source in floating diagnostics
-    border = "rounded",     -- Rounded border for floating windows
+    source = "always", -- Always show source in floating diagnostics
+    border = "rounded", -- Rounded border for floating windows
   },
-  severity_sort = true,     -- Sort diagnostics by severity
+  severity_sort = true, -- Sort diagnostics by severity
   update_in_insert = false, -- Don't update diagnostics in insert mode for performance
 }
 

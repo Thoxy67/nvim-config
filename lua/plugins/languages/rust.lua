@@ -33,6 +33,9 @@ if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
       -- bacon-ls settings can be configured here
     },
   }
+  vim.lsp.enable { "bacon_ls", "rust-analyzer" }
+else
+  vim.lsp.enable { "rust-analyzer" }
 end
 
 return {

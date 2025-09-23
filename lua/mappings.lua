@@ -3,8 +3,6 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
-local toggle = require "custom.language_toggle"
-
 -- Quick command mode
 map("n", ";", ":", { desc = "Enter command mode" })
 
@@ -21,6 +19,10 @@ map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Select Branc
 -- Color picker and management
 map("n", "<leader>cp", "<cmd>Huefy<CR>", { desc = "Open color picker (Minty)" })
 map("n", "<leader>cs", "<cmd>Shades<CR>", { desc = "Open color shades (Minty)" })
+
+-- Language plugin manager
+map("n", "<leader>pl", "<cmd>LanguageManager<cr>", { desc = "Language Plugin Manager" })
+map("n", "<leader>pt", "<cmd>LanguageToggle<cr>", { desc = "Quick Toggle Language" })
 
 -- Quick jump to context (indent-blankline)
 map("n", "<leader>cj", function()
@@ -54,6 +56,3 @@ map({ "n", "v" }, "<RightMouse>", function()
   local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
   require("menu").open(options, { mouse = true })
 end, {})
-
--- Toggle language plugins
-map("n", "<leader>tl", toggle.toggle_languages, { desc = "Toggle language plugins" })

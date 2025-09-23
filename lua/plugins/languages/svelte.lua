@@ -24,6 +24,9 @@ vim.lsp.config.vtsls = {
   },
 }
 
+vim.lsp.enable { "svelte", "vtsls" }
+
+
 return {
   { import = "plugins.languages.typescript" },
 

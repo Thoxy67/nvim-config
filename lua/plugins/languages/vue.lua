@@ -30,6 +30,8 @@ vim.lsp.config.vtsls = {
   },
 }
 
+vim.lsp.enable { "vue_ls", "vtsls" }
+
 return {
   { import = "plugins.languages.typescript" },
 

@@ -17,6 +17,8 @@ vim.lsp.config.marksman = {
   settings = {},
 }
 
+vim.lsp.enable { "marksman" }
+
 return {
   {
     "stevearc/conform.nvim",
@@ -78,7 +80,7 @@ return {
     },
     opts = {
       preview = {
-        hybrid_modes = { "n" }, -- Show preview in normal mode
+        hybrid_modes = { "n" },     -- Show preview in normal mode
         icon_provider = "devicons", -- Use devicons for file type icons
       },
       html = {

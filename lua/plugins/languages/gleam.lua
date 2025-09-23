@@ -5,13 +5,7 @@
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 
--- Configure Gleam Language Server
--- vim.lsp.config.gleam = {
---   on_attach = on_attach,
---   filetypes = { "gleam" },
---   root_markers = { "gleam.toml" },
---   settings = {},
--- }
+vim.lsp.enable { "gleam" }
 
 return {
   {

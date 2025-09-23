@@ -15,6 +15,8 @@ vim.lsp.config.c3_lsp = {
   },
 }
 
+vim.lsp.enable { "c3_lsp" }
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

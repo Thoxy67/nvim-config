@@ -3,6 +3,8 @@
 -- lua/plugins/languages/yaml.lua
 -- ============================================================================
 
+vim.lsp.enable { "yamlls" }
+
 return {
   -- Treesitter support for JSON variants
   {

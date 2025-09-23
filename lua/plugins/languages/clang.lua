@@ -50,6 +50,8 @@ vim.lsp.config.clangd = {
   },
 }
 
+vim.lsp.enable { "clangd" }
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

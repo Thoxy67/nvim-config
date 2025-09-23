@@ -1,4 +1,5 @@
-return {
+local lang_manager = require("configs.language_manager")
+local plugins = {
 
   -- ===========================
   -- LSP AND LANGUAGE SUPPORT
@@ -104,29 +105,18 @@ return {
   { import = "plugins/general/ui" },
   { import = "plugins/dap" },
 
-  -- Language-specific plugins (comment out what you don't need)
-  { import = "plugins/languages/rust" },
-  { import = "plugins/languages/gleam" },
-  { import = "plugins/languages/v" },
-  { import = "plugins/languages/zig" },
-  { import = "plugins/languages/go" },
-  { import = "plugins/languages/ocaml" },
-  { import = "plugins/languages/clang" },
-  { import = "plugins/languages/cmake" },
-  { import = "plugins/languages/docker" },
-  { import = "plugins/languages/markdown" },
-  { import = "plugins/languages/c3" },
-  { import = "plugins/languages/odin" },
-  { import = "plugins/languages/python" },
-  { import = "plugins/languages/json" },
-  { import = "plugins/languages/yaml" },
-  { import = "plugins/languages/shell" },
-  { import = "plugins/languages/typescript" },
-  { import = "plugins/languages/vue" },
-  { import = "plugins/languages/svelte" },
-  { import = "plugins/languages/qmk" },
+  -- Language-specific plugins (dynamically loaded based on configuration)
+  -- Use :LanguageManager to configure which languages to load
 
   { import = "plugins/AI" },
 
   -- { import = "plugins/dev" }, -- Homemade debug plugins
 }
+
+-- Add dynamic language imports
+local language_imports = lang_manager.get_language_imports()
+for _, import_spec in ipairs(language_imports) do
+  table.insert(plugins, import_spec)
+end
+
+return plugins

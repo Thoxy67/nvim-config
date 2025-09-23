@@ -39,6 +39,8 @@ for server, config in pairs(servers) do
   vim.lsp.config[server] = final_config
 end
 
+vim.lsp.enable { "dockerls", "docker_compose_language_service" }
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

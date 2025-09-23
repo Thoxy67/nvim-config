@@ -9,6 +9,8 @@
 
 /lua/plugins/dev
 
+/lua/configs/enabled_languages.lua
+
 # Transfer.nvim configuration directory
 .nvim/
 /.description

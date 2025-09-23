@@ -11,20 +11,20 @@
 
 -- ==================== LSP SERVER SELECTION ====================
 -- Configure which Python LSP servers to use
-vim.g.lazyvim_python_lsp = "pyright"    -- Main LSP: "pyright" or "basedpyright"
-vim.g.lazyvim_python_ruff = "ruff"      -- Linter/Formatter: "ruff" or "ruff_lsp"
+vim.g.lazyvim_python_lsp = "pyright" -- Main LSP: "pyright" or "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"   -- Linter/Formatter: "ruff" or "ruff_lsp"
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 
 -- ==================== SHARED CONFIGURATION ====================
 -- Common settings for all Python LSP servers
 local root_markers = {
-  "pyproject.toml",      -- Modern Python projects
-  "setup.py",            -- Traditional setuptools
-  "setup.cfg",           -- Setup configuration
-  "requirements.txt",    -- Pip requirements
-  "Pipfile",             -- Pipenv projects
-  "pyrightconfig.json"   -- Pyright configuration
+  "pyproject.toml",    -- Modern Python projects
+  "setup.py",          -- Traditional setuptools
+  "setup.cfg",         -- Setup configuration
+  "requirements.txt",  -- Pip requirements
+  "Pipfile",           -- Pipenv projects
+  "pyrightconfig.json" -- Pyright configuration
 }
 
 local common_config = {
@@ -44,10 +44,10 @@ local servers = {
     end,
     settings = {
       ruff = {
-        cmd_env = { RUFF_TRACE = "messages" },  -- Enable tracing for debugging
+        cmd_env = { RUFF_TRACE = "messages" }, -- Enable tracing for debugging
         init_options = {
           settings = {
-            logLevel = "error",  -- Reduce noise in logs
+            logLevel = "error", -- Reduce noise in logs
           },
         },
       },
@@ -80,6 +80,8 @@ for server, config in pairs(servers) do
   local final_config = vim.tbl_deep_extend("force", common_config, config)
   vim.lsp.config[server] = final_config
 end
+
+vim.lsp.enable { "basedpyright", "pyright", "ruff" }
 
 return {
   {
@@ -127,7 +129,7 @@ return {
       -- stylua: ignore
       keys = {
         { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-        { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+        { "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug Class",  ft = "python" },
       },
     },
   },

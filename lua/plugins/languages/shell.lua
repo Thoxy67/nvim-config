@@ -29,6 +29,9 @@ vim.lsp.config.nushell = {
   },
 }
 
+
+vim.lsp.enable { "bashls", "fish_lsp", "nushell" }
+
 return {
   {
     "mason.nvim",

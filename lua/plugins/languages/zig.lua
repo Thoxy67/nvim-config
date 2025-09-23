@@ -23,6 +23,8 @@ vim.lsp.config.zls = {
   },
 }
 
+vim.lsp.enable { "zls" }
+
 return {
   -- Treesitter support for Zig
   {

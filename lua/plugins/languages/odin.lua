@@ -15,6 +15,8 @@ vim.lsp.config.ols = {
   },
 }
 
+vim.lsp.enable { "ols" }
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

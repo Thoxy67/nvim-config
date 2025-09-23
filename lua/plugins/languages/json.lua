@@ -3,6 +3,8 @@
 -- lua/plugins/languages/json.lua
 -- ============================================================================
 
+vim.lsp.enable { "jsonls" }
+
 return {
   -- Treesitter support for JSON variants
   {

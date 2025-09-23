@@ -15,4 +15,8 @@ vim.lsp.config.eslint = {
   },
 }
 
-return {}
+vim.lsp.enable { "eslint" }
+
+return {
+  { import = "plugins.languages.typescript" },
+}

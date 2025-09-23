@@ -3,6 +3,8 @@
 -- lua/plugins/languages/ocaml.lua
 -- ============================================================================
 
+vim.lsp.enable { "ocamllsp" }
+
 return {
   -- Treesitter support for OCaml
   {

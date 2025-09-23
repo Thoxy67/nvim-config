@@ -14,6 +14,8 @@ vim.lsp.config.neocmake = {
   },
 }
 
+vim.lsp.enable { "neocmake" }
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
