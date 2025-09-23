@@ -128,5 +128,5 @@ return {
 
   { import = "plugins/AI" },
 
-  { import = "plugins/dev" }, -- Homemade debug plugins
+  -- { import = "plugins/dev" }, -- Homemade debug plugins
 }
