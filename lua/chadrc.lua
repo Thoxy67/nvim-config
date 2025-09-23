@@ -207,6 +207,7 @@ M.nvdash = {
 
     { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Cheatsheet", keys = "ch", cmd = "NvCheatsheet" },
+    { txt = "  Languages Manager", keys = "lt", cmd = "LanguageManager" },
     {
       txt = "  Modify Config",
       keys = "c",
