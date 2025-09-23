@@ -12,12 +12,7 @@ require("nvchad.configs.lspconfig").defaults()
 -- ==================== BASIC LSP SERVERS ====================
 -- Define language servers to enable automatically
 -- More complex language configurations are in lua/plugins/languages/
-local servers = {
-  "html", -- HTML language server
-  "css_variables",
-  "cssls", -- CSS language server
-  "somesass_ls",
-}
+local servers = {}
 
 -- ==================== SERVER ACTIVATION ====================
 -- Enable basic language servers with default configuration

@@ -92,7 +92,7 @@ return {
     optional = true,
     dependencies = {
       -- Ensure C/C++ debugger is installed
-      "mason-org/mason.nvim",
+      "mason.nvim",
       optional = true,
       opts = { ensure_installed = { "codelldb" } },
     },

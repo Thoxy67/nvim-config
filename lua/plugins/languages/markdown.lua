@@ -50,7 +50,7 @@ return {
     },
   },
   {
-    "mason-org/mason.nvim",
+    "mason.nvim",
     opts = { ensure_installed = { "markdownlint-cli2", "markdown-toc" } },
   },
   {
@@ -80,7 +80,7 @@ return {
     },
     opts = {
       preview = {
-        hybrid_modes = { "n" },     -- Show preview in normal mode
+        hybrid_modes = { "n" }, -- Show preview in normal mode
         icon_provider = "devicons", -- Use devicons for file type icons
       },
       html = {

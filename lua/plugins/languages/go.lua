@@ -13,40 +13,40 @@ vim.lsp.config.gopls = {
 
       -- Code lenses configuration
       codelenses = {
-        gc_details = false,        -- Don't show GC details
-        generate = true,           -- Show generate commands
-        regenerate_cgo = true,     -- Show regenerate cgo
-        run_govulncheck = true,    -- Show vulnerability check
-        test = true,               -- Show test/benchmark commands
-        tidy = true,               -- Show go mod tidy
+        gc_details = false, -- Don't show GC details
+        generate = true, -- Show generate commands
+        regenerate_cgo = true, -- Show regenerate cgo
+        run_govulncheck = true, -- Show vulnerability check
+        test = true, -- Show test/benchmark commands
+        tidy = true, -- Show go mod tidy
         upgrade_dependency = true, -- Show upgrade dependency
-        vendor = true,             -- Show vendor commands
+        vendor = true, -- Show vendor commands
       },
 
       -- Inlay hints configuration
       hints = {
-        assignVariableTypes = true,    -- Show variable type hints
+        assignVariableTypes = true, -- Show variable type hints
         compositeLiteralFields = true, -- Show struct field hints
-        compositeLiteralTypes = true,  -- Show composite literal types
-        constantValues = true,         -- Show constant values
+        compositeLiteralTypes = true, -- Show composite literal types
+        constantValues = true, -- Show constant values
         functionTypeParameters = true, -- Show function type parameters
-        parameterNames = true,         -- Show parameter names
-        rangeVariableTypes = true,     -- Show range variable types
+        parameterNames = true, -- Show parameter names
+        rangeVariableTypes = true, -- Show range variable types
       },
 
       -- Static analysis configuration
       analyses = {
-        nilness = true,      -- Check for nil pointer dereferences
+        nilness = true, -- Check for nil pointer dereferences
         unusedparams = true, -- Check for unused parameters
-        unusedwrite = true,  -- Check for unused writes
-        useany = true,       -- Suggest using 'any' instead of 'interface{}'
+        unusedwrite = true, -- Check for unused writes
+        useany = true, -- Suggest using 'any' instead of 'interface{}'
       },
 
       -- Additional settings
-      usePlaceholders = true,    -- Use placeholders in completions
+      usePlaceholders = true, -- Use placeholders in completions
       completeUnimported = true, -- Complete unimported packages
-      staticcheck = true,        -- Enable staticcheck analyzer
-      directoryFilters = {       -- Exclude directories from analysis
+      staticcheck = true, -- Enable staticcheck analyzer
+      directoryFilters = { -- Exclude directories from analysis
         "-.git",
         "-.vscode",
         "-.idea",
@@ -102,10 +102,10 @@ return {
     "mason.nvim",
     opts = {
       ensure_installed = {
-        "goimports",    -- Import management
-        "gofumpt",      -- Stricter gofmt
+        "goimports", -- Import management
+        "gofumpt", -- Stricter gofmt
         "gomodifytags", -- Modify struct tags
-        "impl",         -- Generate method stubs
+        "impl", -- Generate method stubs
       },
     },
   },
@@ -127,7 +127,7 @@ return {
     optional = false,
     dependencies = {
       {
-        "mason-org/mason.nvim",
+        "mason.nvim",
         opts = { ensure_installed = { "delve" } }, -- Go debugger
       },
       {

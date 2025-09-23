@@ -1,5 +1,5 @@
 local M = {}
-local lang_manager = require("configs.language_manager")
+local lang_manager = require "configs.language_manager"
 
 -- Create the language toggle UI with multi-selection support
 function M.show_language_manager()
@@ -26,18 +26,18 @@ function M.show_language_manager()
 
   -- Create custom highlight groups
   local function setup_highlights()
-    vim.api.nvim_set_hl(0, 'LanguageManagerTitle', { fg = '#7dcfff', bold = true })
-    vim.api.nvim_set_hl(0, 'LanguageManagerEnabled', { fg = '#9ece6a', bold = true })
-    vim.api.nvim_set_hl(0, 'LanguageManagerDisabled', { fg = '#f7768e', bold = true })
-    vim.api.nvim_set_hl(0, 'LanguageManagerNumber', { fg = '#bb9af7' })
-    vim.api.nvim_set_hl(0, 'LanguageManagerOption', { fg = '#e0af68' })
-    vim.api.nvim_set_hl(0, 'LanguageManagerBorder', { fg = '#7aa2f7' })
+    vim.api.nvim_set_hl(0, "LanguageManagerTitle", { fg = "#7dcfff", bold = true })
+    vim.api.nvim_set_hl(0, "LanguageManagerEnabled", { fg = "#9ece6a", bold = true })
+    vim.api.nvim_set_hl(0, "LanguageManagerDisabled", { fg = "#f7768e", bold = true })
+    vim.api.nvim_set_hl(0, "LanguageManagerNumber", { fg = "#bb9af7" })
+    vim.api.nvim_set_hl(0, "LanguageManagerOption", { fg = "#e0af68" })
+    vim.api.nvim_set_hl(0, "LanguageManagerBorder", { fg = "#7aa2f7" })
   end
 
   setup_highlights()
 
   -- Create a floating window with the menu
-  local menu_lines = {"🚀 Language Plugin Manager", ""}
+  local menu_lines = { "🚀 Language Plugin Manager", "" }
   for _, item in ipairs(display_items) do
     table.insert(menu_lines, item)
   end
@@ -53,62 +53,62 @@ function M.show_language_manager()
   -- Create floating window
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, menu_lines)
-  vim.api.nvim_buf_set_option(buf, 'modifiable', false)
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
 
   -- Calculate window size
-  local width = 85
+  local width = vim.o.columns - 10
   local height = math.min(#menu_lines + 2, vim.o.lines - 8)
-  local row = math.floor((vim.o.lines - height) / 2)
+  local row = math.floor((vim.o.lines - height * 3) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
 
   -- Window options
   local opts = {
-    relative = 'editor',
+    relative = "editor",
     width = width,
     height = height,
     row = row,
     col = col,
-    style = 'minimal',
-    border = 'rounded',
-    title = ' 🔧 Language Plugin Manager 🔧 ',
-    title_pos = 'center',
+    style = "minimal",
+    border = "rounded",
+    title = "   Language Plugin Manager ",
+    title_pos = "center",
   }
 
   local win = vim.api.nvim_open_win(buf, false, opts)
 
   -- Add colorful highlighting
-  vim.api.nvim_win_set_option(win, 'winhl', 'Normal:Normal,FloatBorder:LanguageManagerBorder')
+  vim.api.nvim_set_option_value("winhl", "Normal:Normal,FloatBorder:LanguageManagerBorder", { win = win })
 
   -- Apply syntax highlighting to the buffer
-  local ns_id = vim.api.nvim_create_namespace('LanguageManager')
+  local ns_id = vim.api.nvim_create_namespace "LanguageManager"
 
   -- Highlight title
-  vim.api.nvim_buf_add_highlight(buf, ns_id, 'LanguageManagerTitle', 0, 0, -1)
+  vim.hl.range(buf, ns_id, "LanguageManagerTitle", { 0, 0 }, { 0, -1 })
 
   -- Highlight language entries
   for i, item in ipairs(items) do
-    local line_idx = i + 1  -- +1 because of title and empty line
+    local line_idx = i + 1 -- +1 because of title and empty line
     local status_symbol = item.enabled and "✓" or "✗"
     local hl_group = item.enabled and "LanguageManagerEnabled" or "LanguageManagerDisabled"
 
     -- Highlight the number
-    vim.api.nvim_buf_add_highlight(buf, ns_id, 'LanguageManagerNumber', line_idx, 0, 3)
+    vim.hl.range(buf, ns_id, "LanguageManagerNumber", { line_idx, 0 }, { line_idx, 3 })
 
     -- Highlight the status symbol
     local status_start = string.find(display_items[i], status_symbol)
     if status_start then
-      vim.api.nvim_buf_add_highlight(buf, ns_id, hl_group, line_idx, status_start - 1, status_start)
+      vim.hl.range(buf, ns_id, hl_group, { line_idx, status_start - 1 }, { line_idx, status_start })
     end
   end
 
   -- Highlight options section
-  local options_start = #items + 3  -- +3 for title, empty line, and another empty line
-  vim.api.nvim_buf_add_highlight(buf, ns_id, 'LanguageManagerOption', options_start, 0, -1)
+  local options_start = #items + 3 -- +3 for title, empty line, and another empty line
+  vim.hl.range(buf, ns_id, "LanguageManagerOption", { options_start, 0 }, { options_start, -1 })
 
   -- Highlight each option line
-  for i = 1, 6 do  -- 6 option lines now (added 'none' command)
-    vim.api.nvim_buf_add_highlight(buf, ns_id, 'LanguageManagerOption', options_start + i, 0, 1)
+  for i = 1, 6 do -- 6 option lines now (added 'none' command)
+    vim.hl.range(buf, ns_id, "LanguageManagerOption", { options_start + i, 0 }, { options_start + i, 1 })
   end
 
   -- Show input prompt
@@ -147,16 +147,16 @@ function M.process_multi_selection(input, items)
     -- Parse input for numbers, ranges, and separators
     local cleaned_input = input:gsub("%s+", " "):gsub(",", " ")
 
-    for part in cleaned_input:gmatch("%S+") do
-      if part:match("^%d+$") then
+    for part in cleaned_input:gmatch "%S+" do
+      if part:match "^%d+$" then
         -- Single number
         local num = tonumber(part)
         if num and num >= 1 and num <= #items then
           table.insert(selections, num)
         end
-      elseif part:match("^%d+%-%d+$") then
+      elseif part:match "^%d+%-%d+$" then
         -- Range (e.g., "1-5")
-        local start_num, end_num = part:match("^(%d+)%-(%d+)$")
+        local start_num, end_num = part:match "^(%d+)%-(%d+)$"
         start_num, end_num = tonumber(start_num), tonumber(end_num)
         if start_num and end_num and start_num >= 1 and end_num <= #items and start_num <= end_num then
           for i = start_num, end_num do
@@ -195,7 +195,7 @@ function M.process_multi_selection(input, items)
     table.insert(toggled_languages, "All languages enabled")
   elseif bulk_action == "disable_all" then
     -- Disable all languages
-    lang_manager.save_enabled_languages({})
+    lang_manager.save_enabled_languages {}
     table.insert(toggled_languages, "All languages disabled")
   else
     -- Individual toggles
@@ -212,9 +212,7 @@ function M.process_multi_selection(input, items)
   if bulk_action then
     message = table.concat(toggled_languages, "\n")
   else
-    message = string.format("Toggled %d language(s):\n%s",
-      #toggled_languages,
-      table.concat(toggled_languages, "\n"))
+    message = string.format("Toggled %d language(s):\n%s", #toggled_languages, table.concat(toggled_languages, "\n"))
   end
 
   vim.notify(message, vim.log.levels.INFO, { title = "Language Manager" })
@@ -228,7 +226,7 @@ function M.process_multi_selection(input, items)
     )
 
     if restart_choice == 1 then
-      vim.cmd("qa")
+      vim.cmd "qa"
     elseif restart_choice == 3 then
       vim.notify("Run ':qa' to restart Neovim", vim.log.levels.INFO)
     end
@@ -242,8 +240,10 @@ function M.quick_toggle()
     completion = function(text)
       local matches = {}
       for _, lang_info in ipairs(lang_manager.available_languages) do
-        if string.find(string.lower(lang_info.display), string.lower(text)) or
-           string.find(string.lower(lang_info.name), string.lower(text)) then
+        if
+          string.find(string.lower(lang_info.display), string.lower(text))
+          or string.find(string.lower(lang_info.name), string.lower(text))
+        then
           table.insert(matches, lang_info.name)
         end
       end
@@ -254,8 +254,10 @@ function M.quick_toggle()
       -- Find matching language
       local found_lang = nil
       for _, lang_info in ipairs(lang_manager.available_languages) do
-        if string.lower(lang_info.name) == string.lower(input) or
-           string.lower(lang_info.display) == string.lower(input) then
+        if
+          string.lower(lang_info.name) == string.lower(input)
+          or string.lower(lang_info.display) == string.lower(input)
+        then
           found_lang = lang_info
           break
         end

@@ -22,12 +22,12 @@ vim.lsp.config.ts_ls = {
   on_attach = on_attach,
   enabled = vim.g.typescript_lsp == "ts_ls", -- Enable only if selected
   filetypes = {
-    "javascript",                            -- Standard JavaScript files
-    "javascriptreact",                       -- React JSX files
-    "javascript.jsx",                        -- JSX files
-    "typescript",                            -- TypeScript files
-    "typescriptreact",                       -- React TSX files
-    "typescript.tsx",                        -- TSX files
+    "javascript", -- Standard JavaScript files
+    "javascriptreact", -- React JSX files
+    "javascript.jsx", -- JSX files
+    "typescript", -- TypeScript files
+    "typescriptreact", -- React TSX files
+    "typescript.tsx", -- TSX files
   },
   root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   settings = {
@@ -44,22 +44,22 @@ vim.lsp.config.vtsls = {
   on_attach = on_attach,
   enabled = vim.g.typescript_lsp == "vtsls", -- Enable only if selected
   filetypes = {
-    "javascript",                            -- Standard JavaScript files
-    "javascriptreact",                       -- React JSX files
-    "javascript.jsx",                        -- JSX files
-    "typescript",                            -- TypeScript files
-    "typescriptreact",                       -- React TSX files
-    "typescript.tsx",                        -- TSX files
+    "javascript", -- Standard JavaScript files
+    "javascriptreact", -- React JSX files
+    "javascript.jsx", -- JSX files
+    "typescript", -- TypeScript files
+    "typescriptreact", -- React TSX files
+    "typescript.tsx", -- TSX files
   },
   root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   settings = {
     complete_function_calls = true, -- Auto-complete function parameters
 
     vtsls = {
-      enableMoveToFileCodeAction = true,     -- Enable file refactoring actions
-      autoUseWorkspaceTsdk = true,           -- Auto-detect workspace TypeScript version
+      enableMoveToFileCodeAction = true, -- Enable file refactoring actions
+      autoUseWorkspaceTsdk = true, -- Auto-detect workspace TypeScript version
       experimental = {
-        maxInlayHintLength = 30,             -- Limit hint length for readability
+        maxInlayHintLength = 30, -- Limit hint length for readability
         completion = {
           enableServerSideFuzzyMatch = true, -- Improved completion matching
         },
@@ -77,12 +77,12 @@ vim.lsp.config.vtsls = {
 
       -- ==================== INLAY HINTS CONFIGURATION ====================
       inlayHints = {
-        enumMemberValues = { enabled = true },         -- Show enum values
-        functionLikeReturnTypes = { enabled = true },  -- Show return types
-        parameterNames = { enabled = "literals" },     -- Show parameter names for literals
-        parameterTypes = { enabled = true },           -- Show parameter types
+        enumMemberValues = { enabled = true }, -- Show enum values
+        functionLikeReturnTypes = { enabled = true }, -- Show return types
+        parameterNames = { enabled = "literals" }, -- Show parameter names for literals
+        parameterTypes = { enabled = true }, -- Show parameter types
         propertyDeclarationTypes = { enabled = true }, -- Show property types
-        variableTypes = { enabled = false },           -- Hide variable types (can be verbose)
+        variableTypes = { enabled = false }, -- Hide variable types (can be verbose)
       },
     },
 
@@ -93,6 +93,8 @@ vim.lsp.config.vtsls = {
 vim.lsp.enable { "vtsls", "ts_ls" }
 
 return {
+  { import = "plugins.languages.web" },
+
   {
     "nvim-mini/mini.icons",
     opts = {
@@ -115,7 +117,7 @@ return {
     optional = true,
     dependencies = {
       {
-        "mason-org/mason.nvim",
+        "mason.nvim",
         opts = function(_, opts)
           opts.ensure_installed = opts.ensure_installed or {}
           table.insert(opts.ensure_installed, "js-debug-adapter")
