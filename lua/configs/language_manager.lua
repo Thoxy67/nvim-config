@@ -6,7 +6,7 @@ M.available_languages = {
   { name = "gleam", display = "Gleam   ", path = "plugins/languages/gleam" },
   { name = "v", display = "V   ", path = "plugins/languages/v" },
   { name = "zig", display = "Zig   ", path = "plugins/languages/zig" },
-  { name = "go", display = "Go   ", path = "plugins/languages/go" },
+  { name = "go", display = "Go/XGo 󰟓 ", path = "plugins/languages/go" },
   { name = "ocaml", display = "OCaml   ", path = "plugins/languages/ocaml" },
   { name = "clang", display = "C/C++   / ", path = "plugins/languages/clang" },
   { name = "cmake", display = "CMake   ", path = "plugins/languages/cmake" },
@@ -25,6 +25,8 @@ M.available_languages = {
   { name = "web", display = "Web (html/css/sass/less)     ", path = "plugins/languages/asm" },
   { name = "qmk", display = "QMK  󰌌 ", path = "plugins/languages/qmk" },
   { name = "asm", display = "Assembly (ASM)   ", path = "plugins/languages/asm" },
+  { name = "git", display = "Git   ", path = "plugins/languages/git" },
+  { name = "eslint", display = "Eslint   ", path = "plugins/languages/eslint" },
 }
 
 -- Default enabled languages (you can customize this)

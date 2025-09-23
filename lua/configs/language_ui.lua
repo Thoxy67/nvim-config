@@ -37,7 +37,7 @@ function M.show_language_manager()
   setup_highlights()
 
   -- Create a floating window with the menu
-  local menu_lines = { "🚀 Language Plugin Manager", "" }
+  local menu_lines = { "  Select the language to enable or disable :", "" }
   for _, item in ipairs(display_items) do
     table.insert(menu_lines, item)
   end
@@ -59,7 +59,7 @@ function M.show_language_manager()
   -- Calculate window size
   local width = vim.o.columns - 10
   local height = math.min(#menu_lines + 2, vim.o.lines - 8)
-  local row = math.floor((vim.o.lines - height * 3) / 2)
+  local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
 
   -- Window options
