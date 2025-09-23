@@ -21,8 +21,7 @@ map("n", "<leader>cp", "<cmd>Huefy<CR>", { desc = "Open color picker (Minty)" })
 map("n", "<leader>cs", "<cmd>Shades<CR>", { desc = "Open color shades (Minty)" })
 
 -- Language plugin manager
-map("n", "<leader>pl", "<cmd>LanguageManager<cr>", { desc = "Language Plugin Manager" })
-map("n", "<leader>pt", "<cmd>LanguageToggle<cr>", { desc = "Quick Toggle Language" })
+map("n", "<leader>lt", "<cmd>LanguageManager<cr>", { desc = "Toggle Language Plugin Manager" })
 
 -- Quick jump to context (indent-blankline)
 map("n", "<leader>cj", function()

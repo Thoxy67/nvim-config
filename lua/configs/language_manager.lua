@@ -1,5 +1,9 @@
 local M = {}
 
+-- Cache for enabled languages to avoid repeated file I/O
+local _enabled_cache = nil
+local _cache_valid = true
+
 -- Available language plugins
 M.available_languages = {
   { name = "rust", display = "Rust   ", path = "plugins/languages/rust" },
@@ -45,33 +49,67 @@ M.default_enabled = {
 -- Configuration file path
 M.config_file = vim.fn.stdpath "config" .. "/lua/configs/enabled_languages.lua"
 
--- Load enabled languages from config file
+-- Load enabled languages from config file with caching
 function M.load_enabled_languages()
+  if _enabled_cache and _cache_valid then
+    return _enabled_cache
+  end
+
   local ok, enabled = pcall(dofile, M.config_file)
   if ok and type(enabled) == "table" then
+    _enabled_cache = enabled
+    _cache_valid = true
     return enabled
   end
+
+  _enabled_cache = M.default_enabled
+  _cache_valid = true
   return M.default_enabled
+end
+
+-- Invalidate cache when languages are saved
+local function invalidate_cache()
+  _cache_valid = false
+  _enabled_cache = nil
 end
 
 -- Save enabled languages to config file
 function M.save_enabled_languages(enabled)
+  invalidate_cache()
+
   local file = io.open(M.config_file, "w")
   if file then
-    file:write "-- Auto-generated language configuration\n"
-    file:write "-- Modify through the language manager UI\n"
-    file:write "return {\n"
+    -- Build content in memory first to reduce file I/O
+    local content = {
+      "-- Auto-generated language configuration\n",
+      "-- Modify through the language manager UI\n",
+      "return {\n"
+    }
+
     for _, lang in ipairs(enabled) do
-      file:write(string.format('  "%s",\n', lang))
+      table.insert(content, string.format('  "%s",\n', lang))
     end
-    file:write "}\n"
+    table.insert(content, "}\n")
+
+    file:write(table.concat(content))
     file:close()
   end
 end
 
--- Check if a language is enabled
+-- Check if a language is enabled (optimized with lookup table)
 function M.is_enabled(lang_name)
   local enabled = M.load_enabled_languages()
+
+  -- Convert to lookup table for O(1) access if multiple checks expected
+  if #enabled > 5 then
+    local lookup = {}
+    for _, enabled_lang in ipairs(enabled) do
+      lookup[enabled_lang] = true
+    end
+    return lookup[lang_name] or false
+  end
+
+  -- For small lists, linear search is faster
   for _, enabled_lang in ipairs(enabled) do
     if enabled_lang == lang_name then
       return true
@@ -80,23 +118,24 @@ function M.is_enabled(lang_name)
   return false
 end
 
--- Toggle a language on/off
+-- Toggle a language on/off (optimized)
 function M.toggle_language(lang_name)
   local enabled = M.load_enabled_languages()
-  local found = false
   local new_enabled = {}
+  local found = false
 
-  for _, enabled_lang in ipairs(enabled) do
-    if enabled_lang == lang_name then
+  -- Pre-allocate table size for better performance
+  table.move(enabled, 1, #enabled, 1, new_enabled)
+
+  for i = 1, #new_enabled do
+    if new_enabled[i] == lang_name then
+      table.remove(new_enabled, i)
       found = true
-      -- Don't add it to new_enabled (remove it)
-    else
-      table.insert(new_enabled, enabled_lang)
+      break
     end
   end
 
   if not found then
-    -- Add it
     table.insert(new_enabled, lang_name)
   end
 
