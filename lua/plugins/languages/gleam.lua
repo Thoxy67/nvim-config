@@ -5,6 +5,12 @@
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 
+vim.lsp.config.gleam = {
+  on_attach = on_attach,
+  filetypes = { "gleam" },
+  root_markers = { "gleam.toml" },
+}
+
 vim.lsp.enable { "gleam" }
 
 return {

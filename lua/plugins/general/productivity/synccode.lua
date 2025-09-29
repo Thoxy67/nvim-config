@@ -9,11 +9,12 @@ return {
       show_welcome = false,
       keymaps = {
         toggle = "<leader>St", -- Toggle auto-sync
-        sync_now = "<leader>Ss", -- Sync now (push)
-        pull_now = "<leader>Sp", -- Pull from remote
-        watch_toggle = "<leader>Sw", -- Toggle watch mode
-        init_config = "<leader>Sc", -- Initialize config
-        check_deps = "<leader>Sd", -- Check dependencies
+        sync = "<leader>Ss", -- Sync now (push)
+        pull = "<leader>Sp", -- Pull from remote
+        interactive = "<leader>Si", -- Interactive sync
+        watch = "<leader>Sw", -- Toggle watch mode
+        status = "<leader>Sl", -- Show status
+        init = "<leader>Sc", -- Initialize config
       },
     },
     config = function(_, opts)

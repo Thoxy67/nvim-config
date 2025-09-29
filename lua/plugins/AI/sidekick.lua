@@ -60,22 +60,6 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>ac",
-        function()
-          require("sidekick.cli").toggle { name = "claude", focus = true }
-        end,
-        desc = "Sidekick Claude Toggle",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ag",
-        function()
-          require("sidekick.cli").toggle { name = "grok", focus = true }
-        end,
-        desc = "Sidekick Grok Toggle",
-        mode = { "n", "v" },
-      },
-      {
         "<leader>ap",
         function()
           require("sidekick.cli").select_prompt()

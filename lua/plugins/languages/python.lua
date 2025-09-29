@@ -12,19 +12,19 @@
 -- ==================== LSP SERVER SELECTION ====================
 -- Configure which Python LSP servers to use
 vim.g.lazyvim_python_lsp = "pyright" -- Main LSP: "pyright" or "basedpyright"
-vim.g.lazyvim_python_ruff = "ruff"   -- Linter/Formatter: "ruff" or "ruff_lsp"
+vim.g.lazyvim_python_ruff = "ruff" -- Linter/Formatter: "ruff" or "ruff_lsp"
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 
 -- ==================== SHARED CONFIGURATION ====================
 -- Common settings for all Python LSP servers
 local root_markers = {
-  "pyproject.toml",    -- Modern Python projects
-  "setup.py",          -- Traditional setuptools
-  "setup.cfg",         -- Setup configuration
-  "requirements.txt",  -- Pip requirements
-  "Pipfile",           -- Pipenv projects
-  "pyrightconfig.json" -- Pyright configuration
+  "pyproject.toml", -- Modern Python projects
+  "setup.py", -- Traditional setuptools
+  "setup.cfg", -- Setup configuration
+  "requirements.txt", -- Pip requirements
+  "Pipfile", -- Pipenv projects
+  "pyrightconfig.json", -- Pyright configuration
 }
 
 local common_config = {
@@ -81,7 +81,7 @@ for server, config in pairs(servers) do
   vim.lsp.config[server] = final_config
 end
 
-vim.lsp.enable { "basedpyright", "pyright", "ruff" }
+vim.lsp.enable { "basedpyright", "ruff" }
 
 return {
   {

@@ -33,8 +33,64 @@ if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
       -- bacon-ls settings can be configured here
     },
   }
+  vim.lsp.config["rust-analyzer"] = {
+    on_attach = on_attach,
+    root_markers = { "Cargo.toml", "build.rs", ".git" },
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+          loadOutDirsFromCheck = true,
+          buildScripts = {
+            enable = true,
+          },
+        },
+        checkOnSave = use_rust_analyzer_diagnostics,
+        diagnostics = {
+          enable = use_rust_analyzer_diagnostics,
+        },
+        procMacro = {
+          enable = true,
+          ignored = {
+            ["async-trait"] = { "async_trait" },
+            ["napi-derive"] = { "napi" },
+            ["async-recursion"] = { "async_recursion" },
+          },
+        },
+      },
+    },
+  }
+
   vim.lsp.enable { "bacon_ls", "rust-analyzer" }
 else
+  vim.lsp.config["rust-analyzer"] = {
+    on_attach = on_attach,
+    root_markers = { "Cargo.toml", "build.rs", ".git" },
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+          loadOutDirsFromCheck = true,
+          buildScripts = {
+            enable = true,
+          },
+        },
+        checkOnSave = true,
+        diagnostics = {
+          enable = true,
+        },
+        procMacro = {
+          enable = true,
+          ignored = {
+            ["async-trait"] = { "async_trait" },
+            ["napi-derive"] = { "napi" },
+            ["async-recursion"] = { "async_recursion" },
+          },
+        },
+      },
+    },
+  }
+
   vim.lsp.enable { "rust-analyzer" }
 end
 

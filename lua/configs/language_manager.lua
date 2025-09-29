@@ -31,6 +31,7 @@ M.available_languages = {
   { name = "asm", display = "Assembly (ASM)   ", path = "plugins/languages/asm" },
   { name = "git", display = "Git   ", path = "plugins/languages/git" },
   { name = "eslint", display = "Eslint   ", path = "plugins/languages/eslint" },
+  { name = "typst", display = "Typst   ", path = "plugins/languages/typst" },
 }
 
 -- Default enabled languages (you can customize this)
@@ -83,7 +84,7 @@ function M.save_enabled_languages(enabled)
     local content = {
       "-- Auto-generated language configuration\n",
       "-- Modify through the language manager UI\n",
-      "return {\n"
+      "return {\n",
     }
 
     for _, lang in ipairs(enabled) do
