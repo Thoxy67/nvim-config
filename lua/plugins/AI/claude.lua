@@ -2,6 +2,7 @@ return {
   {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
+    enabled = false,
     config = true,
     -- stylua: ignore
     keys = {
