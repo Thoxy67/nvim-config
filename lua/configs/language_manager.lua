@@ -32,6 +32,11 @@ M.available_languages = {
   { name = "git", display = "Git   ", path = "plugins/languages/git" },
   { name = "eslint", display = "Eslint   ", path = "plugins/languages/eslint" },
   { name = "typst", display = "Typst   ", path = "plugins/languages/typst" },
+  { name = "sql", display = "SQL   ", path = "plugins/languages/sql" },
+  { name = "erlang", display = "Erlang   ", path = "plugins/languages/erlang" },
+  { name = "kotlin", display = "Kotlin   ", path = "plugins/languages/kotlin" },
+  { name = "tailwind", display = "Tailwind  ", path = "plugins/languages/tailwind" },
+  { name = "astro", display = "Astro  ", path = "plugins/languages/astro" },
 }
 
 -- Default enabled languages (you can customize this)

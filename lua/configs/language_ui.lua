@@ -9,7 +9,7 @@ local function get_menu_sections()
   return {
     "────────────────────────────────────────────────────────────────────────────────",
     "󰔡  Direct Language Actions (cursor on language line):",
-    "• t - Toggle the language on current line (enable ↔ disable)",
+    "• <leader> - Toggle the language on current line (enable ↔ disable)",
     "• e - Enable the language on current line (if not already enabled)",
     "• x - Disable the language on current line (if not already disabled)",
     "• Cancel: Press <Esc> or leave empty",
@@ -287,8 +287,7 @@ function M.show_language_manager()
       end
     end
 
-    -- Toggle language on current line
-    vim.keymap.set("n", "t", function()
+    vim.keymap.set("n", "<leader>", function()
       local lang = get_current_language()
       if lang then
         local new_state = lang_manager.toggle_language(lang.name)

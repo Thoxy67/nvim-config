@@ -90,7 +90,7 @@ vim.lsp.config.vtsls = {
   },
 }
 
-vim.lsp.enable { "vtsls", "ts_ls" }
+vim.lsp.enable { vim.g.typescript_lsp }
 
 return {
   { import = "plugins.languages.web" },

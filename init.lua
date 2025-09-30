@@ -18,7 +18,7 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 -- ==================== PLUGIN MANAGER BOOTSTRAP ====================
 -- Automatically install lazy.nvim if not present
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
@@ -40,6 +40,9 @@ require("lazy").setup({
   -- User-defined plugins from lua/plugins/
   { import = "plugins" },
 }, lazy_config)
+
+-- Uncomment line below if you have problem with base46 highlight generation to regenerate all
+-- require('base46').load_all_highlights()
 
 -- ==================== THEME LOADING ====================
 -- Load cached theme files for optimal startup performance

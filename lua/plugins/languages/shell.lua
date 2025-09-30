@@ -29,8 +29,11 @@ vim.lsp.config.nushell = {
   },
 }
 
-
-vim.lsp.enable { "bashls", "fish_lsp", "nushell" }
+vim.lsp.enable {
+  "bashls",
+  -- "fish_lsp",
+  "nushell",
+}
 
 return {
   {
@@ -38,7 +41,7 @@ return {
     opts = {
       ensure_installed = {
         "bash-language-server",
-        "fish-lsp",
+        -- "fish-lsp",
         "shfmt",
       },
     },

@@ -58,7 +58,13 @@ M.base46 = {
 
 M.ui = {
   cmp = {
+    icons_left = true,
     style = "default",
+    abbr_maxwidth = 60,
+    format_colors = {
+      tailwind = true,
+      icon = "󱓻",
+    },
   },
   tabufline = {
     enabled = true,
