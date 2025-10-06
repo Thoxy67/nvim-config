@@ -164,4 +164,3 @@ usercmd("LanguageManager", function()
 end, {
   desc = "Open language plugin manager UI to enable/disable language support",
 })
-

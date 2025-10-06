@@ -176,3 +176,12 @@ end
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 vim.o.mousemoveevent = true
+
+-- ==================== LSP SERVER SELECTION ====================
+
+-- Configure which PHP LSP server to use
+vim.g.lazyvim_php_lsp = "intelephense" -- LSP: "phpactor" or "intelephense"
+
+-- Configure which Ruby LSP server and formatter to use
+vim.g.lazyvim_ruby_lsp = "ruby_lsp" -- LSP: "ruby_lsp" or "solargraph"
+vim.g.lazyvim_ruby_formatter = "rubocop" -- Formatter: "rubocop" or "standardrb"

@@ -94,7 +94,7 @@ return {
     ft = { "python" },
     dependencies = {
       { "mfussenegger/nvim-dap" },
-      { "mfussenegger/nvim-dap-python" },
+      -- { "mfussenegger/nvim-dap-python" },
       { "neovim/nvim-lspconfig" },
       { "L3MON4D3/LuaSnip" },
       { "nvim-neotest/neotest" },

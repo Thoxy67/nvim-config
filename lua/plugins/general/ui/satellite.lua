@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/satellite.nvim",
-    event = { "BufRead", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       excluded_filetypes = {
         "",

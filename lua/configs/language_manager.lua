@@ -37,6 +37,10 @@ M.available_languages = {
   { name = "kotlin", display = "Kotlin   ", path = "plugins/languages/kotlin" },
   { name = "tailwind", display = "Tailwind  ", path = "plugins/languages/tailwind" },
   { name = "astro", display = "Astro  ", path = "plugins/languages/astro" },
+  { name = "php", display = "PHP  ", path = "plugins/languages/php" },
+  { name = "nix", display = "Nix 󱄅 ", path = "plugins/languages/nix" },
+  { name = "ruby", display = "Ruby  ", path = "plugins/languages/ruby" },
+  { name = "csharp", display = "C#/VisualBasic   󰪮 ", path = "plugins/languages/csharp" },
 }
 
 -- Default enabled languages (you can customize this)
