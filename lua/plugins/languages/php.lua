@@ -75,11 +75,11 @@ return {
   {
     "mfussenegger/nvim-lint",
     optional = true,
-    opts = {
-      linters_by_ft = {
-        php = { "phpcs" },
-      },
-    },
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.php = { "phpcs" }
+      return opts
+    end,
   },
   -- Add formatting
   {

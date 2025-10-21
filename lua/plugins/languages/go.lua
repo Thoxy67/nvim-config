@@ -110,6 +110,23 @@ return {
     },
   },
 
+  -- Add linting
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    dependencies = {
+      {
+        "mason.nvim",
+        opts = { ensure_installed = { "golangci-lint" } },
+      },
+    },
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.go = { "golangcilint" }
+      return opts
+    end,
+  },
+
   -- Formatting configuration
   {
     "stevearc/conform.nvim",

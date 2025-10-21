@@ -49,9 +49,11 @@ return {
   {
     "mfussenegger/nvim-lint",
     dependencies = "mason.nvim",
-    opts = {
-      linters_by_ft = { kotlin = { "ktlint" } }, -- Use ktlint for linting
-    },
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.kotlin = { "ktlint" }
+      return opts
+    end,
   },
 
   -- ==================== FORMATTING CONFIGURATION ====================

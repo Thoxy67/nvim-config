@@ -13,6 +13,11 @@
 -- Supported SQL file types
 local sql_ft = { "sql", "mysql", "plsql" }
 
+-- disable nvim default `sql_completion` plugin to be compatible with blink.cmp's omni
+-- while still showing some keywords from the syntax autocomplete sources
+vim.g.omni_sql_default_compl_type = "syntax"
+vim.g.loaded_sql_completion = true
+
 return {
   -- ==================== DATABASE MANAGEMENT UI ====================
   -- Interactive database interface for managing connections and executing queries

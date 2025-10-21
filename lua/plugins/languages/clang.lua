@@ -17,7 +17,7 @@ vim.lsp.config.clangd = {
     "--fallback-style=llvm",
   },
   keys = {
-    { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+    { "<leader>ch", "<cmd>LspClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
   },
   capabilities = {
     offsetEncoding = { "utf-16" },

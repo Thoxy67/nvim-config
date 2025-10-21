@@ -185,12 +185,6 @@ return {
               -- Procedural macro support
               procMacro = {
                 enable = true,
-                ignored = {
-                  -- Ignore problematic macros that cause issues
-                  ["async-trait"] = { "async_trait" },
-                  ["napi-derive"] = { "napi" },
-                  ["async-recursion"] = { "async_recursion" },
-                },
               },
 
               -- File exclusion for better performance
@@ -198,6 +192,7 @@ return {
                 excludeDirs = {
                   ".direnv",
                   ".git",
+                  ".jj",
                   ".github",
                   ".gitlab",
                   "bin",
@@ -206,6 +201,8 @@ return {
                   "venv",
                   ".venv",
                 },
+                -- Avoid Roots Scanned hanging, see https://github.com/rust-lang/rust-analyzer/issues/12613#issuecomment-2096386344
+                watcher = "client",
               },
             },
           },

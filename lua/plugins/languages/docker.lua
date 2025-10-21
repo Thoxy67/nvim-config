@@ -8,6 +8,7 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 -- Shared configuration
 local docker_root_patterns = {
   "Dockerfile",
+  "Containerfile",
   "docker-compose.yml",
   "compose.yml",
   "docker-compose.yaml",
@@ -63,10 +64,10 @@ return {
   {
     "mfussenegger/nvim-lint",
     optional = true,
-    opts = {
-      linters_by_ft = {
-        dockerfile = { "hadolint" },
-      },
-    },
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.dockerfile = { "hadolint" }
+      return opts
+    end,
   },
 }

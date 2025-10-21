@@ -45,7 +45,7 @@ M.available_languages = {
   { name = "astro", display = "Astro  ", path = "plugins/languages/astro" },
   { name = "php", display = "PHP  ", path = "plugins/languages/php" },
   { name = "nix", display = "Nix 󱄅 ", path = "plugins/languages/nix" },
-  { name = "csharp", display = "C#/VisualBasic   󰪮 ", path = "plugins/languages/csharp" },
+  { name = "dotnet", display = "C#/VisualBasic/F#   󰪮 ", path = "plugins/languages/dotnet" },
   { name = "godot", display = "Godot / GDScript  ", path = "plugins/languages/godot" },
 }
 

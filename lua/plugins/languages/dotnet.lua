@@ -43,7 +43,35 @@ vim.lsp.config.omnisharp = vim.tbl_deep_extend("force", common_config, {
   },
 })
 
-vim.lsp.enable { "omnisharp" }
+-- Configure FsAutoComplete LSP server for F# support
+vim.lsp.config.fsautocomplete = {
+  on_attach = on_attach,
+  filetypes = { "fsharp" },
+  root_markers = { "*.sln", "*.fsproj" },
+  settings = {
+    FSharp = {
+      -- Enable automatic workspace load
+      AutomaticWorkspaceInit = true,
+      -- Enable inlay hints
+      InlayHints = {
+        enabled = true,
+        typeAnnotations = true,
+        parameterNames = true,
+      },
+      -- Code lens settings
+      CodeLenses = {
+        Signatures = { enabled = true },
+        References = { enabled = true },
+      },
+      -- Completion settings
+      Completion = {
+        AutoCompleteOn = true,
+      },
+    },
+  },
+}
+
+vim.lsp.enable { "omnisharp", "fsautocomplete" }
 
 return {
   -- Add OmniSharp extended LSP functionality
@@ -58,13 +86,14 @@ return {
       ensure_installed = {
         "csharpier",
         "netcoredbg",
+        "fantomas",
       },
     },
   },
   -- Add syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "c_sharp" } },
+    opts = { ensure_installed = { "c_sharp", "fsharp" } },
   },
   -- Add formatting
   {
@@ -73,11 +102,16 @@ return {
     opts = {
       formatters_by_ft = {
         cs = { "csharpier" },
+        fsharp = { "fantomas" },
       },
       formatters = {
         csharpier = {
           command = "dotnet-csharpier",
           args = { "--write-stdout" },
+        },
+        fantomas = {
+          command = "fantomas",
+          args = { "--stdin", "--stdout" },
         },
       },
     },
@@ -90,6 +124,7 @@ return {
       local nls = require "null-ls"
       opts.sources = vim.list_extend(opts.sources or {}, {
         nls.builtins.formatting.csharpier,
+        nls.builtins.formatting.fantomas,
       })
     end,
   },

@@ -34,11 +34,11 @@ return {
   {
     "mfussenegger/nvim-lint",
     optional = true,
-    opts = {
-      linters_by_ft = {
-        cmake = { "cmakelint" },
-      },
-    },
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.cmake = { "cmakelint" }
+      return opts
+    end,
   },
   {
     "mason.nvim",

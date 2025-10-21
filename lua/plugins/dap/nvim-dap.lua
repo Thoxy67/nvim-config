@@ -108,8 +108,8 @@ return {
         cmd = { "DapInstall", "DapUninstall" },
 
         opts = {
-          -- Automatically install debug adapters for detected languages
-          automatic_installation = true,
+          -- chrome adapter is deprecated, use js-debug-adapter instead
+          automatic_installation = { exclude = { "chrome" } },
 
           -- Custom handler configuration for different debug adapters
           -- You can provide additional configuration to the handlers
