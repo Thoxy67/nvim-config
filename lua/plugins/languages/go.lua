@@ -117,12 +117,14 @@ return {
     dependencies = {
       {
         "mason.nvim",
-        opts = { ensure_installed = { "golangci-lint" } },
+        opts = { ensure_installed = { "revive" } },
       },
     },
     opts = function(_, opts)
       opts.linters_by_ft = opts.linters_by_ft or {}
-      opts.linters_by_ft.go = { "golangcilint" }
+      -- Use revive for fast, editor-friendly linting
+      -- golangcilint can be slow and may require project context
+      opts.linters_by_ft.go = { "revive" }
       return opts
     end,
   },
