@@ -14,7 +14,7 @@ local base46_hl = require "custom.base46_hl"
 M.base46 = {
   transparency = false, -- Set to true for transparent background
   theme = "tokyodark", -- Default theme
-  theme_toggle = { "tokyodark", "catppuccin" }, -- Themes for toggle
+  theme_toggle = { "tokyodark", "tokyodark" }, -- Themes for toggle
 
   hl_override = base46_hl.hl_override,
   hl_add = base46_hl.hl_add,

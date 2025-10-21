@@ -1,7 +1,7 @@
 return {
   {
     "rmagatti/auto-session",
-    lazy = true,
+    lazy = false,
     opts = {
       enabled = true, -- Enables/disables auto creating, saving and restoring
       root_dir = vim.fn.stdpath "data" .. "/sessions/", -- Root dir where sessions will be stored

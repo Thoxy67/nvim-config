@@ -6,19 +6,27 @@ local _cache_valid = true
 
 -- Available language plugins
 M.available_languages = {
+
   { name = "rust", display = "Rust   ", path = "plugins/languages/rust" },
-  { name = "gleam", display = "Gleam   ", path = "plugins/languages/gleam" },
-  { name = "v", display = "V   ", path = "plugins/languages/v" },
-  { name = "zig", display = "Zig   ", path = "plugins/languages/zig" },
   { name = "go", display = "Go/XGo 󰟓 ", path = "plugins/languages/go" },
-  { name = "ocaml", display = "OCaml   ", path = "plugins/languages/ocaml" },
+  { name = "zig", display = "Zig   ", path = "plugins/languages/zig" },
+  { name = "v", display = "V   ", path = "plugins/languages/v" },
   { name = "clang", display = "C/C++   / ", path = "plugins/languages/clang" },
+  { name = "c3", display = "C3", path = "plugins/languages/c3" },
+  { name = "odin", display = "Odin  󰟢 ", path = "plugins/languages/odin" },
+  { name = "asm", display = "Assembly (ASM)   ", path = "plugins/languages/asm" },
+
+  { name = "gleam", display = "Gleam   ", path = "plugins/languages/gleam" },
+  { name = "ocaml", display = "OCaml   ", path = "plugins/languages/ocaml" },
+  { name = "erlang", display = "Erlang   ", path = "plugins/languages/erlang" },
+
+  { name = "python", display = "Python   ", path = "plugins/languages/python" },
+
+  { name = "ruby", display = "Ruby  ", path = "plugins/languages/ruby" },
+
   { name = "cmake", display = "CMake   ", path = "plugins/languages/cmake" },
   { name = "docker", display = "Docker   ", path = "plugins/languages/docker" },
   { name = "markdown", display = "Markdown   ", path = "plugins/languages/markdown" },
-  { name = "c3", display = "C3", path = "plugins/languages/c3" },
-  { name = "odin", display = "Odin  󰟢 ", path = "plugins/languages/odin" },
-  { name = "python", display = "Python   ", path = "plugins/languages/python" },
   { name = "json", display = "JSON   ", path = "plugins/languages/json" },
   { name = "yaml", display = "YAML   ", path = "plugins/languages/yaml" },
   { name = "toml", display = "TOML   ", path = "plugins/languages/toml" },
@@ -28,19 +36,17 @@ M.available_languages = {
   { name = "svelte", display = "Svelte   ", path = "plugins/languages/svelte" },
   { name = "web", display = "Web (html/css/sass/less)     ", path = "plugins/languages/asm" },
   { name = "qmk", display = "QMK  󰌌 ", path = "plugins/languages/qmk" },
-  { name = "asm", display = "Assembly (ASM)   ", path = "plugins/languages/asm" },
   { name = "git", display = "Git   ", path = "plugins/languages/git" },
   { name = "eslint", display = "Eslint   ", path = "plugins/languages/eslint" },
   { name = "typst", display = "Typst   ", path = "plugins/languages/typst" },
   { name = "sql", display = "SQL   ", path = "plugins/languages/sql" },
-  { name = "erlang", display = "Erlang   ", path = "plugins/languages/erlang" },
   { name = "kotlin", display = "Kotlin   ", path = "plugins/languages/kotlin" },
   { name = "tailwind", display = "Tailwind  ", path = "plugins/languages/tailwind" },
   { name = "astro", display = "Astro  ", path = "plugins/languages/astro" },
   { name = "php", display = "PHP  ", path = "plugins/languages/php" },
   { name = "nix", display = "Nix 󱄅 ", path = "plugins/languages/nix" },
-  { name = "ruby", display = "Ruby  ", path = "plugins/languages/ruby" },
   { name = "csharp", display = "C#/VisualBasic   󰪮 ", path = "plugins/languages/csharp" },
+  { name = "godot", display = "Godot / GDScript  ", path = "plugins/languages/godot" },
 }
 
 -- Default enabled languages (you can customize this)
