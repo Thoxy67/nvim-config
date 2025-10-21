@@ -4,15 +4,26 @@ return {
     "ahkohd/difft.nvim",
     keys = {
       {
-        "<leader>dD",
+        "<leader>dJ",
         function()
           if Difft.is_visible() then
             Difft.hide()
           else
-            Difft.diff()
+            Difft.diff { cmd = "jj diff --no-pager" }
           end
         end,
-        desc = "Toggle Difft",
+        desc = "Toggle Difft (JJ)",
+      },
+      {
+        "<leader>dG",
+        function()
+          if Difft.is_visible() then
+            Difft.hide()
+          else
+            Difft.diff { cmd = "GIT_EXTERNAL_DIFF='difft --color=always' git diff" }
+          end
+        end,
+        desc = "Toggle Difft (Git)",
       },
     },
     config = function()
