@@ -33,35 +33,9 @@ if vim.g.lazyvim_rust_diagnostics == "bacon-ls" then
       -- bacon-ls settings can be configured here
     },
   }
-  vim.lsp.config["rust-analyzer"] = {
-    on_attach = on_attach,
-    root_markers = { "Cargo.toml", "build.rs", ".git" },
-    settings = {
-      ["rust-analyzer"] = {
-        cargo = {
-          allFeatures = true,
-          loadOutDirsFromCheck = true,
-          buildScripts = {
-            enable = true,
-          },
-        },
-        checkOnSave = use_rust_analyzer_diagnostics,
-        diagnostics = {
-          enable = use_rust_analyzer_diagnostics,
-        },
-        procMacro = {
-          enable = true,
-          ignored = {
-            ["async-trait"] = { "async_trait" },
-            ["napi-derive"] = { "napi" },
-            ["async-recursion"] = { "async_recursion" },
-          },
-        },
-      },
-    },
-  }
 
-  vim.lsp.enable { "bacon_ls", "rust-analyzer" }
+
+   vim.lsp.enable { "bacon_ls" }
 else
   vim.lsp.config["rust-analyzer"] = {
     on_attach = on_attach,
@@ -246,6 +220,7 @@ return {
     opts = {
       ensure_installed = {
         "codelldb", -- Debugger for Rust
+        "rust-analyzer", -- Rust language server
         -- Conditionally install bacon tools
         vim.g.lazyvim_rust_diagnostics == "bacon-ls" and "bacon" or nil,
         vim.g.lazyvim_rust_diagnostics == "bacon-ls" and "bacon-ls" or nil,

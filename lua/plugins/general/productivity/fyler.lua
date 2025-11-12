@@ -4,11 +4,11 @@ return {
     cmd = { "Fyler" },
     keys = {
       {
-        "<leader>f1",
+        "<leader>E",
         function()
           require("fyler").open()
         end,
-        desc = "Open Fyler file manager",
+        desc = "Open Fyler file manager in snack window",
       },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },

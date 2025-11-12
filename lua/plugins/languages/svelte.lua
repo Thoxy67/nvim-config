@@ -79,12 +79,13 @@ return {
   },
 
   -- ==================== MASON TOOL INSTALLATION ====================
-  -- Install Svelte language server via Mason
+  -- Install Svelte language server and formatter via Mason
   {
     "mason.nvim",
     opts = {
       ensure_installed = {
         "svelte-language-server", -- Svelte LS with TypeScript plugin
+        "prettier", -- Code formatter for Svelte and other web languages
       },
     },
   },

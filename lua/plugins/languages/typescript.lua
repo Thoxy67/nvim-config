@@ -41,7 +41,14 @@ vim.lsp.config.ts_ls = {
 -- Advanced TypeScript language server with extended features
 -- Provides enhanced IntelliSense, refactoring, and completion capabilities
 vim.lsp.config.vtsls = {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- Disable formatting for svelte files to avoid conflicts
+    if vim.bo[bufnr].filetype == "svelte" then
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end
+    on_attach(client, bufnr)
+  end,
   enabled = vim.g.typescript_lsp == "vtsls", -- Enable only if selected
   filetypes = {
     "javascript", -- Standard JavaScript files
@@ -50,6 +57,7 @@ vim.lsp.config.vtsls = {
     "typescript", -- TypeScript files
     "typescriptreact", -- React TSX files
     "typescript.tsx", -- TSX files
+    "svelte", -- Svelte files (for TypeScript support)
   },
   root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   settings = {
@@ -64,6 +72,9 @@ vim.lsp.config.vtsls = {
           enableServerSideFuzzyMatch = true, -- Improved completion matching
         },
       },
+      tsserver = {
+        globalPlugins = {}, -- Disable global plugins to reduce conflicts
+      },
     },
 
     typescript = {
@@ -75,15 +86,16 @@ vim.lsp.config.vtsls = {
         completeFunctionCalls = true, -- Show complete function signatures
       },
 
-      -- ==================== INLAY HINTS CONFIGURATION ====================
-      inlayHints = {
-        enumMemberValues = { enabled = true }, -- Show enum values
-        functionLikeReturnTypes = { enabled = true }, -- Show return types
-        parameterNames = { enabled = "literals" }, -- Show parameter names for literals
-        parameterTypes = { enabled = true }, -- Show parameter types
-        propertyDeclarationTypes = { enabled = true }, -- Show property types
-        variableTypes = { enabled = false }, -- Hide variable types (can be verbose)
-      },
+       -- ==================== INLAY HINTS CONFIGURATION ====================
+       -- Disabled for svelte files to avoid conflicts with svelte LSP
+       inlayHints = {
+         enumMemberValues = { enabled = false },
+         functionLikeReturnTypes = { enabled = false },
+         parameterNames = { enabled = false },
+         parameterTypes = { enabled = false },
+         propertyDeclarationTypes = { enabled = false },
+         variableTypes = { enabled = false },
+       },
     },
 
     keys = {}, -- Custom keybindings (empty for default behavior)

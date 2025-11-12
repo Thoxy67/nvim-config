@@ -42,6 +42,20 @@ vim.o.number = true
 vim.g.have_nerd_font = true
 
 -- ============================================================================
+-- PERFORMANCE AND MEMORY OPTIMIZATION
+-- ============================================================================
+
+-- ==================== BUFFER MANAGEMENT ====================
+-- Reduce memory usage by limiting buffer history
+vim.o.undolevels = 1000 -- Limit undo levels
+vim.o.undoreload = 10000 -- Limit undo reload size
+
+-- ==================== SEARCH OPTIMIZATION ====================
+-- Improve search performance
+vim.o.incsearch = true -- Incremental search
+vim.o.hlsearch = true -- Highlight search results
+
+-- ============================================================================
 -- INPUT AND INTERACTION
 -- ============================================================================
 

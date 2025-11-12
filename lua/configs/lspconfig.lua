@@ -37,6 +37,18 @@ vim.diagnostic.config {
   update_in_insert = false, -- Don't update diagnostics in insert mode for performance
 }
 
+-- ==================== LSP CAPABILITY OPTIMIZATION ====================
+-- Reduce LSP overhead by disabling unused capabilities globally
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- Disable folding range if not needed
+capabilities.textDocument.foldingRange = nil
+-- Disable semantic tokens for better performance
+capabilities.textDocument.semanticTokens = nil
+-- Set global capabilities
+vim.lsp.config("*", { capabilities = capabilities })
+
+
+
 -- ==================== ADDITIONAL CONFIGURATION ====================
 -- For advanced LSP customization, see:
 -- :help vim.lsp.config for server-specific settings

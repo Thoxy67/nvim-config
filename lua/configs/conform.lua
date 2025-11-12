@@ -28,7 +28,10 @@ local options = {
     javascript = { "prettier" },
     typescript = { "prettier" },
     json = { "biome" },
-    svelte = { "prettier" },
+     svelte = {
+       lsp_format = "svelte", -- Use svelte LSP specifically for formatting
+       timeout_ms = 5000, -- Increase timeout for svelte LSP initialization
+     },
     bash = { "shfmt" },
     gleam = { "gleam" },
     go = { "gofmt" },
@@ -39,11 +42,13 @@ local options = {
     zig = { "zigfmt" },
   },
 
-  -- ==================== FORMAT ON SAVE CONFIGURATION ====================
-  format_on_save = {
-    timeout_ms = 500, -- Maximum time to wait for formatting
-    lsp_fallback = true, -- Use LSP formatting if no formatter is configured
-  },
+-- ==================== FORMAT ON SAVE CONFIGURATION ====================
+format_on_save = {
+  timeout_ms = 500, -- Maximum time to wait for formatting
+  lsp_fallback = true, -- Use LSP formatting if no formatter is configured
+  -- Disable format on save for svelte files due to LSP timeout issues
+  disable_filetypes = { "svelte" },
+},
 }
 
 return options
