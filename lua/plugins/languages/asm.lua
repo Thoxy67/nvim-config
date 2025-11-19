@@ -8,19 +8,27 @@
 -- - Hover documentation for assembly instructions
 -- ============================================================================
 
-return {
-  -- ==================== ASM-LSP SERVER ====================
-  -- asm-lsp provides language server features for assembly:
-  -- - Hover documentation for CPU instructions
-  -- - Diagnostics for syntax errors
-  -- - Support for multiple assembly syntaxes (AT&T, Intel, ARM, etc.)
-  -- - Instruction reference from CPU documentation
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        asm_lsp = {}, -- Assembly language server
-      },
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+
+-- ==================== ASM-LSP SERVER ====================
+-- asm-lsp provides language server features for assembly:
+-- - Hover documentation for CPU instructions
+-- - Diagnostics for syntax errors
+-- - Support for multiple assembly syntaxes (AT&T, Intel, ARM, etc.)
+-- - Instruction reference from CPU documentation
+vim.lsp.config.asm_lsp = {
+  on_attach = on_attach,
+  filetypes = { "asm", "s", "S", "nasm", "gas" },
+  root_markers = { ".git", "Makefile" },
+  settings = {
+    asm_lsp = {
+      -- Assembly LSP configuration
+      -- Supports multiple architectures: x86, x86_64, ARM, RISC-V, etc.
     },
   },
 }
+
+-- Enable ASM LSP server
+vim.lsp.enable { "asm_lsp" }
+
+return {}

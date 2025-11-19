@@ -12,9 +12,11 @@ return {
       },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = { integrations = {
-      icon = "nvim_web_devicons",
-    } },
+    opts = {
+      integrations = {
+        icon = "nvim_web_devicons",
+      },
+    },
     config = function(_, opts)
       require("fyler").setup(opts)
     end,

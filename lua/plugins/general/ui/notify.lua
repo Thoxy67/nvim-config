@@ -2,7 +2,8 @@
 return {
   {
     "rcarriga/nvim-notify",
-    event = "VeryLazy", -- Notifications don't need immediate loading
+    lazy = false, -- Load immediately so lazy.nvim can use it for update notifications
+    priority = 1000, -- Load early in the startup sequence
     opts = {
       stages = "fade_in_slide_out",
       timeout = 1500, -- Notification timeout in milliseconds

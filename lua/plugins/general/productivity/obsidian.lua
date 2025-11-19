@@ -9,40 +9,46 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 return {
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
     ft = "markdown", -- Load for markdown files
-    cmd = { -- Also load when any Obsidian command is used
-      "ObsidianOpen",
-      "ObsidianNew",
-      "ObsidianQuickSwitch",
-      "ObsidianFollowLink",
-      "ObsidianBacklinks",
-      "ObsidianTags",
-      "ObsidianToday",
-      "ObsidianYesterday",
-      "ObsidianTomorrow",
-      "ObsidianDailies",
-      "ObsidianTemplate",
-      "ObsidianSearch",
-      "ObsidianLink",
-      "ObsidianLinkNew",
-      "ObsidianLinks",
-      "ObsidianExtractNote",
-      "ObsidianWorkspace",
-      "ObsidianPasteImg",
-      "ObsidianRename",
-      "ObsidianToggleCheckbox",
-      "ObsidianNewFromTemplate",
-      "ObsidianTOC",
-    },
+    cmd = { "Obsidian" }, -- Main entry point command in new version
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    ---@module 'obsidian'
+    ---@type obsidian.config
     opts = {
       workspaces = {
         {
           name = "personal",
           path = "~/Documents/Obsidian Vault/",
+        },
+      },
+      
+      -- Disable legacy commands to remove warning
+      legacy_commands = false,
+      
+      -- Optional: configure completion
+      completion = {
+        nvim_cmp = true,
+        min_chars = 2,
+      },
+      
+      -- Optional: UI configuration
+      ui = {
+        enable = true,
+      },
+      
+      -- Checkbox configuration (new format)
+      checkbox = {
+        order = { " ", "x", ">", "~", "!" },
+        chars = {
+          [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+          ["x"] = { char = "", hl_group = "ObsidianDone" },
+          [">"] = { char = "", hl_group = "ObsidianRightArrow" },
+          ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+          ["!"] = { char = "", hl_group = "ObsidianImportant" },
         },
       },
     },
